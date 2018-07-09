@@ -1,0 +1,124 @@
+<<<<<<< HEAD
+#{extends 'principal.html' /}
+#{set title:'Listar Medicamentos' /}
+
+<meta charset="utf-8">
+
+<div class="card mb-3">
+	<div class="card-header">
+   		<i class="fa fa-table"></i>Listagem de Medicamento</div>
+ 	<div class="card-body">
+		    
+	    <table class="table dataTable" id="dataTable">
+	    	<thead>
+		        <tr>		        
+		        <th rowspan="1" colspan="1">Nome do Medicamento</th>
+		        <th rowspan="1" colspan="1">Fabricante</th>
+		        <th rowspan="1" colspan="1">Data Prescrita</th>
+		        <th rowspan="1" colspan="1">Horario</th>
+		        <th rowspan="1" colspan="1">Data Aplicar</th>
+	         
+	       	</thead>
+	       	<tbody>
+		
+			#{list items:medicamentos, as:'medicamento'}
+			<tr role="row">
+	        	
+	           	<td>${medicamento.nomeMedicamento}</td>
+	           	<td>${medicamento.fabricante}</td>
+	           	<td>${medicamento.dataPrescrita}</td>
+	           	<td>${medicamento.horariodosagem}</td>
+	           	<td>${medicamento.dataAplicar}</td>
+	                     
+	           	
+	           	<td>
+	           		<a class="btn1 btn-default" href="@{Medicamentos.detalhes(medicamento)}">
+           					<button class="btn">
+           						<i class="fa fa-fw fa fa-bars"></i>
+           					</button>
+           				</a>
+		           		<a class="btn1 btn-default" href="@{Medicamentos.editar(medicamento.id)}">
+		           			<button class="btn">
+		           				<i class="fa fa-fw fa-pencil"></i>
+		           			</button>
+		           		</a>
+	           	  		<a class="btn1 btn-default" href="@{Medicamentos.remover(medicamento.id)}">
+	           	  			<button class="btn">
+	           	  				<i class="fa fa-fw fa-trash"></i>
+	           	  			</button>
+	           	  		</a>
+	           	</td>
+	       		</tr>
+			#{/list}
+			</tbody>
+	    </table>
+    	</br></br></br>
+    	<div class="modal-footer">
+    		'<a href="@{Medicamentos.form}"><button class="btn btn-success">Cadastrar novo Medicamento</button></a>    
+    	</div>
+  	</div>
+</div>
+=======
+#{extends 'main.html' /}
+#{set title:'Listar Medicamentos' /}
+
+<meta charset="utf-8">
+<!-- <h1>Listar Medicamentos</h1> -->
+
+<!-- <ul> -->
+<!-- #{list items:medicamentos, as:'medicamento'} -->
+<!-- 	<li> ${medicamento.nomeMedicamento} </li> -->
+<!-- #{/list} -->
+<!-- </ul> -->
+<!-- #{else}Nenhum Medicamento na lista.#{/else} -->
+
+<div class="card mb-3">
+	<div class="card-header">
+   		<i class="fa fa-table"></i>Lista de Medicamentos</div>
+ 	<div class="card-body">
+		    
+	    <table class="table dataTable" id="dataTable">
+	    	<thead>
+		        <tr>
+		        <th rowspan="1" colspan="1">Nome</th>
+		        <th rowspan="1" colspan="1">fabricante</th>
+		        
+	         
+	       	</thead>
+	       	<tbody>
+		
+			#{list items:medicamentos, as:'medicamento'}
+			<tr role="row">
+	        	<td>${medicamento.nomeMedicamento}</td>
+	           	<td>${medicamento.fabricante}</td>
+           	
+           		<td align="right" valign="middle">
+           			<a class="btn1 btn-default" href="@{Medicamentos.detalhes(medicamento)}">
+          					<button class="btn">
+          						<i class="fa fa-fw fa fa-bars"></i>
+          					</button>
+          				</a>
+	           		<a class="btn1 btn-default" href="@{Medicamentos.editar(medicamento.id)}">
+	           			<button class="btn">
+	           				<i class="fa fa-fw fa-pencil"></i>
+	           			</button>
+	           		</a>
+	           	  	<a class="btn1 btn-default" href="@{Medicamentos.remover(medicamento.id)}">
+	           	  		<button class="btn">
+	           	  			<i class="fa fa-fw fa-trash"></i>
+	           	  		</button>
+	           	  	</a>
+           		</td>
+	           	</td>
+	       		</tr>
+			#{/list}
+			</tbody>
+	    </table>
+    	</br></br></br>
+    	<div class="modal-footer">
+    		'<a href="@{Medicamentos.form}"><button class="btn btn-success">Cadastrar novo Medico</button></a>    
+    	</div>
+  	</div>
+</div>
+  
+>>>>>>> branch 'master' of https://github.com/robson-ribeiro-da-silva/Hospital.git

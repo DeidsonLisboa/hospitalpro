@@ -1,0 +1,42 @@
+#{extends 'principal.html' /}
+#{set title:'Detalhes' /}
+
+<meta charset="utf-8">
+
+<div class="card mb-3">
+  	<div class="card-header">
+    	<i class="fa fa-bookmark"></i>Detalhes da Internação</div>
+  	<div class="card-body">		
+		
+		<div class="card mb-3">
+			<div class="card-header">
+		    	<b>Pacientes associados a Internação</b>
+		    </div>
+		  	<div class="card-body">
+		  		#{if internacao?.pacientes}
+				<table class="table table-striped">
+			       	<thead >
+				         <th rowspan="1" colspan="1">Nome do Paciente</th>
+			       	</thead>
+			       	<tbody> 
+						#{list items:internacao.pacientes, as:'paciente'}
+						<tr role="row">
+				           <td><a href="@{Pacientes.detalhes(paciente.id)}">${paciente.nome}</a></td>
+				        </tr>
+						#{/list}
+					</tbody>
+		    	</table>
+		    	#{/if}
+		    	#{else}
+		    		<p>Nenhum paciente associado a internação.</p>
+		    	#{/else}
+			</div>
+		</div>
+		<br>
+		<div class="">
+			<a class="btn btn-primary" href="@{Internacoes.editar(internacao.id)}">Editar</a>
+        </div>
+        <br>
+        <a href="@{Internacoes.listar}">Ver todas Internacoes</a>
+	</div>
+</div>

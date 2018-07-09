@@ -1,0 +1,108 @@
+<<<<<<< HEAD
+#{extends 'principal.html' /}
+#{set title:'Formulário Medicamento' /}
+
+%{
+	String tituloAcaoForm = medicamento.id == null? "Cadastrar":"Salvar Alterações"; 
+	String tituloForm = medicamento.id == null? "Cadastro":"Edição";
+}%
+
+<meta charset="utf-8">
+<div id="medica">
+<div class="card mb-3">
+	<div class="card-header">
+		<i class="fa fa-bookmark"></i> ${tituloForm} de Medicamento</div>
+	<div class="card-body">
+          
+		<form action="@{Medicamentos.salvar}" name="Filter" class="form" method="post">
+			
+			<input type="hidden" value="${medicamento?.id}" name="medicamento.id">
+			
+				
+				<h6><b>Identificação do Medicamento</b></h6>
+				<div class="row">
+					<div class="form-group col-md-4">
+					   <label for="formGroupExampleInput"><h11>*</h11>Nome do Medicamento:</label>
+					   <input class="form-control" id="nomeMedicamento" type="text" value="${medicamento?.nomeMedicamento}" name="medicamento.nomeMedicamento" placeholder="Ex: Dipirona">
+					</div>
+					
+					<div class="form-group col-md-4">
+					   <label for="formGroupExampleInput"><h11>*</h11>Fabricante do Medicamento:</label>
+					   <input class="form-control" id="fabricante" type="text" value="${medicamento?.fabricante}" name="medicamento.fabricante" placeholder="Ex: Dipimed">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-3">
+						<label for="formGroupExampleInput"><h11>*</h11>Data Prescrita:</label> <input
+							class="form-control" id="dataPrescrita" type="date"
+							value="${medicamento?.dataPrescrita}" name="medicamento.dataPrescrita">
+					</div>
+					
+					<div class="form-group col-md-5">
+					   <label for="formGroupExampleInput"><h11>*</h11>Aplicar a cada hora(as):</label>
+					   <select class="form-control" id="horariodosagem" value="${medicamento?.horariodosagem}" name="medicamento.horariodosagem">
+					   #{list items:horas, as: 'hora'}
+					   <option value="${hora}" ${(medicamento?.horariodosagem !=null && medicamento.horariodosagem==hora)?'selected':''}>${hora}</option>
+					   #{/list}
+					   </select>
+					</div>
+					
+				</div>
+				
+				
+				<div class="row">
+					<div class="form-group col-md-3">
+						<label for="formGroupExampleInput"><h11>*</h11>Data de Aplicar:</label> <input
+							class="form-control" id="dataAplicar" type="date"
+							value="${medicamento?.dataAplicar}" name="medicamento.dataAplicar">
+					</div>
+				</div>
+					
+					<div class="modal-footer">
+					<input class="btn btn-success" type="submit" value="${tituloAcaoForm}">
+					<button type="reset" class="btn btn-default" data-dismiss="modal">Limpar</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+=======
+#{extends 'main.html' /}
+#{set title:'Formulário' /}
+
+<meta charset="utf-8">
+<div id="pacie">
+	<div class="card mb-3">
+	
+		<div class="card-header">
+			<i class="fa fa-table"></i>Cadastro de Medicamento
+		</div>
+		<div class="card-body">
+	
+			<form action="@{Medicamentos.salvar}" method="post">
+				<input type="hidden" value="${medicamento?.id}" name="medicamento.id">
+				
+				<div class="row">
+					<div class="form-group col-md-6">
+					   <label for="nomeMed">Nome:</label>
+					   <input class="form-control" id="nomeMedicamento" type="text" value="${medicamento?.nomeMedicamento}" name="medicamento.nomeMedicamento">
+					</div>
+				</div>	
+				
+				<div class="row">	
+					<div class="form-group col-md-2">
+					   <label for="fabricante">Fabricante:</label>
+					   <input class="form-control" id="fabricante" type="text" value="${medicamento?.fabricante}" name="medicamento.fabricante">
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success">Cadastrar</button>
+					<button type="reset" class="btn btn-default" data-dismiss="modal">Limpar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+>>>>>>> branch 'master' of https://github.com/robson-ribeiro-da-silva/Hospital.git
+</div>

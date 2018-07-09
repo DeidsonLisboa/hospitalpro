@@ -1,0 +1,67 @@
+#{extends 'principal.html' /}
+#{set title:'Listar Internações' /}
+
+
+<meta charset="utf-8">
+<!-- <h1>Listar Pacientes</h1> -->
+
+<!-- <ul> -->
+<!-- #{list items:pacientes, as:'paciente'} -->
+<!-- 	<li> ${paciente.nome} </li> -->
+<!-- #{/list} -->
+<!-- </ul> -->
+<!-- #{else}Nenhum Paciente na lista.#{/else} -->
+
+
+<div class="card mb-3">
+<div class="card-header">
+	<i class="fa fa-table"></i>Listagem de Internações</div>
+<div class="card-body">
+
+	<table class="table dataTable" id="dataTable">
+		<thead>
+			<tr>
+				<th rowspan="1" colspan="1" width=30%>Nome do paciente</th>
+				<th rowspan="1" colspan="1" width=20%>CPF do Paciente</th>
+				<th rowspan="1" colspan="1" width=15%>Nome do medico</th>
+		       	<th rowspan="1" colspan="1" width=15%>Nome do enfermeiro</th>
+		        <th rowspan="1" colspan="1" width=20%>Ações</th>
+         	</tr>
+         	
+		</thead>
+       
+     	<tbody>
+			#{list items:internacoes, as:'internacao'}
+		<tr role="row">			
+           <td>${internacao.pacientes.nome}</td>
+           <td>${internacao.pacientes.cpf}</td>
+           <td>${internacao.medicos.nome}</td>
+           <td>${internacao.enfermeiros.nome}</td>
+           	<td align="right" valign="middle">
+           		<a class="btn1 btn-default" href="@{Internacoes.detalhes(internacao.id)}">
+           			<button class="btn">
+           				<i class="fa fa-fw fa fa-bars"></i>
+           			</button>
+           		</a>
+           		<a class="btn1 btn-default" href="@{Internacoes.editar(internacao.id)}">
+           			<button class="btn">
+           				<i class="fa fa-fw fa-pencil"></i>
+           			</button>
+           		</a>
+           	  	<a class="btn1 btn-default" href="@{Internacoes.remover(internacao.id)}">
+           	  		<button class="btn">
+           	  			<i class="fa fa-fw fa-trash"></i>
+           	  		</button>
+           	  	</a>
+           	</td>
+         </tr>
+	#{/list}
+	</tbody>
+    </table>
+    
+    </br></br></br>
+    <div class="modal-footer">
+    	<a href="@{Internacoes.form}"><button class="btn btn-success">Cadastrar nova Internacao</button></a>
+    </div>
+  </div>
+</div>

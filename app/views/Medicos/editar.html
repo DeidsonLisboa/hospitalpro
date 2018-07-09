@@ -1,0 +1,77 @@
+#{extends 'principal.html' /}
+#{set title:'Formulário' /}
+
+<meta charset="utf-8">
+<div class="card mb-3">
+	<div class="card-header">
+	    Medico / Alteração de cadastro
+	</div>
+	
+	<div class="card-body">
+		
+		<form action="@{Medicos.salvar}" method="post">
+		
+			<input type="hidden" value="${medico?.id}" name="medico.id">
+			
+			<div class="form-group">
+		   		<label for="nome">Nome:</label>
+		   		<input class="form-control" id="nome" type="text" value="${medico?.nome}" name="medico.nome">
+			</div>
+			
+			<div class="form-group">
+		   		<label for="nome">Sexo:</label>
+		   		<input class="form-control" id="sexo" type="text" value="${medico?.sexo}" name="medico.sexo">
+			</div>
+			
+			<div class="form-group">
+		   		<label for="nome">Data de Nascimento:</label>
+		   		<input class="form-control" id="dataNas" type="date" value="${medico?.dataNas}" name="medico.dataNas">
+			</div>
+			
+			<div class="form-group">
+		   		<label for="cpf">CPF:</label>
+		   		<input class="form-control" id="cpf" type="text" value="${medico?.cpf}" name="medico.cpf">
+			</div>
+		
+			<div class="form-group">
+		   		<label for="telefone">Telefone:</label>
+		   		<input class="form-control" id="telefone" type="text" value="${medico?.telefone}" name="medico.telefone">
+			</div>
+		
+			<div class="form-group">
+				<label for="numCRM">Nº do CRM:</label>
+				<input class="form-control" id="numCRM" type="text" value="${medico?.numCRM}" name="medico.numCRM">
+			</div>
+		
+			<div class="form-group">
+		  		<label for="cidade">Cidade:</label>
+		   		<input class="form-control" id="cidade" type="text" value="${medico?.cidade}" name="medico.cidade">
+			</div>
+		
+			<div class="form-group">
+		  		<label for="bairro">Bairro:</label>
+		   		<input class="form-control" id="bairro" type="text" value="${medico?.bairro}" name="medico.bairro">
+			</div>
+		
+			<div class="form-group">
+		   		<label for="rua">Rua:</label>
+		   		<input class="form-control" id="rua" type="text" value="${medico?.rua}" name="medico.rua">
+			</div>
+		
+			<div class="form-group">
+				<label for="numCasa">Casa nº:</label>
+				<input class="form-control" id="numCasa" type="text" value="${medico?.numCasa}" name="medico.numCasa">
+			</div>
+		
+			<div class="form-group">
+			   	<label for="estado">Estado:</label>
+			   	<input class="form-control" id="estado" type="text" value="${medico?.estado}" name="medico.estado">
+			</div>
+					
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-success">Salvar Alterações</button>
+			</div>
+			
+		</form>
+	</div>
+</div>

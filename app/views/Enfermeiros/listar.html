@@ -1,0 +1,64 @@
+#{extends 'principal.html' /}
+#{set title:'Listar Enfermeiros' /}
+
+<meta charset="utf-8">
+<!-- <h1>Listar Enfermeiros</h1> -->
+
+<!-- <ul> -->
+<!-- #{list items:enfermeiros, as:'enfermeiro'} -->
+<!-- 	<li> ${enfermeiro.nome} </li> -->
+<!-- #{/list} -->
+<!-- </ul> -->
+<!-- #{else}Nenhum Enfermeiro na lista.#{/else} -->
+
+<div class="card mb-3">
+	<div class="card-header">
+		<i class="fa fa-table"></i>Listagem de Enfermeiro</div>
+	<div class="card-body">
+    
+	    <table class="table dataTable" id="dataTable">
+			<thead>
+		    	<tr>
+		        <th rowspan="1" colspan="1">Nome</th>
+		        <th rowspan="1" colspan="1">Sexo</th>
+		        <th rowspan="1" colspan="1">Data de Nascimento</th>
+		        <th rowspan="1" colspan="1">CPF</th>
+		        				         
+		 	</thead>
+		    <tbody>
+				#{list items:enfermeiros, as:'enfermeiro'}
+			
+				<tr role="row">
+			        <td>${enfermeiro.nome}</td>
+			        <td>${enfermeiro.sexo}</td>
+	           		<td>${enfermeiro.dataNas}</td>
+			        <td>${enfermeiro.cpf}</td>
+			        
+			        <td>
+			        	<a class="btn1 btn-default" href="@{Enfermeiros.detalhes(enfermeiro.id)}">
+           					<button class="btn">
+           						<i class="fa fa-fw fa fa-bars"></i>
+           					</button>
+           				</a>
+		           		<a class="btn1 btn-default" href="@{Enfermeiros.editar(enfermeiro.id)}">
+		           			<button class="btn">
+		           				<i class="fa fa-fw fa-pencil"></i>
+		           			</button>
+		           		</a>
+	           	  		<a class="btn1 btn-default" href="@{Enfermeiros.remover(enfermeiro.id)}">
+	           	  			<button class="btn">
+	           	  				<i class="fa fa-fw fa-trash"></i>
+	           	  			</button>
+	           	  		</a>
+			        </td>
+			 	</tr>
+				#{/list}
+			</tbody>
+	    </table>
+	    
+	    </br></br></br>
+	    <div class="modal-footer">
+	    	<a href="@{Enfermeiros.form}"><button class="btn btn-success">Cadastro novo Enfermeiro</button></a>
+		</div>
+	</div>
+</div>

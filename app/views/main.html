@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>#{get 'title' /}</title>
+<!-- Bootstrap core CSS-->
+<link
+	href="@{'/public/bootstrap/vendor/bootstrap/css/bootstrap.min.css'}"
+	rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link
+	href="@{'/public/bootstrap/vendor/font-awesome/css/font-awesome.min.css'}"
+	rel="stylesheet" type="text/css">
+<!-- Page level plugin CSS-->
+<link
+	href="@{'/public/bootstrap/vendor/datatables/dataTables.bootstrap4.css'}"
+	rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="@{'/public/bootstrap/css/sb-admin.css'}" rel="stylesheet">
+
+#{get 'moreStyles' /}
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+	<!-- Navigation-->
+
+	<!-- Mensagem de sucesso -->
+
+	#{if flash.success}
+	<div class="row">
+		<div class="alert alert-success" class="form-group col-md-6">
+			<p>${flash.success.raw()}</p>
+		</div>
+	</div>
+	#{/if}
+
+
+	<!-- Mensagem de erro -->
+
+	#{if flash.error}
+	<div class="alert alert-danger">
+		<p>${flash.error.raw()}</p>
+	</div>
+	#{/if} #{doLayout /}
+
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="@{'/public/bootstrap/vendor/jquery/jquery.min.js'}"></script>
+	<script
+		src="@{'/public/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js'}"></script>
+	<!-- Core plugin JavaScript-->
+	<script
+		src="@{'/public/bootstrap/vendor/jquery-easing/jquery.easing.min.js'}"></script>
+	<!-- Page level plugin JavaScript-->
+	<script src="@{'/public/bootstrap/vendor/chart.js/Chart.min.js'}"></script>
+	<script
+		src="@{'/public/bootstrap/vendor/datatables/jquery.dataTables.js'}"></script>
+	<script
+		src="@{'/public/bootstrap/vendor/datatables/dataTables.bootstrap4.js'}"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="@{'/public/bootstrap/js/sb-admin.min.js'}"></script>
+	<!-- Custom scripts for this page-->
+	<script src="@{'/public/bootstrap/js/sb-admin-datatables.min.js'}"></script>
+	<script src="@{'/public/bootstrap/js/sb-admin-charts.min.js'}"></script>
+
+	#{get 'moreScripts' /}
+</body>
+
+</html>

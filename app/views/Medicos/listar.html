@@ -1,0 +1,65 @@
+#{extends 'principal.html' /}
+#{set title:'Listar Medicos' /}
+
+<meta charset="utf-8">
+<!-- <h1>Listar Medicos</h1> -->
+
+<!-- <ul> -->
+<!-- #{list items:medicos, as:'medico'} -->
+<!-- 	<li> ${medico.nome} </li> -->
+<!-- #{/list} -->
+<!-- </ul> -->
+<!-- #{else}Nenhum Medico na lista.#{/else} -->
+
+<div class="card mb-3">
+	<div class="card-header">
+   		<i class="fa fa-table"></i>Listagem de Medico</div>
+ 	<div class="card-body">
+		    
+	    <table class="table dataTable" id="dataTable">
+	    	<thead>
+		        <tr>		        
+		        <th rowspan="1" colspan="1">Nome</th>
+		        <th rowspan="1" colspan="1">Sexo</th>
+		        <th rowspan="1" colspan="1">Data de Nascimento</th>
+		        <th rowspan="1" colspan="1">CPF</th>
+	         
+	       	</thead>
+	       	<tbody>
+		
+			#{list items:medicos, as:'medico'}
+			<tr role="row">
+	        	
+	           	<td>${medico.nome}</td>
+	           	<td>${medico.sexo}</td>
+	           	<td>${medico.dataNas}</td>
+	           	<td>${medico.cpf}</td>
+	                     
+	           	
+	           	<td>
+	           		<a class="btn1 btn-default" href="@{Medicos.detalhes(medico.id)}">
+           					<button class="btn">
+           						<i class="fa fa-fw fa fa-bars"></i>
+           					</button>
+           				</a>
+		           		<a class="btn1 btn-default" href="@{Medicos.editar(medico.id)}">
+		           			<button class="btn">
+		           				<i class="fa fa-fw fa-pencil"></i>
+		           			</button>
+		           		</a>
+	           	  		<a class="btn1 btn-default" href="@{Medicos.remover(medico.id)}">
+	           	  			<button class="btn">
+	           	  				<i class="fa fa-fw fa-trash"></i>
+	           	  			</button>
+	           	  		</a>
+	           	</td>
+	       		</tr>
+			#{/list}
+			</tbody>
+	    </table>
+    	</br></br></br>
+    	<div class="modal-footer">
+    		'<a href="@{Medicos.form}"><button class="btn btn-success">Cadastrar novo Medico</button></a>    
+    	</div>
+  	</div>
+</div>

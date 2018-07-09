@@ -1,0 +1,51 @@
+#{extends 'principal.html' /}
+#{set title:'Listar Leitos' /}
+
+<meta charset="utf-8">
+
+<div class="card mb-3">
+	<div class="card-header">
+   		<i class="fa fa-table"></i>Listagem de Leito</div>
+ 	<div class="card-body">
+		    
+	    <table class="table dataTable" id="dataTable">
+	    	<thead>
+		        <tr>		        
+		        <th rowspan="1" colspan="1">Numero do Leito</th>
+	         
+	       	</thead>
+	       	<tbody>
+		
+			#{list items:leitos, as:'leito'}
+			<tr role="row">
+	        	
+	           	<td>${leito.numeroLeito}</td>
+	                     
+	           	
+	           	<td>
+	           		<a class="btn1 btn-default" href="@{Leitos.detalhes(leito)}">
+           					<button class="btn">
+           						<i class="fa fa-fw fa fa-bars"></i>
+           					</button>
+           				</a>
+		           		<a class="btn1 btn-default" href="@{Leitos.editar(leito.id)}">
+		           			<button class="btn">
+		           				<i class="fa fa-fw fa-pencil"></i>
+		           			</button>
+		           		</a>
+	           	  		<a class="btn1 btn-default" href="@{Leitos.remover(leito.id)}">
+	           	  			<button class="btn">
+	           	  				<i class="fa fa-fw fa-trash"></i>
+	           	  			</button>
+	           	  		</a>
+	           	</td>
+	       		</tr>
+			#{/list}
+			</tbody>
+	    </table>
+    	</br></br></br>
+    	<div class="modal-footer">
+    		'<a href="@{Leitos.form}"><button class="btn btn-success">Cadastrar novo Leito</button></a>    
+    	</div>
+  	</div>
+</div>

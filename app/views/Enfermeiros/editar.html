@@ -1,0 +1,151 @@
+#{extends 'principal.html' /}
+#{set title:'Formulário' /}
+
+<meta charset="utf-8">
+<div class="card mb-3">
+	<div class="card-header">
+		Enfermeiro / Alteração de cadastro
+	</div>
+	
+	<div class="card-body">
+          
+		<form action="@{Enfermeiros.salvar}" method="post">
+			
+			<input type="hidden" value="${enfermeiro?.id}" name="enfermeiro.id">
+			
+			<h6><b>Identificação</b></h6>
+				<div class="row">
+					<div class="form-group col-md-5">
+					   <label for="nome">Nome:</label>
+					   <input class="form-control" id="nome" type="text" value="${enfermeiro?.nome}" name="enfermeiro.nome">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   	<label for="sexo">Sexo:</label>
+					   	<select class="form-control form-control-sm" id="sexo" type="text" value="${enfermeiro?.sexo}" name="enfermeiro.sexo">
+							<option selected="" value="">Selecione o Sexo</option>
+							#{list items:sexos, as: 'sexo'}
+								<option value="${sexo}" ${(enfermeiro?.sexo != null && enfermeiro.sexo == sexo)? 'selected':''}>${sexo}</option>
+							#{/list}
+					   	</select>
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="idade">Data de Nascimento:</label>
+					   <input class="form-control" id="dataNas" type="date" value="${enfermeiro?.dataNas}" name="enfermeiro.dataNas">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   	<label for="estCivil">Estado Civil:</label>
+					   	<select class="form-control form-control-sm" id="estCivil" value="${enfermeiro?.estCivil}" name="enfermeiro.estCivil">
+							<option selected="" value="">Selecione</option>
+							#{list items:estadosCivis, as: 'estadocivil'}
+								<option value="${estadocivil}" ${(enfermeiro?.estCivil != null && enfermeiro.estCivil == estadocivil)? 'selected':''}>${estadocivil}</option>
+							#{/list}
+					   	</select>
+					</div>
+				</div>
+				
+				<div class="row">	
+					<div class="form-group col-md-2">
+					   <label for="naturalCidade">Naturalidade:</label>
+					   <input class="form-control" id="naturalCidade" placeholder="Nome da Cidade" type="text" value="${enfermeiro?.naturalCidade}" name="enfermeiro.naturalCidade">
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="estado">Estado:</label>
+					   <select class="form-control form-control-sm" id="estado" type="text" value="${enfermeiro?.estado}" name="enfermeiro.estado">
+							<option selected="" value="">Selecione o Estado (UF)</option>
+							#{list items:estados, as: 'estado'}
+								<option value="${estado}" ${(enfermeiro?.estado != null && enfermeiro.estado == estado)? 'selected':''}>${estado}</option>
+							#{/list}
+					   	</select>
+					</div>
+					
+					<div class="form-group col-md-2">
+					   	<label for="nacionalidade">Nacionalidade:</label>
+					   	<select class="form-control form-control-sm" id="nacionalidade" type="text" value="${enfermeiro?.nacionalidade}" name="enfermeiro.nacionalidade">
+							<option selected="" value="">Selecione</option>
+							#{list items:nacionalidades, as: 'nacionalidade'}
+								<option value="${nacionalidade}" ${(enfermeiro?.nacionalidade != null && enfermeiro.nacionalidade == nacionalidade)? 'selected':''}>${nacionalidade}</option>
+							#{/list}
+						</select>
+					</div>
+					
+					<div class="form-group col-md-2">
+					   <label for="cpf">CPF:</label>
+					   <input class="form-control" id="cpf" type="text" value="${enfermeiro?.cpf}" name="enfermeiro.cpf">
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="rg">RG:</label>
+					   <input class="form-control" id="rg" placeholder="*.***.***" type="text" value="${enfermeiro?.rg}" name="enfermeiro.rg">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-3">
+					   <label for="telefone">Celular:</label>
+					   <input class="form-control" id="telefone" type="text" value="${enfermeiro?.telefone}" name="enfermeiro.telefone">
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="numCoren">COREN:</label>
+					   <input class="form-control" id="numCoren" type="text" value="${enfermeiro?.numCoren}" name="enfermeiro.numCoren">
+					</div>
+					
+					<div class="form-group col-md-6">
+					   <label for="email">E-mail:</label>
+					   <input class="form-control" id="email" type="email" value="${enfermeiro?.email}" name="enfermeiro.email">
+					</div>
+					
+				</div>	
+				
+				</br>
+				<h6><b>Endereço Residencial</b></h6>
+				<div class="row">
+					<div class="form-group col-md-5">
+					   <label for="rua">Rua ou Avenida:</label>
+					   <input class="form-control" id="rua" type="text" value="${enfermeiro?.rua}" name="enfermeiro.rua">
+					</div>
+					<div class="form-group col-md-1">
+					   <label for="numCasa">Número:</label>
+					   <input class="form-control" id="numCasa" type="text" value="${enfermeiro?.numCasa}" name="enfermeiro.numCasa">
+					</div>
+					<div class="form-group col-md-2">
+					   <label for="complemento">Complemento:</label>
+					   <input class="form-control" id="complemento" type="text" value="${enfermeiro?.complemento}" name="enfermeiro.complemento">
+					</div>
+					<div class="form-group col-md-4">
+					   <label for="bairro">Bairro:</label>
+					   <input class="form-control" id="bairro" type="text" value="${enfermeiro?.bairro}" name="enfermeiro.bairro">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-4">
+					   <label for="cidade">Cidade:</label>
+					   <input class="form-control" id="cidade" type="text" value="${enfermeiro?.cidade}" name="enfermeiro.cidade">
+					</div>					
+					<div class="form-group col-md-3">
+					   <label for="estado">Estado:</label>
+					   <select class="form-control form-control-sm" id="estResidencia" type="text" value="${enfermeiro?.estResidencia}" name="enfermeiro.estResidencia">
+							<option selected="" value="">UF:</option>
+							#{list items:estados, as: 'estado'}
+								<option value="${estado}" ${(enfermeiro?.estResidencia != null && enfermeiro.estResidencia == estado)? 'selected':''}>${estado}</option>
+							#{/list}
+					   	</select>
+					</div>
+					<div class="form-group col-md-2">
+					   <label for="cep">CEP:</label>
+					   <input class="form-control" id="cep" type="text" value="${enfermeiro?.cep}" name="enfermeiro.cep">
+					</div>
+				</div>	
+						
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-success">Salvar Alterações</button>
+			</div>
+			
+		</form>
+	</div>
+</div>

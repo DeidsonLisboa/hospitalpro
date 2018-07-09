@@ -1,0 +1,54 @@
+<!-- /*
+		if(leitosIDs == null || leitosIDs.isEmpty()) {
+			quarto.leitos = null;
+		} else {
+			String IDs = "(" + String.join(", ", leitosIDs) + ")";
+			String query = "select l from Leito l where l.id in " + IDs;
+			List<Leito> leitos = Leito.find(query).fetch();
+			quarto.leitos = leitos;
+		}
+
+ , List<String> leitosIDs
+ 
+ <!-- 
+%{
+	String tituloAcaoForm = quarto.id == null? "Cadastrar":"Salvar Alterações"; 
+	String tituloForm = quarto.id == null? "Cadastro":"Edição";
+}%-->
+
+
+public String numeroQuarto;
+	
+	@OneToMany(mappedBy="quarto")
+	public  List<Leito> leitos;
+	
+	@ManyToOne
+	@JoinColumn(name="ala_id")
+	public Ala ala;
+
+
+String IDs = "-1";
+		if(leitosIDs != null)
+			IDs = String.join(", ", leitosIDs);
+			
+		String query = "select l from Leito l where l.id in (" + IDs + ")";			
+		List<Leito> leitosAssociados = Leito.find(query).fetch();
+		for(Leito leito: leitosAssociados) {
+			leito.quarto = quarto;
+			leito.save();
+		}
+		
+		query = "select l from Leito l where l.id not in ("+ IDs + ")";	
+		System.out.println(query);
+		List<Leito> leitosNaoAssociado = Leito.find(query).fetch();
+		for(Leito leito: leitosNaoAssociado) {
+			if(leito.quarto != null && 
+			   leito.quarto.id == quarto.id) {
+				leito.quarto = null;
+				leito.save();
+			}
+		}
+		quarto.save();
+		flash.success("quarto salvo com sucesso!");
+		//detalhes(quarto);
+		listar();-->

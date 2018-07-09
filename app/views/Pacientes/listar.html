@@ -1,0 +1,66 @@
+#{extends 'principal.html' /}
+#{set title:'Listar Pacientes' /}
+
+
+<meta charset="utf-8">
+<!-- <h1>Listar Pacientes</h1> -->
+
+<!-- <ul> -->
+<!-- #{list items:pacientes, as:'paciente'} -->
+<!-- 	<li> ${paciente.nome} </li> -->
+<!-- #{/list} -->
+<!-- </ul> -->
+<!-- #{else}Nenhum Paciente na lista.#{/else} -->
+
+
+<div class="card mb-3">
+<div class="card-header">
+	<i class="fa fa-table"></i>Listagem de Paciente</div>
+<div class="card-body">
+
+	<table class="table dataTable" id="dataTable">
+		<thead>
+			<tr>
+				<th rowspan="1" colspan="1" width=50%>Nome</th>
+				<th rowspan="1" colspan="1" width=15%>Sexo</th>
+		       	<th rowspan="1" colspan="1" width=15%>CPF</th>
+		        <th rowspan="1" colspan="1" width=20%>Ações</th>
+         	</tr>
+         	
+		</thead>
+       
+     	<tbody>
+			#{list items:pacientes, as:'paciente'}
+		<tr role="row">
+           <td>${paciente.nome}</td>
+           <td>${paciente.sexo}</td>
+           <td>${paciente.cpf}</td>
+           	<td align="right" valign="middle">
+           		<a class="btn1 btn-default" href="@{Pacientes.detalhes(paciente.id)}">
+           			<button class="btn">
+           				<i class="fa fa-fw fa fa-bars"></i>
+           			</button>
+           		</a>
+           		<a class="btn1 btn-default" href="@{Pacientes.editar(paciente.id)}">
+           			<button class="btn">
+           				<i class="fa fa-fw fa-pencil"></i>
+           			</button>
+           		</a>
+           	  	<a class="btn1 btn-default" href="@{Pacientes.remover(paciente.id)}">
+           	  		<button class="btn">
+           	  			<i class="fa fa-fw fa-trash"></i>
+           	  		</button>
+           	  	</a>
+           	</td>
+         </tr>
+	#{/list}
+	</tbody>
+    </table>
+    
+    </br></br></br>
+    <div class="modal-footer">
+    	<a href="@{Pacientes.form}"><button class="btn btn-success">Cadastrar novo Paciente</button></a>
+    </div>
+  </div>
+</div>
+  

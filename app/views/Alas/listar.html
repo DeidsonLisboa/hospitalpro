@@ -1,0 +1,51 @@
+#{extends 'principal.html' /}
+#{set title:'Listar Alas' /}
+
+<meta charset="utf-8">
+
+<div class="card mb-3">
+	<div class="card-header">
+   		<i class="fa fa-table"></i>Listagem de Ala</div>
+ 	<div class="card-body">
+		    
+	    <table class="table dataTable" id="dataTable">
+	    	<thead>
+		        <tr>		        
+		        <th rowspan="1" colspan="1">Nome da Ala</th>
+	         
+	       	</thead>
+	       	<tbody>
+		
+			#{list items:alas, as:'ala'}
+			<tr role="row">
+	        	
+	           	<td>${ala.nomeAla}</td>
+	                     
+	           	
+	           	<td>
+	           		<a class="btn1 btn-default" href="@{Alas.detalhes(ala)}">
+           					<button class="btn">
+           						<i class="fa fa-fw fa fa-bars"></i>
+           					</button>
+           				</a>
+		           		<a class="btn1 btn-default" href="@{Alas.editar(ala.id)}">
+		           			<button class="btn">
+		           				<i class="fa fa-fw fa-pencil"></i>
+		           			</button>
+		           		</a>
+	           	  		<a class="btn1 btn-default" href="@{Alas.remover(ala.id)}">
+	           	  			<button class="btn">
+	           	  				<i class="fa fa-fw fa-trash"></i>
+	           	  			</button>
+	           	  		</a>
+	           	</td>
+	       		</tr>
+			#{/list}
+			</tbody>
+	    </table>
+    	</br></br></br>
+    	<div class="modal-footer">
+    		<a href="@{Alas.form}"><button class="btn btn-success">Cadastrar nova Ala</button></a>    
+    	</div>
+  	</div>
+</div>

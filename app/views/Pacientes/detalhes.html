@@ -1,0 +1,117 @@
+#{extends 'principal.html' /}
+#{set title:'Detalhes' /}
+
+<meta charset="utf-8">
+
+<div class="card mb-3">
+  	<div class="card-header">
+    	<i class="fa fa-table"></i><b>Dados do Paciente</div>
+  	<div class="card-body">
+  		<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
+  		
+  		<h4><b>Detalhes do Paciente</b></h4>
+		
+		<img height="150px" width="150px" src="@{Pacientes.fotoPaciente(paciente.id)}"><br>
+		
+			<tr height=30%>
+				<td width=12%><h6><b>Nome:</b></h6></td>
+				<td><h6><i>${paciente.nome}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td><h6><b>Sexo:</b></h6></td>
+				<td><h6><i>${paciente.sexo}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td><h6><b>Data de Nascimento:</b></h6></td>
+				<td><h6><i>${paciente.dataNas?.format()}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td><h6><b>Tipo Sanguineo:</b></h6></td>
+				<td><h6><i>${paciente.tipoSanguineo}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td><h6><b>Nacionalidade:</b></h6></td>
+				<td><h6><i>${paciente.nacionalidade}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Estado de Origem:</b></h6></td>
+				<td><h6><i>${paciente.naturalEstado}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Naturalidade:</b></h6></td>
+				<td><h6><i>${paciente.naturalCidade}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Estado Civil:</b></h6></td>
+				<td><h6><i>${paciente.estCivil}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Profissão:</b></h6></td>
+				<td><h6><i>${paciente.profissao}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td><h6><b>CPF:</b></h6></td>
+				<td><h6><i>${paciente.cpf}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>RG:</b></h6></td>
+				<td><h6><i>${paciente.rg}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Cartão do SUS:</b></h6></td>
+				<td><h6><i>${paciente.cartaoSus}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td><h6><b>Logradouro:</b></h6></td>
+				<td><h6><i>${paciente.rua}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Número:</b></h6></td>
+				<td><h6><i>${paciente.numCasa}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Complemento:</b></h6></td>
+				<td><h6><i>${paciente.complemento}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Bairro:</b></h6></td>
+				<td><h6><i>${paciente.bairro}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Estado:</b></h6></td>
+				<td><h6><i>${paciente.estado}</i></h6></td>
+			</tr>			
+			<tr height=30%>
+				<td><h6><b>Cidade:</b></h6></td>
+				<td><h6><i>${paciente.cidade}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>CEP:</b></h6></td>
+				<td><h6><i>${paciente.cep}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td><h6><b>Celular:</b></h6></td>
+				<td><h6><i>${paciente.tel}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>Telefone:</b></h6></td>
+				<td><h6><i>${paciente.telAdicional}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td><h6><b>E-Mail:</b></h6></td>
+				<td><h6><i>${paciente.email}</i></h6></td>
+			</tr>
+			
+		</table>
+		 <div class="modal-footer">
+    		<a href="@{Pacientes.listar}"><button class="btn btn-default">Voltar</button></a>
+    	</div>			
+	</div>
+</div>

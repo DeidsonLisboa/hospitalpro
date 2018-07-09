@@ -1,0 +1,434 @@
+#{extends 'principal.html' /}
+#{set title:'Formulario Internacao' /}
+
+<meta charset="utf-8">
+<div class="card mb-3">
+	<div class="card-header">
+		<i class="fa fa-table"></i>Cadastrar Internação</div>
+	<div class="card-body">
+        
+        <form action="@{Internacoes.salvar}" method="post">
+			
+			<input type="hidden" value="${internacao?.id}" name="internacao.id">
+			
+			<h6><b>Identificação do Paciente</b></h6>	
+				<label for="pacientes">Selecione o paciente para adicionar:</label>
+				<div class="input-group mb-3">
+				
+					
+								
+					<select id="sel-paciente" class="form-control"">  
+					   		#{list items:pacientes, as:'paciente'}
+					   			<option value="${paciente.id}">${paciente.nome}</option>
+					   		#{/list}
+					</select>
+					
+					
+					<div class="input-group-append">	
+							<button type="button" class="btn btn-success" id="add-paciente">Adicionar Paciente</button>
+					</div>
+					</div>
+					
+					<ul id="pacientes" class="list-group list-group-flush">
+				#{if internacao != null && internacao.pacientes != null}
+					#{list items:internacao.pacientes, as: 'paciente'}
+						<li id="li-paci-${paciente.id}" class="list-group-item d-flex justify-content-between align-items-center">
+							<input id='paci-${paciente.id}' type='hidden' name='pacientesIDs' value='${paciente.id}'>
+							
+							${paciente.nome} 
+														
+							<button type="button" class="btn btn-danger btn-sm del-paci" value="${paciente.id}">
+          						<span class="glyphicon glyphicon-remove"></span> Remover 
+        					</button>
+						</li>
+					#{/list}	
+				#{/if}
+					</ul>
+			
+			<h6><b>Estado do Paciente</b></h6>					
+				<div class="row">			
+					<div class="form-group col-md-4">
+					   	<label for="tipointernacao">Tipo da Internação:</label>
+					   	<select class="form-control form-control-sm" id="tipointernacao" type="text" value="${internacao?.tipointernacao}" name="internacao.tipointernacao">
+							<option>Selecione</option>
+							<option value="LEVE">LEVE</option>
+							<option value="MEDIA">MEDIA</option>
+							<option value="GRAVE">GRAVE</option>
+							<option value="GRAVISSIMA">GRAVISSIMA</option>
+						</select>
+					</div>					
+
+					<div class="form-group col-md-2">
+					   <label for="pressao">Pressão:</label>
+					   <input class="form-control" id="pressao" placeholder="" type="text" value="${internacao?.pressao}" name="internacao.pressao">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   <label for="temperatura">Temperatura:</label>
+					   <input class="form-control" id="temperatura" placeholder="" type="text" value="${internacao?.temperatura}" name="internacao.temperatura">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   <label for="peso">Peso:</label>
+					   <input class="form-control" id="peso" placeholder="" type="text" value="${internacao?.peso}" name="internacao.peso">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   <label for="altura">Altura:</label>
+					   <input class="form-control" id="altura" placeholder="" type="text" value="${internacao?.altura}" name="internacao.altura">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-12">
+					   <label for="infoComplementares">Informações Complementares:</label>
+					   <input class="form-control" id="infoComplementares" placeholder="" type="text" value="${internacao?.infoComplementares}" name="internacao.infoComplementares">
+					</div>
+				</div>
+				
+				<h6><b>Identificação dos Responsavéis</b></h6>	
+				<label for="medicos">Selecione o medico para adicionar:</label>
+				<div class="input-group mb-3">
+				
+					<select id="sel-medico" class="form-control"">  
+					   		#{list items:medicos, as:'medico'}
+					   			<option value="${medico.id}">${medico.nome}</option>
+					   		#{/list}
+					</select>
+					
+					
+					<div class="input-group-append">	
+							<button type="button" class="btn btn-success" id="add-medico">Adicionar Medico</button>
+					</div>
+					</div>
+					
+					<ul id="medicos" class="list-group list-group-flush">
+						#{if internacao != null && internacao.medicos != null}
+							#{list items:internacao.medicos, as: 'medico'}
+								<li id="li-med-${medico.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='med-${medico.id}' type='hidden' name='medicosIDs' value='${medico.id}'>
+									
+									${medico.nome} 
+																
+									<button type="button" class="btn btn-danger btn-sm del-med" value="${medico.id}">
+		          						<span class="glyphicon glyphicon-remove"></span> Remover 
+		        					</button>
+								</li>
+							#{/list}	
+						#{/if}
+					</ul>
+					
+					<label for="enfermeiros">Selecione o enfermeiro para adicionar:</label>
+				<div class="input-group mb-3">
+				
+					<select id="sel-enfermeiro" class="form-control"">  
+					   		#{list items:enfermeiros, as:'enfermeiro'}
+					   			<option value="${enfermeiro.id}">${enfermeiro.nome}</option>
+					   		#{/list}
+					</select>
+					
+					
+					<div class="input-group-append">	
+							<button type="button" class="btn btn-success" id="add-enfermeiro">Adicionar Enfermeiro</button>
+					</div>
+					</div>
+					
+					<ul id="enfermeiros" class="list-group list-group-flush">
+						#{if internacao != null && internacao.enfermeiros != null}
+							#{list items:internacao.enfermeiros, as: 'enfermeiro'}
+								<li id="li-enf-${enfermeiro.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='enf-${enfermeiro.id}' type='hidden' name='enfermeirosIDs' value='${enfermeiro.id}'>
+									
+									${enfermeiro.nome} 
+																
+									<button type="button" class="btn btn-danger btn-sm del-enf" value="${enfermeiro.id}">
+		          						<span class="glyphicon glyphicon-remove"></span> Remover 
+		        					</button>
+								</li>
+							#{/list}	
+						#{/if}
+					</ul>
+				
+					
+				
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-success">Cadastrar Internação</button>
+				<button type="reset" class="btn btn-default" data-dismiss="modal">Limpar</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- 
+<script src="@{'/public/bootstrap/js/enfermeiro.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/bootstrap/js/paciente.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/bootstrap/js/medico.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+-->
+
+<script>
+// paciente.onload = function(){
+	  
+//     $("#add-paciente").click(function(){
+    	
+//     	var pacienteAdicionado = function(idPaciente){
+//     		var inputHiddenPaci = $("#paci-"+idPaciente);
+//     		console.log(inputHiddenPaci);
+//     		console.log(inputHiddenPaci.lenght);
+//     		return (inputHiddenPaci.val());
+//     	};
+    	
+//     	var selectPaciente = $('#sel-paciente').find(":selected");
+//     	var nomePaciente = selectPaciente.text();
+//     	var idPaciente = selectPaciente.val();
+    	
+//     	var html = "<li id='li-paci-" + idPaciente + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+// 		    		  	"<input id='paci-" + idPaciente + "' type='hidden' name='pacientesIDs' value='" + idPaciente + "'> " +
+// 		    		  		nomePaciente +
+// 		    		  		"<button type='button' class='del-paci btn btn-danger btn-sm' value='" + idPaciente + "'>" +
+// 		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+// 		    		  		"</button>" +
+// 		    	   "</li>";
+    	
+// 		console.log(idPaciente);
+// 		console.log(pacienteAdicionado(idPaciente));
+		
+// 		if(!pacienteAdicionado(idPaciente)){
+// 			$("#pacientes").append(html);
+// 		}else{
+// 			$.notify('O paciente <b>' + nomePaciente + '</b> jÃ¡ foi adicionado.');
+// 		}
+        
+        
+//         $(".del-paci").click(function(){
+//         	var idPaciente = $(this).attr("value");
+//         	$("#li-paci-" + idPaciente).remove();
+//         });
+//     });
+    
+    
+//     $(".del-paci").click(function(){
+//     	var idPaciente = $(this).attr("value");
+//     	$("#li-paci-" + idPaciente).remove();
+//     });
+    
+//     $.notifyDefaults({
+//     	type: 'success',
+//     	allow_dismiss: true,
+//     });
+    
+// };
+
+</script>
+
+<script>
+// window.onload =  function(){
+	  
+//     $("#add-medico").click(function(){
+    	
+//     	var medicoAdicionado = function(idMedico){
+//     		var inputHiddenMed = $("#med-"+idMedico);
+//     		console.log(inputHiddenMed);
+//     		console.log(inputHiddenMed.lenght);
+//     		return (inputHiddenMed.val());
+//     	};
+    	
+//     	var selectMedico = $('#sel-medico').find(":selected");
+//     	var nomeMedico = selectMedico.text();
+//     	var idMedico = selectMedico.val();
+    	
+//     	var html = "<li id='li-med-" + idMedico + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+// 		    		  	"<input id='med-" + idMedico + "' type='hidden' name='medicosIDs' value='" + idMedico + "'> " +
+// 		    		  		nomeMedico +
+// 		    		  		"<button type='button' class='del-med btn btn-danger btn-sm' value='" + idMedico + "'>" +
+// 		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+// 		    		  		"</button>" +
+// 		    	   "</li>";
+    	
+// 		console.log(idMedico);
+// 		console.log(medicoAdicionado(idMedico));
+		
+// 		if(!medicoAdicionado(idMedico)){
+// 			$("#medicos").append(html);
+// 		}else{
+// 			$.notify('O medico <b>' + nomeMedico + '</b> jÃ¡ foi adicionado.');
+// 		}
+        
+        
+//         $(".del-med").click(function(){
+//         	var idMedico = $(this).attr("value");
+//         	$("#li-med-" + idMedico).remove();
+//         });
+//     });
+    
+    
+//     $(".del-med").click(function(){
+//     	var idMedico = $(this).attr("value");
+//     	$("#li-med-" + idMedico).remove();
+//     });
+    
+//     $.notifyDefaults({
+//     	type: 'success',
+//     	allow_dismiss: true,
+//     });
+    
+// };
+
+</script>
+
+<script>
+window.onload = function(){
+	  
+    $("#add-enfermeiro").click(function(){
+    	
+    	var enfermeiroAdicionado = function(idEnfermeiro){
+    		var inputHiddenEnf = $("#enf-"+idEnfermeiro);
+    		console.log(inputHiddenEnf);
+    		console.log(inputHiddenEnf.lenght);
+    		return (inputHiddenEnf.val());
+    	};
+    	
+    	var selectEnfermeiro = $('#sel-enfermeiro').find(":selected");
+    	var nomeEnfermeiro = selectEnfermeiro.text();
+    	var idEnfermeiro = selectEnfermeiro.val();
+    	
+    	var html = "<li id='li-enf-" + idEnfermeiro + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+		    		  	"<input id='enf-" + idEnfermeiro + "' type='hidden' name='enfermeirosIDs' value='" + idEnfermeiro + "'> " +
+		    		  		nomeEnfermeiro +
+		    		  		"<button type='button' class='del-enf btn btn-danger btn-sm' value='" + idEnfermeiro + "'>" +
+		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+		    		  		"</button>" +
+		    	   "</li>";
+    	
+		console.log(idEnfermeiro);
+		console.log(enfermeiroAdicionado(idEnfermeiro));
+		
+		if(!enfermeiroAdicionado(idEnfermeiro)){
+			$("#enfermeiros").append(html);
+		}else{
+			$.notify('O Enfermeiro <b>' + nomeEnfermeiro + '</b> jÃ¡ foi adicionado.');
+		}
+        
+        
+        $(".del-enf").click(function(){
+        	var idEnfermeiro = $(this).attr("value");
+        	$("#li-enf-" + idEnfermeiro).remove();
+        });
+    });
+    
+    
+    $(".del-enf").click(function(){
+    	var idEnfermeiro = $(this).attr("value");
+    	$("#li-enf-" + idEnfermeiro).remove();
+    });
+    
+     $.notifyDefaults({
+   	type: 'success',
+     	allow_dismiss: true,
+     });
+    
+    
+    // 
+    
+	  
+    $("#add-medico").click(function(){
+    	
+    	var medicoAdicionado = function(idMedico){
+    		var inputHiddenMed = $("#med-"+idMedico);
+    		console.log(inputHiddenMed);
+    		console.log(inputHiddenMed.lenght);
+    		return (inputHiddenMed.val());
+    	};
+    	
+    	var selectMedico = $('#sel-medico').find(":selected");
+    	var nomeMedico = selectMedico.text();
+    	var idMedico = selectMedico.val();
+    	
+    	var html = "<li id='li-med-" + idMedico + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+		    		  	"<input id='med-" + idMedico + "' type='hidden' name='medicosIDs' value='" + idMedico + "'> " +
+		    		  		nomeMedico +
+		    		  		"<button type='button' class='del-med btn btn-danger btn-sm' value='" + idMedico + "'>" +
+		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+		    		  		"</button>" +
+		    	   "</li>";
+    	
+		console.log(idMedico);
+		console.log(medicoAdicionado(idMedico));
+		
+		if(!medicoAdicionado(idMedico)){
+			$("#medicos").append(html);
+		}else{
+			$.notify('O medico <b>' + nomeMedico + '</b> jÃ¡ foi adicionado.');
+		}
+        
+        
+        $(".del-med").click(function(){
+        	var idMedico = $(this).attr("value");
+        	$("#li-med-" + idMedico).remove();
+        });
+    });
+    
+    
+    $(".del-med").click(function(){
+    	var idMedico = $(this).attr("value");
+    	$("#li-med-" + idMedico).remove();
+    });
+    
+     $.notifyDefaults({
+     	type: 'success',
+     	allow_dismiss: true,
+     });
+    
+    // 
+    
+    $("#add-paciente").click(function(){
+    	
+    	var pacienteAdicionado = function(idPaciente){
+    		var inputHiddenPaci = $("#paci-"+idPaciente);
+    		console.log(inputHiddenPaci);
+    		console.log(inputHiddenPaci.lenght);
+    		return (inputHiddenPaci.val());
+    	};
+    	
+    	var selectPaciente = $('#sel-paciente').find(":selected");
+    	var nomePaciente = selectPaciente.text();
+    	var idPaciente = selectPaciente.val();
+    	
+    	var html = "<li id='li-paci-" + idPaciente + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+		    		  	"<input id='paci-" + idPaciente + "' type='hidden' name='pacientesIDs' value='" + idPaciente + "'> " +
+		    		  		nomePaciente +
+		    		  		"<button type='button' class='del-paci btn btn-danger btn-sm' value='" + idPaciente + "'>" +
+		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+		    		  		"</button>" +
+		    	   "</li>";
+    	
+		console.log(idPaciente);
+		console.log(pacienteAdicionado(idPaciente));
+		
+		if(!pacienteAdicionado(idPaciente)){
+			$("#pacientes").append(html);
+		}else{
+			$.notify('O paciente <b>' + nomePaciente + '</b> jÃ¡ foi adicionado.');
+		}
+        
+        
+        $(".del-paci").click(function(){
+        	var idPaciente = $(this).attr("value");
+        	$("#li-paci-" + idPaciente).remove();
+        });
+    });
+    
+    
+    $(".del-paci").click(function(){
+    	var idPaciente = $(this).attr("value");
+    	$("#li-paci-" + idPaciente).remove();
+    });
+    
+     $.notifyDefaults({
+     	type: 'success',
+     	allow_dismiss: true,
+     });
+    
+    
+};
+
+</script>

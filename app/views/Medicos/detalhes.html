@@ -1,0 +1,161 @@
+#{extends 'principal.html' /}
+#{set title:'Detalhes' /}
+
+<meta charset="utf-8">
+
+<div class="card mb-3">
+  	<div class="card-header">
+    	<i class="fa fa-table"></i>Detalhes do Médico</div>
+  	<div class="card-body">
+  	
+  	<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
+			
+			<h4><b>Dados Pessoais</b></h4>
+			
+			<img height="150px" width="150px" src="@{Medicos.fotoMedico(medico.id)}"><br>
+			
+			<tr height=30%>
+				<td width=25% align="right"><h6><b>Nome:</b></h6></td>
+				<td><h6><i>${medico.nome}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Sexo:</b></h6></td>
+				<td><h6><i>${medico.sexo}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Data de Nascimento:</b></h6></td>
+				<td><h6><i>${medico.dataNas?.format()}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Estado civil:</b></h6></td>
+				<td><h6><i>${medico.estCivil}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Naturalidade:</b></h6></td>
+				<td><h6><i>${medico.naturalCidade}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Estado:</b></h6></td>
+				<td><h6><i>${medico.naturalEstado}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Nacionadade:</b></h6></td>
+				<td><h6><i>${medico.nacionalidade}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>CPF:</b></h6></td>
+				<td><h6><i>${medico.cpf}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>RG:</b></h6></td>
+				<td><h6><i>${medico.rg}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Telefone:</b></h6></td>
+				<td><h6><i>${medico.telefone}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>UF do CRM:</b></h6></td>
+				<td><h6><i>${medico.UFcrm}</i></h6></td>
+			</tr>
+						
+			<tr height=30%>
+				<td align="right"><h6><b>CRM:</b></h6></td>
+				<td><h6><i>${medico.numCRM}/${medico.UFcrm}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>E-Mail:</b></h6></td>
+				<td><h6><i>${medico.email}</i></h6></td>
+			</tr>
+		</table>
+			
+		</br>
+		<h4><b>Dados da formação Médica</b></h4>
+		<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
+			
+			<tr height=10%>
+				<td width=25% align="right"><h6><b>Formado na:</b></h6></td>
+				<td><h6><i>${medico.nomeFacul}</i></h6></td>
+			</tr>
+			
+			<tr height=10%>
+				<td align="right"><h6><b>Ano de Conclusão:</b></h6></td>
+				<td><h6><i>${medico.anoConc}</i></h6></td>
+			</tr>
+			
+			<tr height=10%>
+				<td align="right"><h6><b>Residencia em:</b></h6></td>
+				<td><h6><i>${medico.residencia}</i></h6></td>
+			</tr>
+			
+			<tr height=10%>
+				<td align="right"><h6><b>Orgão Reg. Residencia:</b></h6></td>
+				<td><h6><i>${medico.orgResid}</i></h6></td>
+			</tr>
+			
+			<tr height=10%>
+				<td align="right"><h6><b>Especialidade principal:</b></h6></td>
+				<td><h6><i>${medico.espPrincipal}</i></h6></td>
+			</tr>
+			
+			<tr height=10%>
+				<td align="right"><h6><b>Titulo (formação):</b></h6></td>
+				<td><h6><i>${medico.titFormacao}</i></h6></td>
+			</tr>
+			
+		</table>
+		
+		</br>
+		<h4><b>Endereço do residencial</b></h4>
+		<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
+			
+			<tr height=10%>
+				<td width=25% align="right"><h6><b>Rua ou Avenida:</b></h6></td>
+				<td><h6><i>${medico.rua}</i></h6></td>
+			</tr>			
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Número:</b></h6></td>
+				<td><h6><i>${medico.numCasa}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td align="right"><h6><b>Complemento:</b></h6></td>
+				<td><h6><i>${medico.complemento}</i></h6></td>
+			</tr>
+			<tr height=30%>
+				<td align="right"><h6><b>Bairro:</b></h6></td>
+				<td><h6><i>${medico.bairro}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Cidade:</b></h6></td>
+				<td><h6><i>${medico.cidade}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Estado:</b></h6></td>
+				<td><h6><i>${medico.estado}</i></h6></td>
+			</tr>			
+			
+			<tr height=30%>
+				<td align="right"><h6><b>CEP:</b></h6></td>
+				<td><h6><i>${medico.cep}</i></h6></td>
+			</tr>
+		</table>		
+	</div>
+	
+	<div class="modal-footer">
+    		<a href="@{Medicos.listar}"><button class="btn btn-default">Voltar</button></a>
+    </div>
+</div>

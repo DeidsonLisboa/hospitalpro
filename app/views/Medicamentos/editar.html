@@ -1,0 +1,60 @@
+#{extends 'main.html' /}
+#{set title:'Formulário' /}
+
+<meta charset="utf-8">
+<div class="card mb-3">
+	<div class="card-header">
+	    Medico / Alteração de cadastro
+	</div>
+	
+	<div class="card-body">
+		
+		<form action="@{Medicamentos.salvar}" method="post">
+		
+			<input type="hidden" value="${medicamento?.id}" name="medicamento.id">
+			
+			<div class="row">
+					<div class="form-group col-md-6">
+					   <label for="nomeMed">Nome:</label>
+					   <input class="form-control" id="nomeMed" type="text" value="${medicamento?.nomeMed}" name="medicamento.nomeMed">
+					</div>
+					
+					<div class="form-group col-md-2">
+				   		<label for="dosagemMed">Dosagem:</label>
+				   		<input class="form-control" id="dosagemMed" type="text" value="${medicamento?.dosagemMed}" name="medicamento.dosagemMed">
+					</div>
+					
+					<div class="form-group col-md-2">
+				   		<label for="miligramasMed">Miligramas:</label>
+				   		<input class="form-control" id="miligramasMed" type="text" value="${medicamento?.miligramasMed}" name="medicamento.miligramasMed">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   <label for="quantidadeMed">Quantidade:</label>
+					   <input class="form-control" id="quantidadeMed" type="text" value="${medicamento?.quantidadeMed}" name="medicamento.quantidadeMed">
+					</div>
+				</div>	
+				
+				<div class="row">	
+					<div class="form-group col-md-2">
+					   <label for="fabricanteMed">Telefone:</label>
+					   <input class="form-control" id="fabricanteMed" type="text" value="${medicamento?.fabricanteMed}" name="medicamento.fabricanteMed">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   <label for="vezesDia">Vezes ao dia:</label>
+					   <input class="form-control" id="vezesDia" type="text" value="${medicamento?.vezesDia}" name="medicamento.vezesDia">
+					</div>
+					
+					<div class="form-group col-md-4">
+					   <label for="tipoMed">Tipo:</label>
+					   <input class="form-control" id="tipoMed" type="text" value="${medicamento?.tipoMed}" name="medicamento.tipoMed">
+					</div>
+				</div>
+						
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-success">Salvar Alterações</button>
+			</div>
+		</form>
+	</div>
+</div>

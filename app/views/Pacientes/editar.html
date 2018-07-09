@@ -1,0 +1,189 @@
+#{extends 'principal.html' /}
+#{set title:'Formulário' /}
+
+<meta charset="utf-8">
+<div id="pacie">
+<div class="card mb-3">
+	<div class="card-header">
+		<i class="fa fa-table"></i>Cadastro de Paciente</div>
+	<div class="card-body">
+        
+        <form action="@{Pacientes.salvar}" method="post">
+			
+			<input type="hidden" value="${paciente?.id}" name="paciente.id">
+				
+				<h6><b>Dados Pessoais</b></h6>
+				<div class="row">
+								
+					<div class="form-group col-md-5">
+					   <label for="nome">Nome:</label>
+					   <input class="form-control" id="nome" placeholder="Nome do paciente" type="text" value="${paciente?.nome}" name="paciente.nome">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   	<label for="sexo">Sexo:</label>
+					   	<select class="form-control form-control-sm" id="sexo" type="text" value="${paciente?.sexo}" name="paciente.sexo">
+							<option selected="" value="">Selecione o Sexo</option>
+							#{list items:sexos, as: 'sexo'}
+								<option value="${sexo}" ${(paciente?.sexo != null && paciente.sexo == sexo)? 'selected':''}>${sexo}</option>
+							#{/list}
+					   	</select>
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="idade">Data de Nascimento:</label>
+					   <input class="form-control" id="dataNas" type="date" value="${paciente?.dataNas}" name="paciente.dataNas">
+					</div>
+					
+					<div class="form-group col-md-2">
+						<label for="tipoSanguineo">Tipo de Sangue:</label>
+					   <select class="form-control form-control-sm" id="tipoSanguineo" type="text" value="${paciente?.tipoSanguineo}" name="paciente.tipoSanguineo">
+							<option selected="" value="">Selecione</option>
+							#{list items:tiposSanguineos, as: 'tipoSanguineo'}
+								<option value="${tipoSanguineo}" ${(paciente?.tipoSanguineo != null && paciente.tipoSanguineo == tipoSanguineo)? 'selected':''}>${tipoSanguineo}</option>
+							#{/list}
+					   	</select>
+					</div>
+				</div>
+				<div class="row">			
+					<div class="form-group col-md-2">
+					   	<label for="nacionalidade">Nacionalidade:</label>
+					   	<select class="form-control form-control-sm" id="nacionalidade" type="text" value="${paciente?.nacionalidade}" name="paciente.nacionalidade">
+							<option selected="" value="">Selecione</option>
+							#{list items:nacionalidades, as: 'nacionalidade'}
+								<option value="${nacionalidade}" ${(paciente?.nacionalidade != null && paciente.nacionalidade == nacionalidade)? 'selected':''}>${nacionalidade}</option>
+							#{/list}
+						</select>
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="naturalEstado">Estado de Origem:</label>
+					   <select class="form-control form-control-sm" id="naturalEstado" type="text" value="${paciente?.naturalEstado}" name="paciente.naturalEstado">
+							<option selected="" value="">Selecione o Estado (UF)</option>
+							#{list items:estados, as: 'estado'}
+								<option value="${estado}" ${(paciente?.naturalEstado != null && paciente.naturalEstado == estado)? 'selected':''}>${estado}</option>
+							#{/list}						
+					   	</select>
+					</div>
+
+					<div class="form-group col-md-2">
+					   <label for="naturalCidade">Naturalidade:</label>
+					   <input class="form-control" id="naturalCidade" placeholder="Nome da Cidade" type="text" value="${paciente?.naturalCidade}" name="paciente.naturalCidade">
+					</div>
+					<div class="form-group col-md-3">
+					   <label for="profissao">Profissão:</label>
+					   <input class="form-control" id="profissao" placeholder="Trabalho do paciente" type="text" value="${paciente?.profissao}" name="paciente.profissao">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   	<label for="estCivil">Estado Civil:</label>
+					   	<select class="form-control form-control-sm" id="estCivil" value="${paciente?.estCivil}" name="paciente.estCivil">
+							<option selected="" value="">Selecione</option>
+							#{list items:estadosCivis, as: 'estadocivil'}
+								<option value="${estadocivil}" ${(paciente?.estCivil != null && paciente.estCivil == estadocivil)? 'selected':''}>${estadocivil}</option>
+							#{/list}
+					   	</select>
+					</div>
+				</div>
+				
+				</br>
+				<h6><b>Documentos</b></h6>
+				<div class="row">
+					<div class="form-group col-md-3">
+					   <label for="cpf">CPF:</label>
+					   <input class="form-control" id="cpf" placeholder="***.***.***-**" type="text" value="${paciente?.cpf}" name="paciente.cpf">
+					</div>
+					<div class="form-group col-md-3">
+					   <label for="rg">RG:</label>
+					   <input class="form-control" id="rg" placeholder="*.***.***" type="text" value="${paciente?.rg}" name="paciente.rg">
+					</div>
+					<div class="form-group col-md-3">
+					   <label for="cartaoSus">Cartão SUS:</label>
+					   <input class="form-control" id="cartaoSus" placeholder="***.***.***-**" type="text" value="${paciente?.cartaoSus}" name="paciente.cartaoSus">
+					</div>
+				</div>
+				
+				
+				
+				
+				</br>
+				<h6><b>Endereço</b></h6>
+				<div class="row">
+					<div class="form-group col-md-4">
+					   <label for="rua">Logradouro:</label>
+					   <input class="form-control" id="rua" placeholder="Rua do paciente" type="text" value="${paciente?.rua}" name="paciente.rua">
+					</div>
+					
+					<div class="form-group col-md-2">
+					   <label for="numCasa">Número:</label>
+					   <input class="form-control" id="numCasa" type="text" value="${paciente?.numCasa}" name="paciente.numCasa">
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="complemento">Complemento:</label>
+					   <input class="form-control" id="complemento" type="text" value="${paciente?.complemento}" name="paciente.complemento">
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="bairro">Bairro:</label>
+					   <input class="form-control" id="bairro" placeholder="Nome do bairro" type="text" value="${paciente?.bairro}" name="paciente.bairro">
+					</div>
+					
+					
+				</div>	
+				<div class="row">
+					<div class="form-group col-md-4">
+					   <label for="estado">Estado:</label>
+					   <select class="form-control form-control-sm" id="estado" value="${paciente?.estado}" name="paciente.estado" required>
+					  		#{list items:estados, as: 'estado'}
+								<option value="${estado}" ${(paciente?.estado != null && paciente.estado == estado)? 'selected':''}>${estado}</option>
+							#{/list}
+					   </select>
+
+					</div>
+								
+					<div class="form-group col-md-5">
+					   <label for="cidade">Cidade:</label>
+					   <select  class="form-control" id="cidade" value="${paciente?.cidade}" name="paciente.cidade" required>    
+                        	#{list items:cidades, as: 'cidade'}
+								<option value="${estado}" ${(paciente?.cidade != null && paciente.cidade == cidade)? 'selected':''}>${cidade}</option>
+							#{/list}
+                        <!--os options são colocados pelo script apos escolha do estado-->
+                   	   </select>
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="cep">CEP:</label>
+					   <input class="form-control" id="cep" placeholder="cep" type="text" value="${paciente?.cep}" name="paciente.cep">
+					</div>
+				</div>	
+				
+				</br>
+				<h6><b>Contato</b></h6>
+				<div class="row">
+					<div class="form-group col-md-3">
+					   <label for="tel">Celular:</label>
+					   <input class="form-control" id="tel" placeholder="Telefone para contato" type="text" value="${paciente?.tel}" name="paciente.tel">
+					</div>
+					
+					<div class="form-group col-md-3">
+					   <label for="telAdicional">Telefone adicional:</label>
+					   <input class="form-control" id="telAdicional" placeholder="Telefone para contato" type="text" value="${paciente?.telAdicional}" name="paciente.telAdicional">
+					</div>
+					
+					<div class="form-group col-md-5">
+					   <label for="email">E-mail:</label>
+					   <input class="form-control" id="email" type="email" value="${paciente?.email}" name="paciente.email">
+					</div>
+				</div>		
+						
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-success">Salvar Alterações</button> 
+    			<a href="@{Pacientes.listar}"><button class="btn btn-default">Voltar</button></a>
+			</div>
+			
+		</form>
+		
+	</div>
+</div>
+</div>
