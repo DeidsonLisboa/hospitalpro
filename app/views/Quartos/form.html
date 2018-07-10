@@ -34,12 +34,12 @@
 				<p><b>Selecione o leito para adicionar:</b></p>
 				
 				<ul id="leitos" class="list-group list-group-flush">
-				#{if leito != null}
+				#{if leitos != null}
 					#{list items:leitos, as: 'leito'}
 						<li class="list-group-item d-flex justify-content-between align-items-center">
 							<div class="form-check">
 								<div class="form-check">
-								  <input ${(quarto?.leitos?.contains(quarto))? 'checked': ''} class="form-check-input" type="checkbox" name="leitosIDs" value="${leito.id}" id="defaultCheck1">
+								  <input ${(quarto?.leitos?.contains(leito))? 'checked': ''} class="form-check-input" type="checkbox" name="leitosIDs" value="${leito.id}" id="defaultCheck1">
 								  <label class="form-check-label" for="defaultCheck1">
 								    	${leito.numeroLeito}
 								  </label>
