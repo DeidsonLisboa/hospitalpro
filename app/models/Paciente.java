@@ -26,16 +26,20 @@ public class Paciente extends Model {
 	@Temporal(TemporalType.DATE)
 	public Date dataNas;
 	
+	//@Required
 	public String nacionalidade;
 	public String naturalCidade;
 	public String naturalEstado;
 	
 	public Blob foto;
 	public String tipoSanguineo;
+	
+	//@Required
 	public String profissao;
 	public String estCivil; 
 	public String cpf;
 	public String rg;
+	
 	public String cartaoSus;
 	public String estado;
 	public String cep;
@@ -50,6 +54,5 @@ public class Paciente extends Model {
 	
 	@ManyToMany(mappedBy="pacientes")
 	public List<Internacao>internacoes;
-	
 	
 }

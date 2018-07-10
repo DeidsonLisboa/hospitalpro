@@ -14,25 +14,41 @@ import play.db.jpa.Model;
 
 @Entity
 public class Medico extends Model {
-
+	
+	//@Required
 	public String nome;
+	
+	
 	public String estCivil;
 	public String naturalEstado;
 	public String naturalCidade;
 	public String nacionalidade;
+
+	//@Required
 	public String sexo;
 	public Blob foto;
-
+	
+	//@Required
 	@Temporal(TemporalType.DATE)
 	public Date dataNas;
-
+	
+	//@Required
 	public String cpf;
+	
+	//@Required
 	public String rg;
+	
 	public String email;
+	
+	//@Required
 	public String nomeFacul;
+	
+	//@Required
 	public int anoConc;
 	public String residencia;
 	public String orgResid;
+	
+	//@Required
 	public String espPrincipal;
 	public String titFormacao;
 	public String cep;
@@ -40,6 +56,8 @@ public class Medico extends Model {
 	public String complemento;
 	public String telefone;
 	public String UFcrm;
+	
+	//@Required
 	public String numCRM;
 	public String cidade;
 	public String bairro;

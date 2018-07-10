@@ -15,11 +15,15 @@ import play.db.jpa.Model;
 @Entity
 public class Enfermeiro extends Model {
 
+	//@Required
 	public String nome;
+	
+	//@Required
 	public String sexo;
 	
 	public Blob foto;
-
+	
+	//@Required
 	@Temporal(TemporalType.DATE)
 	public Date dataNas;
 
@@ -27,10 +31,18 @@ public class Enfermeiro extends Model {
 	public String naturalEstado;
 	public String naturalCidade;
 	public String nacionalidade;
+	
+	//@Required
 	public String rg;
+	
+	//@Required
 	public String cpf;
+	
+	//@Required
 	public String telefone;
 	public String UFcoren;
+	
+	//@Required
 	public String numCoren;
 	public String email;
 	public String cidade;
