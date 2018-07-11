@@ -30,6 +30,10 @@ public class Internacao extends Model{
 	@JoinTable(name="enfermerio_id")
 	public List<Enfermeiro> enfermeiros;
 	
+	@ManyToMany
+	@JoinTable(name="ala_id")
+	public List<Ala> alas;
+	
 	public String pressao;
 	public String temperatura;
 	public String peso;

@@ -13,7 +13,7 @@ public class Quartos extends Controller{
 	}
 	
 	public static void salvar(Quarto quarto, List<String> leitosIDs) {
-		
+		quarto.save();
 		String IDs = "-1";
 		if(leitosIDs != null)
 			IDs = String.join(", ", leitosIDs);
@@ -38,7 +38,8 @@ public class Quartos extends Controller{
 		}
 		quarto.save();
 		flash.success("quarto salvo com sucesso!");
-		listar();
+		detalhes(quarto);
+		//listar();
 	}
 
 	public static void editar(Long id) {

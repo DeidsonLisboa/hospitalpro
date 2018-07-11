@@ -23,5 +23,8 @@ public class Quarto extends Model {
 	@JoinColumn(name="ala_id")
 	public Ala ala;
 
-
+	@Override
+	public String toString() {
+		return "Quarto [id=" + id +" numeroQuarto=" + numeroQuarto + "]";
+	}
 }

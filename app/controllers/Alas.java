@@ -10,12 +10,12 @@ public class Alas extends Controller {
 
 	public static void form() {
 		List<Quarto> quartos = Quarto.findAll();
-		List<String> tiposAla = Arrays.asList(new String[]{"Pediátria Masculina" ,"Pediátria Feminina" ,"Adulto Masculina", "Adulto Feminina"});
+		List<String> tiposAla = Arrays.asList(new String[]{"Pediátria Masculina" ,"Pediátria Feminina" ,"Adulto Masculina", "Adulto Feminina","Geriátrica Masculina", "Geriátrica Feminina"});
 		render( quartos, tiposAla);
 	}
 
 	public static void salvar(Ala ala, List<String> quartosIDs) {
-		
+		ala.save();
 		String IDs = "-1";
 		if(quartosIDs != null)
 			IDs = String.join(", ", quartosIDs);
@@ -39,7 +39,8 @@ public class Alas extends Controller {
 		}		
 		
 		ala.save();
-		listar();
+		detalhes(ala);
+		//listar();
 	}
 
 	public static void editar(Long id) {

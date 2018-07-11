@@ -148,6 +148,45 @@
 							#{/list}	
 						#{/if}
 					</ul>
+					
+					
+					<label for="alas">Selecione a ala para adicionar:</label>
+				<div class="input-group mb-3">
+					
+					<select id="sel-ala" class="form-control"">  
+					   		#{list items:alas, as:'ala'}
+					   			<option value="${ala.id}">${ala.nomeAla}</option>
+					   		#{/list}
+					</select>
+					
+					<div class="input-group-append">	
+							<button type="button" class="btn btn-success" id="add-ala">Adicionar ala</button>
+					</div>
+					</div>
+					
+					<ul id="alas" class="list-group list-group-flush">
+						#{if internacao != null && internacao.alas != null}
+							#{list items:internacao.alas, as: 'ala'}
+								<li id="li-al-${ala.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='al-${ala.id}' type='hidden' name='alasIDs' value='${ala.id}'>
+									
+									${ala.nomeAla} 
+																
+									<button type="button" class="btn btn-danger btn-sm del-al" value="${ala.id}">
+		          						<span class="glyphicon glyphicon-remove"></span> Remover 
+		        					</button>
+								</li>
+							#{/list}	
+						#{/if}
+					</ul>
+					
+					
+					
+					<select id="sel-quarto" class="form-control"">  
+					   		#{list items:quartos, as:'quarto'}
+					   			<option value="${quarto.id}">${quarto.numeroQuarto}</option>
+					   		#{/list}
+					</select>
 				
 					
 				
@@ -427,6 +466,58 @@ window.onload = function(){
      	type: 'success',
      	allow_dismiss: true,
      });
+     
+     
+     //
+     
+     
+     $("#add-ala").click(function(){
+     	
+     	var medicoAdicionado = function(idMedico){
+     		var inputHiddenMed = $("#al-"+idMedico);
+     		console.log(inputHiddenMed);
+     		console.log(inputHiddenMed.lenght);
+     		return (inputHiddenMed.val());
+     	};
+     	
+     	var selectMedico = $('#sel-al').find(":selected");
+     	var nomeMedico = selectMedico.text();
+     	var idMedico = selectMedico.val();
+     	
+     	var html = "<li id='li-al-" + idMedico + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+ 		    		  	"<input id='al-" + idMedico + "' type='hidden' name='alasIDs' value='" + idMedico + "'> " +
+ 		    		  		nomeMedico +
+ 		    		  		"<button type='button' class='del-al btn btn-danger btn-sm' value='" + idMedico + "'>" +
+ 		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+ 		    		  		"</button>" +
+ 		    	   "</li>";
+     	
+ 		console.log(idMedico);
+ 		console.log(medicoAdicionado(idMedico));
+ 		
+ 		if(!medicoAdicionado(idMedico)){
+ 			$("#alas").append(html);
+ 		}else{
+ 			$.notify('O medico <b>' + nomeMedico + '</b> jÃ¡ foi adicionado.');
+ 		}
+         
+         
+         $(".del-al").click(function(){
+         	var idMedico = $(this).attr("value");
+         	$("#li-al-" + idMedico).remove();
+         });
+     });
+     
+     
+     $(".del-al").click(function(){
+     	var idMedico = $(this).attr("value");
+     	$("#li-al-" + idMedico).remove();
+     });
+     
+      $.notifyDefaults({
+      	type: 'success',
+      	allow_dismiss: true,
+      });
     
     
 };

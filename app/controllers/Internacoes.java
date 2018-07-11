@@ -2,10 +2,14 @@ package controllers;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+
+import models.Ala;
 import models.Enfermeiro;
 import models.Internacao;
 import models.Medico;
 import models.Paciente;
+import models.Quarto;
 import play.mvc.Controller;
 import play.mvc.With;
 
@@ -16,10 +20,20 @@ public class Internacoes extends Controller{
 		List<Paciente> pacientes = Paciente.findAll();
 		List<Medico> medicos = Medico.findAll();
 		List<Enfermeiro> enfermeiros = Enfermeiro.findAll();
-		render(internacao, pacientes, medicos, enfermeiros);
+		List<Ala> alas = Ala.findAll();		
+		render(internacao, pacientes, medicos, enfermeiros, alas);
 	}
 	
-	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs) {
+	public static void carregar(Integer id){
+		
+		String query = "select q from Quarto q where ala_id =" + id;
+		List<Quarto> quartos = Quarto.find(query).fetch();
+		renderText(quartos.toString());
+		
+		
+	}
+	
+	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs) {
 		
 		
 		if(pacientesIDs == null || pacientesIDs.isEmpty()) {
@@ -47,6 +61,15 @@ public class Internacoes extends Controller{
 			String query = "select e from Enfermeiro e where e.id in " + IDsE;
 			List<Enfermeiro> enfermeiros = Enfermeiro.find(query).fetch();
 			internacao.enfermeiros = enfermeiros;
+		}
+		
+		if(alasIDs == null || alasIDs.isEmpty()){
+			internacao.alas = null;
+		}else{
+			String IDsA =  "(" + String.join(", ", alasIDs) + ")";
+			String query = "select a from Ala a where a.id in " + IDsA;
+			List<Ala> alas = Ala.find(query).first();
+			internacao.alas = alas;
 		}
 	
 		internacao.save();
