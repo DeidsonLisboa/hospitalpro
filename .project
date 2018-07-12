@@ -15,7 +15,12 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.playframework.playclipse.playNature</nature>
 	</natures>
+<<<<<<< HEAD
 	<linkedResources><link><name>docviewer</name><type>2</type><location>C:/Users/robso/Desktop/play/modules/docviewer/app</location></link>
 <link><name>public/docviewer</name><type>2</type><location>C:/Users/robso/Desktop/play/modules/docviewer/public</location></link>
+=======
+	<linkedResources><link><name>docviewer</name><type>2</type><location>C:/Users/deids/Desktop/play/modules/docviewer/app</location></link>
+<link><name>public/docviewer</name><type>2</type><location>C:/Users/deids/Desktop/play/modules/docviewer/public</location></link>
+>>>>>>> branch 'master' of https://github.com/DeidsonLisboa/hospitalpro.git
 </linkedResources>
 </projectDescription>
