@@ -9,7 +9,9 @@ import play.mvc.Controller;
 public class Alas extends Controller {
 
 	public static void form() {
-		List<Quarto> quartos = Quarto.findAll();
+		String query = "select q from Quarto q where ala_id =" + null;
+		List<Quarto> quartos = Quarto.find(query).fetch();
+		//List<Quarto> quartos = Quarto.findAll();
 		List<String> tiposAla = Arrays.asList(new String[]{"Pediátria Masculina" ,"Pediátria Feminina" ,"Adulto Masculina", "Adulto Feminina","Geriátrica Masculina", "Geriátrica Feminina"});
 		render( quartos, tiposAla);
 	}

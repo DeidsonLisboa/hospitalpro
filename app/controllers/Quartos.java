@@ -8,7 +8,9 @@ import play.mvc.Controller;
 public class Quartos extends Controller{
 	
 	public static void form() {
-		List<Leito> leitos = Leito.findAll();
+		String query = "select l from Leito l where quarto_id =" + null;
+		List<Leito> leitos = Leito.find(query).fetch();
+		//List<Leito> leitos = Leito.findAll();
 		render(leitos);
 	}
 	

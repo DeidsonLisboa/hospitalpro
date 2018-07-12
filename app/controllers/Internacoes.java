@@ -24,13 +24,14 @@ public class Internacoes extends Controller{
 		render(internacao, pacientes, medicos, enfermeiros, alas);
 	}
 	
-	public static void carregar(Integer id){
+	
+	
+	public static void carregarQuarto(Integer id){
 		
 		String query = "select q from Quarto q where ala_id =" + id;
 		List<Quarto> quartos = Quarto.find(query).fetch();
-		renderText(quartos.toString());
-		
-		
+		//renderText(quartos.toString());
+		render(quartos);
 	}
 	
 	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs) {

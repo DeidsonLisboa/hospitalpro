@@ -150,10 +150,35 @@
 					</ul>
 					
 					
+					<div class="input-group mb-3">
+					<select class="form-control" name=ala.id>
+					<option value="-1">Selecione uma ala</option>
+						#{list items:alas, as:'ala'}
+					   			<option value="${ala.id}">${ala.nomeAla}</option>
+					   	#{/list}
+					
+					</select>
+					</div>
+					
+					<div class="input-group mb-3">
+					<select class="form-control" name=quarto.id>
+						<option value="-1">Selecione um quarto</option>
+					</select>
+					
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<!-- 
 					<label for="alas">Selecione a ala para adicionar:</label>
 				<div class="input-group mb-3">
 					
 					<select id="sel-ala" class="form-control"">  
+						
 					   		#{list items:alas, as:'ala'}
 					   			<option value="${ala.id}">${ala.nomeAla}</option>
 					   		#{/list}
@@ -187,7 +212,7 @@
 					   			<option value="${quarto.id}">${quarto.numeroQuarto}</option>
 					   		#{/list}
 					</select>
-				
+				-->
 					
 				
 			<div class="modal-footer">
@@ -203,6 +228,25 @@
 <script src="@{'/public/bootstrap/js/paciente.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 <script src="@{'/public/bootstrap/js/medico.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 -->
+
+
+<script>
+
+$(document).ready(function(){
+	
+	$("select[name='ala.id']").change(function(){
+		$.get("/internacoes/carregarQuarto?id=" + $(this).val(), function (data){
+			$("select[name='quarto.id']").html(data).change();
+		}, 'html');
+	});
+	
+	
+}
+
+</script>
+
+
+
 
 <script>
 // paciente.onload = function(){
