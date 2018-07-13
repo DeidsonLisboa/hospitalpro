@@ -150,6 +150,35 @@
 						#{/if}
 					</ul>
 				
+				
+					<ul id="quartos" class="list-group list-group-flush">
+						#{if internacao != null && internacao.quartos != null}
+							#{list items:internacao.quartos, as: 'quarto'}
+								<li id="li-enf-${quarto.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='pac-${quarto.id}' type='hidden' name='quartosIDs' value='${quarto.id}'>
+									
+									${quarto.nome} 
+																
+									<button type="button" class="btn btn-danger btn-sm del-med" value="${quarto.id}">
+		          						<span class="glyphicon glyphicon-remove"></span> Remover 
+		        					</button>
+								</li>
+							#{/list}	
+						#{/if}
+					</ul>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 					
 				
 			<div class="modal-footer">

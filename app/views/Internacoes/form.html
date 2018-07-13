@@ -148,6 +148,26 @@
 							#{/list}	
 						#{/if}
 					</ul>
+					
+					
+					<ul id="alas" class="list-group list-group-flush">
+						#{if internacao != null && internacao.alas != null}
+							#{list items:internacao.alas, as: 'ala'}
+								<li id="li-enf-${ala.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='pac-${ala.id}' type='hidden' name='alasIDs' value='${ala.id}'>
+									
+									${ala.nome} 
+																
+									<button type="button" class="btn btn-danger btn-sm del-med" value="${ala.id}">
+		          						<span class="glyphicon glyphicon-remove"></span> Remover 
+		        					</button>
+								</li>
+							#{/list}	
+						#{/if}
+					</ul>
+					
+				
+					
 					<!-- O SCRIPT ESTA A BAIXO-->
 					<!-- O SCRIPt ESTA A BAIXO-->
 					
@@ -518,52 +538,102 @@ window.onload = function(){
      
      $("#add-ala").click(function(){
      	
-     	var medicoAdicionado = function(idMedico){
-     		var inputHiddenMed = $("#al-"+idMedico);
+     	var alaAdicionado = function(idAla){
+     		var inputHiddenMed = $("#al-"+idAla);
      		console.log(inputHiddenMed);
      		console.log(inputHiddenMed.lenght);
      		return (inputHiddenMed.val());
      	};
      	
-     	var selectMedico = $('#sel-al').find(":selected");
-     	var nomeMedico = selectMedico.text();
-     	var idMedico = selectMedico.val();
+     	var selectAla = $('#sel-al').find(":selected");
+     	var nomeAla = selectAla.text();
+     	var idAla = selectAla.val();
      	
-     	var html = "<li id='li-al-" + idMedico + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
- 		    		  	"<input id='al-" + idMedico + "' type='hidden' name='alasIDs' value='" + idMedico + "'> " +
- 		    		  		nomeMedico +
- 		    		  		"<button type='button' class='del-al btn btn-danger btn-sm' value='" + idMedico + "'>" +
+     	var html = "<li id='li-al-" + idAla + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+ 		    		  	"<input id='al-" + idAla + "' type='hidden' name='alasIDs' value='" + idAla + "'> " +
+ 		    		  		nomeAla + "<button type='button' class='del-al btn btn-danger btn-sm' value='" + idAla + "'>" +
  		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
  		    		  		"</button>" +
  		    	   "</li>";
      	
- 		console.log(idMedico);
- 		console.log(medicoAdicionado(idMedico));
+ 		console.log(idAla);
+ 		console.log(alaAdicionado(idAla));
  		
- 		if(!medicoAdicionado(idMedico)){
+ 		if(!alaAdicionado(idAla)){
  			$("#alas").append(html);
  		}else{
- 			$.notify('O medico <b>' + nomeMedico + '</b> jÃ¡ foi adicionado.');
+ 			$.notify('A Ala <b>' + nomeAla + '</b> já foi adicionada.');
  		}
          
          
          $(".del-al").click(function(){
-         	var idMedico = $(this).attr("value");
-         	$("#li-al-" + idMedico).remove();
+         	var idAla = $(this).attr("value");
+         	$("#li-al-" + idAla).remove();
          });
      });
      
      
      $(".del-al").click(function(){
-     	var idMedico = $(this).attr("value");
-     	$("#li-al-" + idMedico).remove();
+     	var idAla = $(this).attr("value");
+     	$("#li-al-" + idAla).remove();
      });
      
       $.notifyDefaults({
       	type: 'success',
       	allow_dismiss: true,
       });
-    
+
+// 
+/*
+      $("#add-quarto").click(function(){
+       	
+       	var quartoAdicionado = function(idQuarto){
+       		var inputHiddenMed = $("#al-"+idQuarto);
+       		console.log(inputHiddenMed);
+       		console.log(inputHiddenMed.lenght);
+       		return (inputHiddenMed.val());
+       	};
+       	
+       	var selectQuarto = $('#sel-al').find(":selected");
+       	var nomeQuarto = selectQuarto.text();
+       	var idQuarto = selectQuarto.val();
+       	
+       	var html = "<li id='li-al-" + idQuarto + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+   		    		  	"<input id='al-" + idQuarto + "' type='hidden' name='alasIDs' value='" + idQuarto + "'> " +
+   		    		  		nomeQuarto + "<button type='button' class='del-al btn btn-danger btn-sm' value='" + idQuarto + "'>" +
+   		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+   		    		  		"</button>" +
+   		    	   "</li>";
+       	
+   		console.log(idQuarto);
+   		console.log(quartoAdicionado(idQuarto));
+   		
+   		if(!quartoAdicionado(idQuarto)){
+   			$("#quartos").append(html);
+   		}else{
+   			$.notify('O quarto <b>' + nomeQuarto + '</b> já foi adicionado.');
+   		}
+           
+           
+           $(".del-al").click(function(){
+           	var idQuarto = $(this).attr("value");
+           	$("#li-al-" + idQuarto).remove();
+           });
+       });
+       
+       
+       $(".del-al").click(function(){
+       	var idQuarto = $(this).attr("value");
+       	$("#li-al-" + idQuarto).remove();
+       });
+       
+        $.notifyDefaults({
+        	type: 'success',
+        	allow_dismiss: true,
+        });
+
+*/      
+      
     
 };
 
