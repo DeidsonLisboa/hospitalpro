@@ -70,4 +70,15 @@ public class Medicos extends Controller{
 	    renderBinary(medico.foto.get());
 	}
 	
+	/*public static void fotoMedico(Long id) {
+		Medico medico = Medico.findById(id);
+	    
+		if (medico.foto.exists()) {
+	    renderBinary(medico.foto.getFile());
+		} else {
+			File file = Play.getFile("/public/images/perfil.png");
+			renderBinary(file);
+		}
+	}  
+    */
 }

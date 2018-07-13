@@ -16,6 +16,12 @@ import play.db.jpa.Model;
 public class Enfermeiro extends Model {
 
 	//@Required
+	public String senha;
+		
+	//@Required
+	public String login;
+	
+	//@Required
 	public String nome;
 	
 	//@Required

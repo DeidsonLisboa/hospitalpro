@@ -18,7 +18,11 @@ public class Medico extends Model {
 	//@Required
 	public String nome;
 	
+	//@Required
+	public String login;
 	
+	//@Required
+	public String senha;
 	public String estCivil;
 	public String naturalEstado;
 	public String naturalCidade;

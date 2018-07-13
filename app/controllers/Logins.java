@@ -17,6 +17,31 @@ public class Logins extends Controller{
 		}
 		
 		if(usuario.autenticar()){
+			/*
+			 * session.put("usuario.id, u.id");
+			 * session.put("usuario.login, u.login");
+			 * session.put("usuario.senha, u.senha");
+			 * 
+			 * if(u.administrador != null){
+				session.put("usuario.tipo", "ad");
+			}
+			else if(u.enfermeiro != null){
+				session.put("usuario.tipo", "en");
+			}
+			else if(u.medico != null){
+				session.put("usuario.tipo", "me");
+			}
+			
+			session.put("usuario.administrador.id", (u.administrador != null) ? u.administrador.id : null);
+			session.put("usuario.enfermeiro.id", (u.enfermeiro != null) ? u.enfermeiro.id : null);
+			session.put("usuario.cozinheiro.id", (u.medico != null) ? u.medico.id : null);
+		}else {
+			flash.error("Usuário ou senha incorreto");
+		}
+			*/
+			
+			
+			
 			flash.success("Usuário logado com sucesso!");
 			session.put("usuario", usuario);
 			Application.inicio();
@@ -27,7 +52,7 @@ public class Logins extends Controller{
 	}
 	
 	public static void logout() {	
-		flash.success("Usuário desconectado com sucesso!");
+		//flash.success("Usuário desconectado com sucesso!");
 		session.clear();
 		Application.index();
 	}
