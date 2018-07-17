@@ -1,9 +1,15 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import enums.Status;
 import models.Ala;
 import models.Quarto;
+import play.db.jpa.JPA;
 import play.mvc.Controller;
 
 public class Alas extends Controller {
@@ -11,38 +17,37 @@ public class Alas extends Controller {
 	public static void form() {
 		String query = "select q from Quarto q where ala_id =" + null;
 		List<Quarto> quartos = Quarto.find(query).fetch();
-		//List<Quarto> quartos = Quarto.findAll();
-		List<String> tiposAla = Arrays.asList(new String[]{"Pediátria Masculina" ,"Pediátria Feminina" ,"Adulto Masculina", "Adulto Feminina","Geriátrica Masculina", "Geriátrica Feminina"});
-		render( quartos, tiposAla);
+		render( quartos);
 	}
 
-	public static void salvar(Ala ala, List<String> quartosIDs) {
+	public static void salvar(Ala ala, List<Integer> quartosNums, List<Long> quartoIDs) {
 		ala.save();
-		String IDs = "-1";
-		if(quartosIDs != null)
-			IDs = String.join(", ", quartosIDs);
-			
-		String query = "select q from Quarto q where q.id in (" + IDs + ")";			
-		List<Quarto> quartosAssociados = Quarto.find(query).fetch();
-		for(Quarto quarto: quartosAssociados) {
-			quarto.ala = ala;
+				
+		// exclui quartos (exclusao lógica - não exclui o registro definitivamente do BD) 
+		if(quartoIDs == null) quartoIDs = new ArrayList<Long>();
+		EntityManager em = JPA.em();
+		List<Long> idsQuartosDaAla = em.createQuery("select id from Quarto "
+					 + "where ala_id = " + ala.id).getResultList();
+		idsQuartosDaAla.removeAll(quartoIDs);
+		
+		for(Long id: idsQuartosDaAla) {
+			Quarto quarto = Quarto.findById(id);
+			quarto.status = Status.INATIVO;
 			quarto.save();
 		}
 		
-		query = "select q from Quarto q where q.id not in ("+ IDs + ")";	
-		System.out.println(query);
-		List<Quarto> quartosNaoAssociado = Quarto.find(query).fetch();
-		for(Quarto quarto: quartosNaoAssociado) {
-			if(quarto.ala != null && 
-			   quarto.ala.id == ala.id) {
-				quarto.ala = null;
+		// cria novos quartos
+		if(quartosNums != null) {
+			for(Integer quartoNum: quartosNums) {
+				Quarto quarto = new Quarto();
+				quarto.numeroQuarto = quartoNum;
+				quarto.ala = ala;
 				quarto.save();
+				System.out.println(quarto);
 			}
-		}		
+		}
 		
-		ala.save();
-		detalhes(ala);
-		//listar();
+		listar();
 	}
 
 	public static void editar(Long id) {
@@ -57,14 +62,14 @@ public class Alas extends Controller {
 
 
 	public static void listar() {
-
-		List<Ala> alas = Ala.findAll();
+		List<Ala> alas = Ala.find("status = ?", Status.ATIVO).fetch();
 		render(alas);
 	}
 
 	public static void remover(Long id) {
 		Ala ala = Ala.findById(id);
-		ala.delete();
+		ala.status = Status.INATIVO;
+		ala.save();
 		listar();
 	}
 

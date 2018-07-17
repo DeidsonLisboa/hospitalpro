@@ -32,7 +32,8 @@
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		id="mainNav">
-		<a class="navbar-brand" href="@{Application.inicio}">Gerenciador
+		<a class="navbar-brand" href="@{Application.inicio}"> <i
+						class="fa fa-server"></i> Gerenciador
 			de Cadastros</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
 			data-toggle="collapse" data-target="#navbarResponsive"
@@ -47,11 +48,10 @@
 					title="Components"><a
 					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 					href="#collapseEnfermeiro" data-parent="#exampleAccordion"> <i
-						class="fa fa-home"></i> <span class="nav-link-text">Enfermeiro</span>
+						class="fa fa-user"></i> <span class="nav-link-text">Enfermeiro</span>
 				</a>
 					<ul class="sidenav-second-level collapse" id="collapseEnfermeiro">
 						<li><a href="@{Enfermeiros.form}">Cadastrar</a></li>
-						<li><a href="@{Medicamentos.form}">Cadastrar Medicamento</a></li>
 						<li><a href="@{Enfermeiros.listar}">Listar</a></li>
 					</ul></li>
 
@@ -59,7 +59,7 @@
 					title="Components"><a
 					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 					href="#collapseMedicos" data-parent="#exampleAccordion"> <i
-						class="fa fa-home"></i> <span class="nav-link-text">Medico</span>
+						class="fa fa-user-md"></i> <span class="nav-link-text">Medico</span>
 				</a>
 					<ul class="sidenav-second-level collapse" id="collapseMedicos">
 						<li><a href="@{Medicos.form}">Cadastrar</a></li>
@@ -71,7 +71,7 @@
 					title="Components"><a
 					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 					href="#collapsePacientes" data-parent="#exampleAccordion"> <i
-						class="fa fa-home"></i> <span class="nav-link-text">Pacientes</span>
+						class="fa fa-users"></i> <span class="nav-link-text">Pacientes</span>
 				</a>
 					<ul class="sidenav-second-level collapse" id="collapsePacientes">
 						<li><a href="@{Pacientes.form}">Cadastrar</a></li>
@@ -85,26 +85,38 @@
 					title="Components"><a
 					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 					href="#collapseSetor" data-parent="#exampleAccordion"> 
-					<i class="fa fa-home"></i> <span class="nav-link-text">Setor Hospitalar</span>
+					<i class="fa fa-hospital-o"></i> <span class="nav-link-text">Setor Hospitalar</span>
 				</a>
 					<ul class="sidenav-second-level collapse" id="collapseSetor">
 						<li><a href="@{Alas.form}">Cadastrar Ala</a></li>
-						<li><a href="@{Alas.listar}">Listar Ala</a></li>
-						<li><a href="@{Quartos.form}">Cadastrar Quarto</a></li>
-						<li><a href="@{Quartos.listar}">Listar Quarto</a></li>
+						<li><a href="@{Alas.listar}">Listar Alas</a></li>
+						<li><a href="@{Quartos.form}">Cadastrar Leitos ao Quarto</a></li>
+				<!--    <li><a href="@{Quartos.listar}">Listar Quarto</a></li>
 						<li><a href="@{Leitos.form}">Cadastrar Leito</a></li>
-						<li><a href="@{Leitos.listar}">Listar Leito</a></li>
+						<li><a href="@{Leitos.listar}">Listar Leito</a></li>  -->
 					</ul></li>
 
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
 					title="Components"><a
 					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
 					href="#collapseInternacoes" data-parent="#exampleAccordion"> <i
-						class="fa fa-home"></i> <span class="nav-link-text">Internacão</span>
+						class="fa fa-fw fa-heartbeat"></i> <span class="nav-link-text">Internacão</span>
 				</a>
 					<ul class="sidenav-second-level collapse" id="collapseInternacoes">
-						<li><a href="@{Internacoes.form}">Cadastrar</a></li>
+				<!-- 		<li><a href="@{Internacoes.form}">Cadastrar</a></li>   -->
+						<li><a href="@{Internacoes.carregarAla}">Cadastrar</a></li>
 						<li><a href="@{Internacoes.listar}">Listar</a></li>
+					</ul></li>
+					
+					<li class="nav-item" data-toggle="tooltip" data-placement="right"
+					title="Components"><a
+					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+					href="#collapseMedicamento" data-parent="#exampleAccordion"> <i
+						class="fa fa-medkit"></i> <span class="nav-link-text">Medicamentos</span>
+				</a>
+					<ul class="sidenav-second-level collapse" id="collapseMedicamento">
+						<li><a href="@{Medicamentos.form}">Cadastrar</a></li>
+						<li><a href="@{Medicamentos.listar}">Listar</a></li>
 					</ul></li>
 
 				<li class="nav-item"><a href="@{Logins.logout}"

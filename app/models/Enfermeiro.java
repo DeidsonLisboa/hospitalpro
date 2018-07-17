@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -59,7 +60,7 @@ public class Enfermeiro extends Model {
 	public String estado;
 	public String cep;
 
-	@ManyToMany(mappedBy = "enfermeiros")
-	public List<Internacao> internacoes;
+	@OneToOne(mappedBy = "enfermeiro")
+	public Internacao internacao;
 
 }

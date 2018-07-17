@@ -23,8 +23,8 @@ public class Medicamento extends Model {
 	public int horariodosagem;
 	public Date dataAplicar;
 	
-	@ManyToMany
-	@JoinTable(name="leito_id")
-	public List<Leito> leitos; 
+	@ManyToOne
+	@JoinColumn(name="leito_id")
+	public Leito leito; 
 	
 }

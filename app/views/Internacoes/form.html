@@ -1,10 +1,15 @@
 #{extends 'principal.html' /}
 #{set title:'Formulario Internacao' /}
 
+%{
+	String tituloAcaoForm = internacao?.id == null? "Cadastrar":"Salvar Alterações"; 
+	String tituloForm = internacao?.id == null? "Cadastro":"Edição";
+}%
+
 <meta charset="utf-8">
 <div class="card mb-3">
 	<div class="card-header">
-		<i class="fa fa-table"></i>Cadastrar Internação</div>
+		<i class="fa fa-table"></i> ${tituloForm} de Internação</div>
 	<div class="card-body">
         
         <form action="@{Internacoes.salvar}" method="post">
@@ -17,21 +22,23 @@
 				
 					
 								
-					<select id="sel-paciente" class="form-control"">  
+					<select id="paciente" name="paciente" class="form-control">  
+					<option value="-1">Selecione um  paciente</option>
 					   		#{list items:pacientes, as:'paciente'}
-					   			<option value="${paciente.id}">${paciente.nome}</option>
+					   			<option type='hidden' value="${paciente.id}" name='pacienteID'>${paciente.nome}</option>
 					   		#{/list}
 					</select>
+					</div>
 					
-					
+					<!--
 					<div class="input-group-append">	
 							<button type="button" class="btn btn-success" id="add-paciente">Adicionar Paciente</button>
 					</div>
 					</div>
 					
 					<ul id="pacientes" class="list-group list-group-flush">
-				#{if internacao != null && internacao.pacientes != null}
-					#{list items:internacao.pacientes, as: 'paciente'}
+				#{if internacao != null && internacao.paciente != null}
+					#{list items:internacao.paciente, as: 'paciente'}
 						<li id="li-paci-${paciente.id}" class="list-group-item d-flex justify-content-between align-items-center">
 							<input id='paci-${paciente.id}' type='hidden' name='pacientesIDs' value='${paciente.id}'>
 							
@@ -44,7 +51,7 @@
 					#{/list}	
 				#{/if}
 					</ul>
-			
+			-->
 			<h6><b>Estado do Paciente</b></h6>					
 				<div class="row">			
 					<div class="form-group col-md-4">
@@ -90,21 +97,22 @@
 				<label for="medicos">Selecione o medico para adicionar:</label>
 				<div class="input-group mb-3">
 				
-					<select id="sel-medico" class="form-control"">  
+					<select id="medico" name="medico" class="form-control">
+					<option value="-1">Selecione um  medico</option>  
 					   		#{list items:medicos, as:'medico'}
-					   			<option value="${medico.id}">${medico.nome}</option>
+					   			<option type='hidden' name='medicoID' value="${medico.id}">${medico.nome}</option>
 					   		#{/list}
 					</select>
-					
-					
+					</div>
+					<!--
 					<div class="input-group-append">	
 							<button type="button" class="btn btn-success" id="add-medico">Adicionar Medico</button>
 					</div>
 					</div>
 					
 					<ul id="medicos" class="list-group list-group-flush">
-						#{if internacao != null && internacao.medicos != null}
-							#{list items:internacao.medicos, as: 'medico'}
+						#{if internacao != null && internacao.medico != null}
+							#{list items:internacao.medico, as: 'medico'}
 								<li id="li-med-${medico.id}" class="list-group-item d-flex justify-content-between align-items-center">
 									<input id='med-${medico.id}' type='hidden' name='medicosIDs' value='${medico.id}'>
 									
@@ -117,25 +125,26 @@
 							#{/list}	
 						#{/if}
 					</ul>
-					
+					-->
 					<label for="enfermeiros">Selecione o enfermeiro para adicionar:</label>
 				<div class="input-group mb-3">
 				
-					<select id="sel-enfermeiro" class="form-control"">  
+					<select id="enfermeiro" name="enfermeiro" class="form-control">  
+					<option value="-1">Selecione um  enfermeiro</option>
 					   		#{list items:enfermeiros, as:'enfermeiro'}
-					   			<option value="${enfermeiro.id}">${enfermeiro.nome}</option>
+					   			<option type='hidden' value="${enfermeiro.id}" name='enfermeiroID' value='${enfermeiro.id}'>${enfermeiro.nome}</option>
 					   		#{/list}
 					</select>
-					
-					
+					</div>					
+					<!--
 					<div class="input-group-append">	
 							<button type="button" class="btn btn-success" id="add-enfermeiro">Adicionar Enfermeiro</button>
 					</div>
 					</div>
 					
 					<ul id="enfermeiros" class="list-group list-group-flush">
-						#{if internacao != null && internacao.enfermeiros != null}
-							#{list items:internacao.enfermeiros, as: 'enfermeiro'}
+						#{if internacao != null && internacao.enfermeiro != null}
+							#{list items:internacao.enfermeiro, as: 'enfermeiro'}
 								<li id="li-enf-${enfermeiro.id}" class="list-group-item d-flex justify-content-between align-items-center">
 									<input id='enf-${enfermeiro.id}' type='hidden' name='enfermeirosIDs' value='${enfermeiro.id}'>
 									
@@ -148,29 +157,20 @@
 							#{/list}	
 						#{/if}
 					</ul>
+					-->
 					<!-- O SCRIPT ESTA A BAIXO-->
 					<!-- O SCRIPt ESTA A BAIXO-->
-					
+					<h6><b>Identificação do Setor Hospitalar</b></h6>	
+					<label for="leitos">Selecione um leito para adicionar:</label>
 					<div class="input-group mb-3">
-					<select class="form-control" name=ala.id>
-					<option value="-1">Selecione uma ala</option>
-						#{list items:alas, as:'ala'}
-					   			<option value="${ala.id}">${ala.nomeAla}</option>
+					<select class="form-control" id="leito" name="leito">
+					<option value="-1">Selecione um  leito</option>
+						#{list items:leitos, as:'leito'}
+					   			<option type='hidden' value="${leito.id}" name='leitoID'>${leito.numeroLeito}</option>
 					   	#{/list}
 					
 					</select>
 					</div>
-					
-					<div class="input-group mb-3">
-					<select class="form-control" name=quarto.id>
-						<option value="-1">Selecione um quarto</option>
-					</select>
-					
-					</div>
-					
-					
-					
-					
 					
 					
 					
@@ -191,14 +191,14 @@
 					</div>
 					
 					<ul id="alas" class="list-group list-group-flush">
-						#{if internacao != null && internacao.alas != null}
-							#{list items:internacao.alas, as: 'ala'}
-								<li id="li-al-${ala.id}" class="list-group-item d-flex justify-content-between align-items-center">
-									<input id='al-${ala.id}' type='hidden' name='alasIDs' value='${ala.id}'>
+						#{if internacao != null && internacao.leito != null}
+							#{list items:internacao.leito, as: 'leito'}
+								<li id="li-al-${leito.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='al-${leito.id}' type='hidden' name='leitosIDs' value='${leito.id}'>
 									
-									${ala.nomeAla} 
+									${leito.numeroLeito} 
 																
-									<button type="button" class="btn btn-danger btn-sm del-al" value="${ala.id}">
+									<button type="button" class="btn btn-danger btn-sm del-al" value="${leito.id}">
 		          						<span class="glyphicon glyphicon-remove"></span> Remover 
 		        					</button>
 								</li>
@@ -206,18 +206,11 @@
 						#{/if}
 					</ul>
 					
-					
-					
-					<select id="sel-quarto" class="form-control"">  
-					   		#{list items:quartos, as:'quarto'}
-					   			<option value="${quarto.id}">${quarto.numeroQuarto}</option>
-					   		#{/list}
-					</select>
 				-->
 					
 				
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-success">Cadastrar Internação</button>
+				<input class="btn btn-success" type="submit" value="${tituloAcaoForm}">
 				<button type="reset" class="btn btn-default" data-dismiss="modal">Limpar</button>
 			</div>
 		</form>
@@ -230,20 +223,33 @@
 <script src="@{'/public/bootstrap/js/medico.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 -->
 
+<script>
+$(document).ready(function(){
+	$("#paciente option:first").attr('selected','selected'){
+	});
+}
+</script>
 
 <script>
-
 $(document).ready(function(){
-	
-	$("select[name='ala.id']").change(function(){
-		$.get("/internacoes/carregarQuarto?id=" + $(this).val(), function (data){
-			$("select[name='quarto.id']").html(data).change();
-		}, 'html');
+	$("#enfermeiro option:first").attr('selected','selected'){
 	});
-	
-	
 }
+</script>
 
+<script>
+$(document).ready(function(){
+	$("#medico option:first").attr('selected','selected'){
+	});
+}
+</script>
+
+
+<script>
+$(document).ready(function(){
+	$("#leito option:first").attr('selected','selected'){
+	});
+}
 </script>
 
 
@@ -358,7 +364,7 @@ $(document).ready(function(){
 // };
 
 </script>
-
+<!-- 
 <script>
 window.onload = function(){
 	  
@@ -568,3 +574,4 @@ window.onload = function(){
 };
 
 </script>
+-->

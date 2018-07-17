@@ -1,51 +1,55 @@
-#{extends 'principal.html' /} #{set title:'Detalhes da Ala' /}
+#{extends 'principal.html' /}
+#{set title:'Detalhes da Ala' /}
 
 <meta charset="utf-8">
+
 <div class="card mb-3">
-	<div class="card-header">
-		<i class="fa fa-table"></i>Detalhes da Ala
-	</div>
-
-	<div class="card-body">
-
-		<table id="tableCrud"
-			class="table table-bordered table-striped table-hover dataTable no-footer"
-			role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
-
-			<h4>
-				<b>Dados da ala</b>
-			</h4>
-
+  	<div class="card-header">
+    	<i class="fa fa-table"></i>Detalhes da Ala</div>
+  	<div class="card-body">
+  	
+  	<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
+			
+			<h4><b>Dados da ala</b></h4>
+			
 			<div class="card mb-3">
-				<div class="card-header">
-					<b>Projetos do professor</b>
-				</div>
-				<div class="card-body">
-					#{if ala?.quartos}
-					<table class="table table-striped">
-						<thead>
-							<th rowspan="1" colspan="1">Numero do quarto</th>
-							<!-- <th rowspan="1" colspan="1">Quantidade de Membros</th>-->
-						</thead>
-						<tbody>
-							#{list items:ala.quartos, as:'quarto'}
-							<tr role="row">
-								<td><a>${quarto.numeroQuarto}</a></td>
-								<!-- <td>${projeto.professores.size()}</td>-->
-							</tr>
-							#{/list}
-						</tbody>
-					</table>
-					#{/if} #{else}
-					<p>Nenhum quarto está associado a nenhum ala do hospital</p>
-					#{/else}
-				</div>
+			<div class="card-header">
+		    	<b>Quartos da Ala</b>
+		    </div>
+		  	<div class="card-body">
+		  		#{if ala?.quartos}
+				<table class="table table-striped">
+			       	<thead >
+				         <th rowspan="1" colspan="1">Numero do quarto</th>
+				         <!-- <th rowspan="1" colspan="1">Quantidade de Membros</th>-->
+			       	</thead>
+			       	<tbody> 
+						#{list items:ala.quartos, as:'quarto'}
+						<tr role="row">
+				           <td><a>${quarto.numeroQuarto}</a></td>
+				           <!-- <td>${projeto.professores.size()}</td>-->
+				        </tr>
+						#{/list}
+					</tbody>
+		    	</table>
+		    	#{/if}
+		    	#{else}
+		    		<p>Nenhum quarto associado a ala.</p>
+		    	#{/else}
 			</div>
-			<div class="modal-footer">
-				<button class="btn btn-success">
-					<a href="@{Alas.form}">Cadastrar nova Ala</a>
-				</button>
+		</div>
+			
+	</table>		
+	
+	<div class="modal-footer">
+			<a href="@{Alas.form}">Cadastrar nova Ala</a>
 			</div>
-		</table>
+	
 	</div>
+	<!-- 
+	<div class="modal-footer">
+    		<a href="@{Medicos.listar}"><button class="btn btn-default">Voltar</button></a>
+    </div>
+    -->
 </div>
+			

@@ -1,21 +1,59 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import enums.Status;
 import models.Leito;
 import models.Quarto;
+import play.db.jpa.JPA;
 import play.mvc.Controller;
 
 public class Quartos extends Controller{
 	
 	public static void form() {
+		List<Quarto> quartos = Quarto.findAll();
 		String query = "select l from Leito l where quarto_id =" + null;
 		List<Leito> leitos = Leito.find(query).fetch();
 		//List<Leito> leitos = Leito.findAll();
-		render(leitos);
+		render(quartos, leitos);
 	}
 	
-	public static void salvar(Quarto quarto, List<String> leitosIDs) {
+	public static void salvar(Quarto quarto, List<Integer> leitosNums, List<Long> leitoIDs) {
+		
 		quarto.save();
+		
+		// exclui leitos (exclusao lógica - não exclui o registro definitivamente do BD) 
+		if(leitoIDs == null) leitoIDs = new ArrayList<Long>();
+		EntityManager em = JPA.em();
+		List<Long> idsLeitosDoQuarto = em.createQuery("select id from Leito "
+					 + "where quarto_id = " + quarto.id).getResultList();
+		idsLeitosDoQuarto.removeAll(leitoIDs);
+		
+		for(Long id: idsLeitosDoQuarto) {
+			Leito leito = Leito.findById(id);
+			leito.statusleito = Status.INATIVO;
+			leito.save();
+		}
+		
+		// cria novos leitos
+		if(leitosNums != null) {
+			for(Integer leitoNum: leitosNums) {
+				Leito leito = new Leito();
+				leito.numeroLeito = leitoNum;
+				leito.quarto = quarto;
+				leito.save();
+				System.out.println(leito);
+			}
+		}
+		
+		//listar();
+		
+		detalhes(quarto);
+		
+		/*quarto.save();
 		String IDs = "-1";
 		if(leitosIDs != null)
 			IDs = String.join(", ", leitosIDs);
@@ -41,7 +79,7 @@ public class Quartos extends Controller{
 		quarto.save();
 		flash.success("quarto salvo com sucesso!");
 		detalhes(quarto);
-		//listar();
+		//listar();*/
 	}
 
 	public static void editar(Long id) {
@@ -54,13 +92,14 @@ public class Quartos extends Controller{
 	}
 
 	public static void listar() {
-		List<Quarto> quartos = Quarto.findAll();
+		List<Quarto> quartos = Quarto.find("status = ?", Status.ATIVO).fetch();
 		render(quartos);
 	}
 
 	public static void remover(Long id) {
 		Quarto quarto = Quarto.findById(id);
-		quarto.delete();
+		quarto.status = Status.INATIVO;
+		quarto.save();
 		listar();
 	}
 }

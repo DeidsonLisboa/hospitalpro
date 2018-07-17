@@ -20,48 +20,49 @@
 				
 				<div class="row">					
 					<div class="form-group col-md-4">
-					   	<label for="formGroupExampleInput"><h11>*</h11>Tipo da Ala:</label>
-					   	<select class="form-control" id="nomeAla" value="${ala?.nomeAla}" name="ala.nomeAla">
-							<option selected="" value="">Selecione a Ala</option>
-							#{list items:tiposAla, as: 'tipoAla'}
-								<option value="${tipoAla}" ${(ala?.nomeAla != null && ala.nomeAla == tipoAla)? 'selected':''}>${tipoAla}</option>
-							#{/list}
-					   	</select>
+					   	<label for="formGroupExampleInput">Nome da Ala</label>
+					   	<input type="text" class="form-control" id="nomeAla" value="${ala?.nomeAla}" name="ala.nomeAla">
 					</div>
 				</div>
 				
-			<div class="card mb-3">
-			  <div class="card-header">
-			    <i class="fa fa-fw fa-user"></i> Adicionar Quarto a Ala</div>
-			  <div class="card-body">
-				
-				<p><b>Selecione o quarto para adicionar:</b></p>
-				
-				<ul id="quartos" class="list-group list-group-flush">
-				#{if quartos != null}
-					#{list items:quartos, as: 'quarto'}
-						<li class="list-group-item d-flex justify-content-between align-items-center">
-							<div class="form-check">
-								<div class="form-check">
-								  <input ${(ala?.quartos?.contains(quarto))? 'checked': ''} class="form-check-input" type="checkbox" name="quartosIDs" value="${quarto.id}" id="defaultCheck1">
-								  <label class="form-check-label" for="defaultCheck1">
-								    	${quarto.numeroQuarto}
-								  </label>
+				<div class="card mb-3">
+					  <div class="card-header">
+					    <i class="fa fa-list"></i> Cadastrar quarto para a ala</div>
+					  <div class="card-body">
+						<div class="form-group">
+							<label for="quartos">Informe o número do quarto:</label>
+							<div class="input-group mb-3">	
+								
+								<input type="text" class="form-control col-md-4" id="num-quarto">
+								
+								<div class="input-group-append">	
+									<button type="button" class="btn btn-success add-quarto">Cadastrar Quarto</button>
 								</div>
 							</div>
-						</li>
-					#{/list}	
-				#{/if}
-			</ul>
-			<br>
-			  </div>
-			</div>		
-			
-			<div class="modal-footer">
-			
-			<button class="btn btn-default"><a href="@{Quartos.form}">Cadastrar Um Quarto</a></button>		
-			
-			</div>
+						</div>
+						<br>
+						
+						<p><b>QUARTOS ASSOCIADOS A ALA:</b></p>
+						
+						<ul id="quartos" class="list-group list-group-flush">
+						#{if ala != null && !ala.getQuartosAtivos().isEmpty()}
+							#{list items:ala.getQuartosAtivos(), as: 'quarto'}
+								<li id="li-quarto-${quarto.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='quarto-${quarto.numeroQuarto}' class="quarto" type='hidden' name='quartoIDs' value='${quarto.id}'>
+									
+									<a href="">Quarto #${quarto.numeroQuarto}</a> 
+																
+									<button type="button" class="btn btn-danger btn-sm del-quarto" value="${quarto.id}">
+		          						<span class="glyphicon glyphicon-remove"></span> Remover 
+		        					</button>
+								</li>
+							#{/list}	
+						#{/if}
+					</ul>
+					<div id="msg-nenhum-quarto"></div>
+					<br>
+					  </div>
+					</div>					
 					
 					<div class="modal-footer">
 					<input class="btn btn-success" type="submit" value="${tituloAcaoForm}">
@@ -72,3 +73,69 @@
 		</div>
 	</div>
 </div>
+
+<script>
+window.onload = function(){
+	
+	// Verifica se o professor já foi adicionado
+	var quartoAdicionado = function(numQuarto){
+		var inputHiddenQuarto = $("#quarto-" + numQuarto);
+		return (inputHiddenQuarto.val());
+	};
+	
+	var atualizaMensagemDeQuartosVazios = function(){
+		var inputHiddenQuarto = $(".quarto");
+		if(inputHiddenQuarto.length != 0){
+			$("#msg-nenhum-quarto").html("");
+		}else{
+			$("#msg-nenhum-quarto").html("<p>Nenhum quarto associado a ala.</p>");
+		}
+	};
+	
+	atualizaMensagemDeQuartosVazios();
+	  
+	// Adiciona o professor caso ele ainda não tenha sido adicionado
+    $(".add-quarto").click(function(){
+    	
+    	var numQuartoInput = $('#num-quarto');
+    	
+    	if(numQuartoInput.val() == ''){
+    		$.notify('Por favor, informe o número do quarto a ser adicionado.');
+    		return;
+    	}
+    	
+    	var numQuarto = numQuartoInput.val();
+    	
+    	var html = "<li id='li-quarto-" + numQuarto + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+		    		  	"<input id='quarto-" + numQuarto + "' class='quarto' type='hidden' name='quartosNums' value='" + numQuarto + "'> " +
+		    		  	"Quarto #" + numQuarto +
+		    		  		"<button type='button' class='del-quarto btn btn-danger btn-sm' value='" + numQuarto + "'>" +
+		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+		    		  		"</button>" +
+		    	   "</li>";
+		
+		if(!quartoAdicionado(numQuarto)){
+			$("#quartos").append(html);
+		}else{
+			$.notify('O quarto <b>' + numQuarto + '</b> já foi adicionado.');
+		}
+		
+		numQuartoInput.val("");
+    });
+    
+    $(document).on('click', '.del-quarto', function () {
+    	var numQuarto = $(this).attr("value");
+    	$("#li-quarto-" + numQuarto).remove();
+    });
+    
+    $(document).on('click', ".add-quarto,.del-quarto", function(){
+		atualizaMensagemDeQuartosVazios();
+	});
+    
+    $.notifyDefaults({
+    	type: 'success',
+    	allow_dismiss: true,
+    });
+};
+
+</script>

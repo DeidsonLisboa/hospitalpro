@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import models.Ala;
 import models.Enfermeiro;
 import models.Internacao;
+import models.Leito;
 import models.Medico;
 import models.Paciente;
 import models.Quarto;
@@ -16,66 +17,68 @@ import play.mvc.With;
 @With(Seguranca.class)
 public class Internacoes extends Controller{
 	
-	public static void form(Internacao internacao) {
+	public static void form(Long id) {
 		List<Paciente> pacientes = Paciente.findAll();
 		List<Medico> medicos = Medico.findAll();
 		List<Enfermeiro> enfermeiros = Enfermeiro.findAll();
-		List<Ala> alas = Ala.findAll();		
-		render(internacao, pacientes, medicos, enfermeiros, alas);
+		String query = "select l from Leito l where quarto_id ="+ id +" and ocupado=false";
+		List<Leito> leitos = Leito.find(query).fetch();
+		render( pacientes, medicos, enfermeiros, leitos);
+	}
+	
+	public static void carregarAla(){
+		List<Ala> alas = Ala.findAll();
+		render(alas);
 	}
 	
 	
-	
-	public static void carregarQuarto(Integer id){
+	public static void carregarQuarto(Long id){
 		
 		String query = "select q from Quarto q where ala_id =" + id;
 		List<Quarto> quartos = Quarto.find(query).fetch();
 		//renderText(quartos.toString());
 		render(quartos);
+		//System.out.println(id);
 	}
 	
-	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs) {
+	public static void salvar(Internacao internacao, Long pacienteID, Long medicoID, Long  enfermeiroID, Long leitoID) {
 		
 		
-		if(pacientesIDs == null || pacientesIDs.isEmpty()) {
-			internacao.pacientes = null;
+		if(pacienteID == null) {
+			internacao.paciente = null;
 		} else {
-			String IDs = "(" + String.join(", ", pacientesIDs) + ")";
-			String query = "select p from Paciente p where p.id in " + IDs;
-			List<Paciente> pacientes = Paciente.find(query).fetch();
-			internacao.pacientes = pacientes;
+			Paciente paciente = Paciente.findById(pacienteID);
+			internacao.paciente = paciente;
 		}
 		
-		if(medicosIDs == null || medicosIDs.isEmpty()) {
-			internacao.medicos = null;
+		if(medicoID == null) {
+			internacao.medico = null;
 		} else {
-			String IDsM = "(" + String.join(", ", medicosIDs) + ")";
-			String query = "select m from Medico m where m.id in " + IDsM;
-			List<Medico> medicos = Medico.find(query).fetch();
-			internacao.medicos = medicos;
+			
+			Medico medico = Medico.findById(medicoID);
+			internacao.medico = medico;
 		}
 
-		if(enfermeirosIDs == null || enfermeirosIDs.isEmpty()) {
-			internacao.enfermeiros = null;
+		if(enfermeiroID == null) {
+			internacao.enfermeiro = null;
 		} else {
-			String IDsE = "(" + String.join(", ", enfermeirosIDs) + ")";
-			String query = "select e from Enfermeiro e where e.id in " + IDsE;
-			List<Enfermeiro> enfermeiros = Enfermeiro.find(query).fetch();
-			internacao.enfermeiros = enfermeiros;
+			Enfermeiro enfermeiro = Enfermeiro.findById(enfermeiroID);
+			internacao.enfermeiro = enfermeiro;
 		}
 		
-		if(alasIDs == null || alasIDs.isEmpty()){
-			internacao.alas = null;
+		if(leitoID == null){
+			internacao.leito = null;
 		}else{
-			String IDsA =  "(" + String.join(", ", alasIDs) + ")";
-			String query = "select a from Ala a where a.id in " + IDsA;
-			List<Ala> alas = Ala.find(query).first();
-			internacao.alas = alas;
+			Leito leito = Leito.findById(leitoID);
+			leito.ocupado = true;
+			internacao.leito = leito;
 		}
 	
 		internacao.save();
 		//flash.success("Internaçao cadastrada com sucesso!");
-		listar();
+		//listar();
+		//carregarQuarto(ala.id, internacao);
+		detalhes(internacao.id);
 	}
 	
 	public static void editar(Long id) {
@@ -83,7 +86,7 @@ public class Internacoes extends Controller{
 		List<Paciente> pacientes = Paciente.findAll();
 		List<Medico> medicos = Medico.findAll();
 		List<Enfermeiro> enfermeiros = Enfermeiro.findAll();
-		renderTemplate("Internacoes/editar.html", internacao, pacientes, medicos, enfermeiros);
+		renderTemplate("Internacoes/form.html", internacao, pacientes, medicos, enfermeiros);
 	}
 	
 	public static void detalhes(Long id) {

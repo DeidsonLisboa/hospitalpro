@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import enums.Status;
 import enums.TipoCorAla;
 import play.db.jpa.Model;
 
@@ -20,8 +21,12 @@ public class Ala extends Model{
 	@OneToMany(mappedBy="ala")
 	public  List<Quarto> quartos;
 	
-	@ManyToMany(mappedBy="alas")
-	public List<Internacao>internacoes;
 	
-
+	@Enumerated(EnumType.STRING)
+	public Status status = Status.ATIVO;
+	
+	public List<Quarto> getQuartosAtivos(){
+		return Quarto.find("from Quarto where ala = ? and status = ?", 
+				this, Status.ATIVO).fetch();
+	}
 }

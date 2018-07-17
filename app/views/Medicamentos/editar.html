@@ -7,6 +7,9 @@
 	    Medico / Alteração de cadastro
 	</div>
 	
+	<b>${internacao.leito}</b>
+		 <a class="btn1 btn-default" href="@{Medicamentos.form(internacao.leito)}"> Addicionar Medicamento</a>
+	
 	<div class="card-body">
 		
 		<form action="@{Medicamentos.salvar}" method="post">

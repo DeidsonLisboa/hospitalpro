@@ -19,41 +19,53 @@
 			
 				
 				<h6><b>Identificação do Quarto</b></h6>
-				<div class="row">
-					<div class="form-group col-md-3">
-					   <label for="formGroupExampleInput"><h11>*</h11>Numero:</label>
-					   <input class="form-control" id="numeroQuarto" type="text" value="${quarto?.numeroQuarto}" name="quarto.numeroQuarto" placeholder="Ex: 000">
+				<div class="input-group mb-3">					
+					<select class="form-control" id="quarto" name="quarto">  	
+						<option value="-1">Selecione um quarto </option>					
+					   		#{list items:quartos, as:'quarto'}
+					   			<option value="${quarto.id}">${quarto.numeroQuarto}</option>
+					   		#{/list}
+					</select>
 					</div>
-				</div>
 				
 				<div class="card mb-3">
-			  <div class="card-header">
-			    <i class="fa fa-fw fa-user"></i> Adicionar Leito ao Quarto</div>
-			  <div class="card-body">
-				
-				<p><b>Selecione o leito para adicionar:</b></p>
-				
-				<ul id="leitos" class="list-group list-group-flush">
-				#{if leitos != null}
-					#{list items:leitos, as: 'leito'}
-						<li class="list-group-item d-flex justify-content-between align-items-center">
-							<div class="form-check">
-								<div class="form-check">
-								  <input ${(quarto?.leitos?.contains(leito))? 'checked': ''} class="form-check-input" type="checkbox" name="leitosIDs" value="${leito.id}" id="defaultCheck1">
-								  <label class="form-check-label" for="defaultCheck1">
-								    	${leito.numeroLeito}
-								  </label>
+					  <div class="card-header">
+					    <i class="fa fa-list"></i> Cadastrar leito para o quarto</div>
+					  <div class="card-body">
+						<div class="form-group">
+							<label for="leitos">Informe o número do leito:</label>
+							<div class="input-group mb-3">	
+								
+								<input type="text" class="form-control col-md-4" id="num-leito">
+								
+								<div class="input-group-append">	
+									<button type="button" class="btn btn-success add-leito">Cadastrar Leito</button>
 								</div>
 							</div>
-						</li>
-					#{/list}	
-				#{/if}
-			</ul>
-			<br>
-			  </div>
-			</div>					
-				
-				
+						</div>
+						<br>
+						
+						<p><b>LEITOS ASSOCIADOS AO QUARTO:</b></p>
+						
+						<ul id="leitos" class="list-group list-group-flush">
+						#{if quarto != null && !quarto.getLeitosAtivos().isEmpty()}
+							#{list items:quarto.getLeitosAtivos(), as: 'leito'}
+								<li id="li-leito-${leito.id}" class="list-group-item d-flex justify-content-between align-items-center">
+									<input id='leito-${leito.numeroLeito}' class="leito" type='hidden' name='leitoIDs' value='${leito.id}'>
+									
+									<a href="">Leito #${leito.numeroLeito}</a> 
+																
+									<button type="button" class="btn btn-danger btn-sm del-leito" value="${leito.id}">
+		          						<span class="glyphicon glyphicon-remove"></span> Remover 
+		        					</button>
+								</li>
+							#{/list}	
+						#{/if}
+					</ul>
+					<div id="msg-nenhum-leito"></div>
+					<br>
+					  </div>
+					</div>					
 					
 					<div class="modal-footer">
 					<input class="btn btn-success" type="submit" value="${tituloAcaoForm}">
@@ -64,6 +76,81 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	$("#quarto option:first").attr('selected','selected'){
+	});
+}
+</script>
+
+
+<script>
+window.onload = function(){
+	
+	// Verifica se o professor já foi adicionado
+	var leitoAdicionado = function(numLeito){
+		var inputHiddenLeito = $("#leito-" + numLeito);
+		return (inputHiddenLeito.val());
+	};
+	
+	var atualizaMensagemDeLeitosVazios = function(){
+		var inputHiddenLeito = $(".leito");
+		if(inputHiddenLeito.length != 0){
+			$("#msg-nenhum-leito").html("");
+		}else{
+			$("#msg-nenhum-leito").html("<p>Nenhum leito associado ao quarto.</p>");
+		}
+	};
+	
+	atualizaMensagemDeLeitosVazios();
+	  
+	// Adiciona o professor caso ele ainda não tenha sido adicionado
+    $(".add-leito").click(function(){
+    	
+    	var numLeitoInput = $('#num-leito');
+    	
+    	if(numLeitoInput.val() == ''){
+    		$.notify('Por favor, informe o número do leito a ser adicionado.');
+    		return;
+    	}
+    	
+    	var numLeito = numLeitoInput.val();
+    	
+    	var html = "<li id='li-leito-" + numLeito + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+		    		  	"<input id='leito-" + numLeito + "' class='leito' type='hidden' name='leitosNums' value='" + numLeito + "'> " +
+		    		  	"Leito #" + numLeito +
+		    		  		"<button type='button' class='del-leito btn btn-danger btn-sm' value='" + numLeito + "'>" +
+		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+		    		  		"</button>" +
+		    	   "</li>";
+		
+		if(!leitoAdicionado(numLeito)){
+			$("#leitos").append(html);
+		}else{
+			$.notify('O leito <b>' + numLeito + '</b> já foi adicionado.');
+		}
+		
+		numLeitoInput.val("");
+    });
+    
+    $(document).on('click', '.del-leito', function () {
+    	var numLeito = $(this).attr("value");
+    	$("#li-leito-" + numLeito).remove();
+    });
+    
+    $(document).on('click', ".add-leito,.del-leito", function(){
+		atualizaMensagemDeLeitosVazios();
+	});
+    
+    $.notifyDefaults({
+    	type: 'success',
+    	allow_dismiss: true,
+    });
+};
+
+</script>
+
 
 <!--
 <script>

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.ManyToAny;
 
@@ -18,21 +19,21 @@ import play.db.jpa.Model;
 @Entity
 public class Internacao extends Model{
 	
-	@ManyToMany
-	@JoinTable(name="paciente_id")
-	public List<Paciente> pacientes;
+	@OneToOne
+	@JoinColumn(name="paciente_id")
+	public Paciente paciente;
 	
-	@ManyToMany
-	@JoinTable(name="medico_id")
-	public List<Medico> medicos;
+	@OneToOne
+	@JoinColumn(name="medico_id")
+	public Medico medico;
 	
-	@ManyToMany
-	@JoinTable(name="enfermerio_id")
-	public List<Enfermeiro> enfermeiros;
+	@OneToOne
+	@JoinColumn(name="enfermerio_id")
+	public Enfermeiro enfermeiro;
 	
-	@ManyToMany
-	@JoinTable(name="ala_id")
-	public List<Ala> alas;
+	@OneToOne
+	@JoinColumn(name="leito_id")
+	public Leito leito;
 	
 	public String pressao;
 	public String temperatura;

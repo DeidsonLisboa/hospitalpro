@@ -1,14 +1,54 @@
 #{extends 'principal.html' /}
 #{set title:'Detalhes quarto' /}
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<div class="modal-footer">
-			<a href="@{Quartos.form}">Cadastrar novo quarto</a>
+
+<meta charset="utf-8">
+
+<div class="card mb-3">
+  	<div class="card-header">
+    	<i class="fa fa-table"></i>Detalhes do Quarto</div>
+  	<div class="card-body">
+  	
+  	<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
+			
+			<h4><b>Dados do Quarto</b></h4>
+			
+			<div class="card mb-3">
+			<div class="card-header">
+		    	<b>Leitos do Quarto</b>
+		    </div>
+		  	<div class="card-body">
+		  		#{if quarto?.leitos}
+				<table class="table table-striped">
+			       	<thead >
+				         <th rowspan="1" colspan="1">Numero do leito</th>
+				      
+			       	</thead>
+			       	<tbody> 
+						#{list items:quarto.leitos, as:'leitos'}
+						<tr role="row">
+				           <td><a>${leito.numeroLeito}</a></td>
+				           
+				        </tr>
+						#{/list}
+					</tbody>
+		    	</table>
+		    	#{/if}
+		    	#{else}
+		    		<p>Nenhum leito associado ao quarto.</p>
+		    	#{/else}
 			</div>
-</body>
-</html>
+		</div>
+			
+	</table>		
+	
+	<div class="modal-footer">
+			<a href="@{Quartos.form}">Cadastrar novo Quarto</a>
+			</div>
+	
+	</div>
+	<!-- 
+	<div class="modal-footer">
+    		<a href="@{Medicos.listar}"><button class="btn btn-default">Voltar</button></a>
+    </div>
+    -->
+</div>

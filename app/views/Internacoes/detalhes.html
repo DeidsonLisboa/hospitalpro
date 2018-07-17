@@ -12,14 +12,15 @@
 			<div class="card-header">
 		    	<b>Pacientes associados a Internação</b>
 		    </div>
+		    
 		  	<div class="card-body">
-		  		#{if internacao?.pacientes}
+		  		#{if internacao?.paciente}
 				<table class="table table-striped">
 			       	<thead >
 				         <th rowspan="1" colspan="1">Nome do Paciente</th>
 			       	</thead>
 			       	<tbody> 
-						#{list items:internacao.pacientes, as:'paciente'}
+						#{list items:internacao.paciente}
 						<tr role="row">
 				           <td><a href="@{Pacientes.detalhes(paciente.id)}">${paciente.nome}</a></td>
 				        </tr>
@@ -33,6 +34,8 @@
 			</div>
 		</div>
 		<br>
+		 
+		
 		<div class="">
 			<a class="btn btn-primary" href="@{Internacoes.editar(internacao.id)}">Editar</a>
         </div>

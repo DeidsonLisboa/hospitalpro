@@ -11,8 +11,9 @@
 	    <table class="table dataTable" id="dataTable">
 	    	<thead>
 		        <tr>		        
-		        <th rowspan="1" colspan="1">Nome da Ala</th>
-	         
+		        <th>Nome da Ala</th>
+		        <th>Número de Quartos</th>
+	         	<th>Opções</th>
 	       	</thead>
 	       	<tbody>
 		
@@ -20,10 +21,9 @@
 			<tr role="row">
 	        	
 	           	<td>${ala.nomeAla}</td>
-	                     
-	           	
+	            <td>${ala.getQuartosAtivos().size()}</td>           
 	           	<td>
-	           		<a class="btn1 btn-default" href="@{Alas.detalhes(ala)}">
+	           		<a class="btn1 btn-default" href="@{Alas.detalhes(ala.id)}">
            					<button class="btn">
            						<i class="fa fa-fw fa fa-bars"></i>
            					</button>
@@ -45,7 +45,8 @@
 	    </table>
     	</br></br></br>
     	<div class="modal-footer">
-    		<a href="@{Alas.form}"><button class="btn btn-success">Cadastrar nova Ala</button></a>    
+    		<a href="@{Alas.form}"><button class="btn btn-success">Cadastrar nova Ala</button></a> 
+    		<a href="@{Quartos.form}"><button class="btn btn-default">Cadastrar Leitos ao Quarto</button></a>   
     	</div>
   	</div>
 </div>
