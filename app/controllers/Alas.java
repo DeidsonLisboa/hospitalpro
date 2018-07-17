@@ -56,7 +56,8 @@ public class Alas extends Controller {
 	}
 
 
-	public static void detalhes(Ala ala) {
+	public static void detalhes(Long id) {
+		Ala ala = Ala.findById(id);
 		render(ala);
 	}
 

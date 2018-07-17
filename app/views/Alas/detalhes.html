@@ -1,50 +1,65 @@
-#{extends 'principal.html' /}
-#{set title:'Detalhes da Ala' /}
+#{extends 'principal.html' /} #{set title:'Detalhes da Ala' /}
 
 <meta charset="utf-8">
 
 <div class="card mb-3">
-  	<div class="card-header">
-    	<i class="fa fa-table"></i>Detalhes da Ala</div>
-  	<div class="card-body">
-  	
-  	<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
-			
-			<h4><b>Dados da ala</b></h4>
-			
-			<div class="card mb-3">
-			<div class="card-header">
-		    	<b>Quartos da Ala</b>
-		    </div>
-		  	<div class="card-body">
-		  		#{if ala?.quartos}
-				<table class="table table-striped">
-			       	<thead >
-				         <th rowspan="1" colspan="1">Numero do quarto</th>
-				         <!-- <th rowspan="1" colspan="1">Quantidade de Membros</th>-->
-			       	</thead>
-			       	<tbody> 
-						#{list items:ala.quartos, as:'quarto'}
-						<tr role="row">
-				           <td><a>${quarto.numeroQuarto}</a></td>
-				           <!-- <td>${projeto.professores.size()}</td>-->
-				        </tr>
-						#{/list}
-					</tbody>
-		    	</table>
-		    	#{/if}
-		    	#{else}
-		    		<p>Nenhum quarto associado a ala.</p>
-		    	#{/else}
+	<div class="card-header">
+		<i class="fa fa-table"></i>Detalhes da Ala
+	</div>
+	<div class="card-body">
+
+		<table id="tableCrud"
+			class="table table-bordered table-striped table-hover dataTable no-footer"
+			role="grid" aria-describedby="tableCrud_info" width=100% height=20%>
+
+			<h4>
+				<b>Dados da ala</b>
+			</h4>
+
+
+			<tr height=30%>
+				<td width=20% align="right"><h6>
+						<b>Nome:</b>
+					</h6></td>
+				<td colspan="3"><h6>
+						<i>${ala.nomeAla}</i>
+					</h6></td>
+			</tr>
+
+
+
+					#{if ala?.quartos}
+					<table class="table table-striped">
+						<thead>
+							<th rowspan="1" colspan="1">Numero do quarto</th>
+							<!-- <th rowspan="1" colspan="1">Quantidade de Membros</th>-->
+						</thead>
+						<tbody>
+							#{list items:ala.quartos, as:'quarto'}
+							<tr role="row">
+								<td><a>${quarto.numeroQuarto}</a></td>
+
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					#{/if} #{else}
+					<p>Nenhum quarto associado a ala.</p>
+					#{/else}
+				</div>
 			</div>
+
+		</table>
+		
+		<div class="modal-footer">
+			<a href="@{Alas.listar}">
+	        	<button class="btn btn-default" >Voltar</button>
+	        </a>
+	        <a href="@{Alas.form}">
+	        	<button class="btn btn-success" >Cadastrar nova Ala</button>
+	        </a>
 		</div>
-			
-	</table>		
-	
-	<div class="modal-footer">
-			<a href="@{Alas.form}">Cadastrar nova Ala</a>
-			</div>
-	
+
 	</div>
 	<!-- 
 	<div class="modal-footer">
@@ -52,4 +67,3 @@
     </div>
     -->
 </div>
-			

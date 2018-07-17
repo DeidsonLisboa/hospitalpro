@@ -10,8 +10,10 @@
 		    
 	    <table class="table dataTable" id="dataTable">
 	    	<thead>
-		        <tr>		        
+		        <tr>	
+		            
 		        <th rowspan="1" colspan="1">Numero do Quarto</th>
+		         <th rowspan="1" colspan="1">Nome da Ala</th>	
 	         
 	       	</thead>
 	       	<tbody>
@@ -20,10 +22,11 @@
 			<tr role="row">
 	        	
 	           	<td>${quarto.numeroQuarto}</td>
+	           	<td>${quarto.ala}</td>
 	                     
 	           	
 	           	<td>
-	           		<a class="btn1 btn-default" href="@{Quartos.detalhes(quarto)}">
+	           		<a class="btn1 btn-default" href="@{Quartos.detalhes(quarto.id)}">
            					<button class="btn">
            						<i class="fa fa-fw fa fa-bars"></i>
            					</button>

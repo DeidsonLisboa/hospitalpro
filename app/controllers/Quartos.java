@@ -51,7 +51,7 @@ public class Quartos extends Controller{
 		
 		//listar();
 		
-		detalhes(quarto);
+		detalhes(quarto.id);
 		
 		/*quarto.save();
 		String IDs = "-1";
@@ -87,7 +87,8 @@ public class Quartos extends Controller{
 		renderTemplate("Quartos/form.html", quarto);
 	}
 
-	public static void detalhes(Quarto quarto) {
+	public static void detalhes(Long id) {
+		Quarto quarto = Quarto.findById(id);
 		render(quarto);
 	}
 
