@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <enumeration id="1" language="java" name="enums.Status" project="Hospital" file="/Hospital/app/enums/Status.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="240" width="156" x="203" y="170"/>    
+    <position height="147" width="161" x="203" y="170"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </enumeration>  
   <enumeration id="2" language="java" name="enums.TipoInternacao" project="Hospital" 
     file="/Hospital/app/enums/TipoInternacao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="259" width="279" x="434" y="166"/>    
+    <position height="178" width="275" x="434" y="166"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
