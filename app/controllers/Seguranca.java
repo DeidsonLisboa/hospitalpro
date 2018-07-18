@@ -3,6 +3,7 @@ package controllers;
 import annotations.Admin;
 import play.mvc.Before;
 import play.mvc.Controller;
+import controllers.Login;
 
 public class Seguranca extends Controller{
 	
@@ -18,7 +19,7 @@ public class Seguranca extends Controller{
 		System.out.println(usuario);
 		if(seguranca && usuario == null) {
 			flash.error("Por favor, entre com seu login e senha.");
-            Application.index();
+            Login.login();
         }
     }
 }

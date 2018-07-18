@@ -8,8 +8,9 @@ import models.Paciente;
 import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
+import play.mvc.Before;
 
-@With(Seguranca.class)
+
 public class Pacientes extends Controller {
 	
 	public static void form() {
