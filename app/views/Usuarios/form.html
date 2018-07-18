@@ -1,0 +1,51 @@
+#{extends 'principal.html' /}
+#{set title:'Formulário' /}
+
+%{
+	String tituloAcaoForm = usuario?.id == null? "Cadastrar":"Editar"; 
+	String tituloForm = usuario?.id == null? "Cadastro":"Edição";
+}%
+
+<div class="card mb-3">
+	  <div class="card-header">
+	    <i class="fa fa-user"></i> ${tituloForm} de Usuário</div>
+	  <div class="card-body">
+          
+		<form action="@{Usuarios.salvar}" method="post">
+		   
+		   <input type="hidden" value="${usuario?.id}" name="usuario.id">
+		   
+			<div class="form-group">
+			   <label for="email">Email</label>
+			   <input class="form-control #{ifError 'usuario.email'} is-invalid#{/ifError}" 
+			   id="email" type="text" value="${usuario?.email}" name="usuario.email">
+			   #{ifError 'usuario.email'}
+        	   <div class="invalid-feedback">#{error 'usuario.email' /}</div>  	   		 
+        	   #{/ifError}
+			</div>
+			
+			<div class="form-group">
+			   <label for="senha">Senha</label>
+			   <input class="form-control #{ifError 'usuario.senha'} is-invalid#{/ifError}" 
+			   id="senha" type="text" value="${usuario?.senha}" name="usuario.senha">
+			  
+        	   #{ifError 'usuario.senha'}
+        	   <div class="invalid-feedback">#{error 'usuario.senha' /}</div>  	   		 
+        	   #{/ifError}
+			</div>
+			
+			<div class="form-group">
+			   <label for="status">Status</label>
+			   <select class="form-control col-5" name="usuario.status">
+			   		#{list items:status, as:'status'}
+			   			<option value="${status}" 
+			   			${(usuario?.id !=null && usuario?.status == status)? 'selected':'' }>${status}</option>
+			   		#{/list}
+			   </select>
+			</div>
+			
+			<input class="btn btn-primary" type="submit" value="${tituloAcaoForm}">
+			
+		</form>
+	</div>
+</div>

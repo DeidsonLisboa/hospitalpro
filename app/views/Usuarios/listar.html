@@ -1,0 +1,33 @@
+#{extends 'principal.html' /}
+#{set title:'Listagem de Usuários' /}
+
+<div class="card mb-3">
+ <div class="card-header">
+   <i class="fa fa-user"></i> Listagem de Usuários</div>
+ <div class="card-body">
+    
+     <table class="table dataTable" id="">
+       <thead>
+         <tr><th rowspan="1" colspan="1">#ID</th>
+         <th rowspan="1" colspan="1">email</th>
+         <th rowspan="1" colspan="1">status</th>
+         <th rowspan="1" colspan="1">Ações</th>
+       </thead>
+       <tbody> 
+      
+	#{list items:usuarios, as:'usuario'}
+		<tr role="row">
+           <td>${usuario.id}</td>
+           <td>${usuario.email}</td>
+           <td><span  ${(usuario?.status == 'ATIVO')? "class='label label-success'": "class='label label-success'"}  ">${usuario.status}</span></td>
+           <td>
+           		<a class="btn btn-primary" title='Editar' href="@{Usuarios.editar(usuario.id)}"><i class="fa fa-edit"></i></a>
+           	</td>
+         </tr>
+	#{/list}
+	</tbody>
+    </table>
+    <br>
+    <a class="btn btn-info" href="@{Usuarios.form}">Cadastro de Usuário</a>
+  </div>
+</div>
