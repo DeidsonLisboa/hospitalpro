@@ -51,8 +51,8 @@ public class Internacoes extends Controller{
 		for(Paciente paciente: pacientesAssociados) {
 			paciente.internacao = internacao;
 			paciente.save();
-		}*/
-		
+		}
+		*/
 		
 		if(pacienteID == null) {
 			internacao.paciente = null;
