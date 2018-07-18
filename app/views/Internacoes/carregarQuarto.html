@@ -18,29 +18,6 @@
 					</select>
 					</div>
 					
-					<!-- 
-					<div class="input-group-append">	
-							<button type="button" class="btn btn-success" id="add-qua">Adicionar quarto</button>
-					</div>
-					</div>
-					
-					<ul id="quartos" class="list-group list-group-flush">
-						 #{if quarto != null }
-							#{list items:quartos, as: 'quarto'}
-								<li id="li-qua-${quarto.id}" class="list-group-item d-flex justify-content-between align-items-center">
-									<input id='qua-${quarto.id}' type='hidden' name='quartos' value='${quarto.id}'>
-									
-									${quarto.numeroQuarto} 
-																
-									<button type="button" class="btn btn-danger btn-sm del-qua" value="${quarto.id}">
-		          						<span class="glyphicon glyphicon-remove"></span> Remover 
-		        					</button>
-								</li>
-							#{/list}	
-						#{/if}
-					</ul>
-					-->
-					
 					<div class="modal-footer">
 					<a class="btn1 btn-default" href="@{Internacoes.form(quarto.id)}">
            			<button class="btn btn-success">Proximo</button>
@@ -56,62 +33,3 @@ $(document).ready(function(){
 	});
 }
 </script>
-
-<!-- 					
-<script>
-window.onload = function(){					
-					
- $("#add-qua").click(function(){
-     	
-     	var medicoAdicionado = function(idMedico){
-     		var inputHiddenMed = $("#qua-"+idMedico);
-     		console.log(inputHiddenMed);
-     		console.log(inputHiddenMed.lenght);
-     		return (inputHiddenMed.val());
-     	};
-     	
-     	var selectMedico = $('#sel-qua').find(":selected");
-     	var nomeMedico = selectMedico.text();
-     	var idMedico = selectMedico.val();
-     	
-     	var html = "<li id='li-qua-" + idMedico + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
- 		    		  	"<input id='qua-" + idMedico + "' type='hidden' name='quartos' value='" + idMedico + "'> " +
- 		    		  		nomeMedico +
- 		    		  		"<button type='button' class='del-qua btn btn-danger btn-sm' value='" + idMedico + "'>" +
- 		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
- 		    		  		"</button>" +
- 		    	   "</li>";
-     	
- 		console.log(idMedico);
- 		console.log(medicoAdicionado(idMedico));
- 		
- 		if(!medicoAdicionado(idMedico)){
- 			$("#quartos").append(html);
- 		}else{
- 			$.notify('O medico <b>' + nomeMedico + '</b> jÃ¡ foi adicionado.');
- 		}
-         
-         
-         $(".del-qua").click(function(){
-         	var idMedico = $(this).attr("value");
-         	$("#li-qua-" + idMedico).remove();
-         });
-     });
-     
-     
-     $(".del-qua").click(function(){
-     	var idMedico = $(this).attr("value");
-     	$("#li-qua-" + idMedico).remove();
-     });
-     
-      $.notifyDefaults({
-      	type: 'success',
-      	allow_dismiss: true,
-      });
-    
-    
-};
-
-</script>
-
--->

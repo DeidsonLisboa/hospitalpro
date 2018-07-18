@@ -10,6 +10,7 @@ import models.Internacao;
 import models.Leito;
 import models.Medico;
 import models.Paciente;
+import models.Professor;
 import models.Quarto;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -35,13 +36,23 @@ public class Internacoes extends Controller{
 	public static void carregarQuarto(Long id){
 		
 		String query = "select q from Quarto q where ala_id =" + id;
-		List<Quarto> quartos = Quarto.find(query).fetch();
-		//renderText(quartos.toString());
+		List<Quarto> quartos = Quarto.find(query).fetch();		
 		render(quartos);
-		//System.out.println(id);
+		
 	}
 	
 	public static void salvar(Internacao internacao, Long pacienteID, Long medicoID, Long  enfermeiroID, Long leitoID) {
+		/*
+		String IDs = "-1";
+		if(pacienteID != null)
+			IDs = String.join(", ", pacienteID);
+			
+		String query = "select p from Paciente p where p.id in (" + IDs + ")";			
+		List<Paciente> pacientesAssociados = Paciente.find(query).fetch();
+		for(Paciente paciente: pacientesAssociados) {
+			paciente.internacao = internacao;
+			paciente.save();
+		}*/
 		
 		
 		if(pacienteID == null) {
