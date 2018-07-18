@@ -10,7 +10,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import enums.Status;
-import enums.TipoCorAla;
 import play.db.jpa.Model;
 
 @Entity

@@ -10,7 +10,6 @@ import models.Internacao;
 import models.Leito;
 import models.Medico;
 import models.Paciente;
-import models.Professor;
 import models.Quarto;
 import play.mvc.Controller;
 import play.mvc.With;

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import enums.TipoCorAla;
+
 import enums.TipoInternacao;
 import models.Ala;
 import models.Enfermeiro;
