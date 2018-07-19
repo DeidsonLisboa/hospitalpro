@@ -25,44 +25,44 @@
 									<td width=20% align="right">
 										<h6><b>Nome do paciente:</h6>
 									</td> 
-									#{list items:internacao.pacientes, as:'paciente'}
+									
 										<td>
-											<h6><i><a href="@{Pacientes.detalhes(paciente.id)}">${paciente.nome}</a></i></h6>
+											<h6><i><a href="">${internacao.paciente.nome}</a></i></h6>
 										</td> 
-									#{/list}
+									
 								</tr>
 								
 								<tr>
 									<td align="right">
 										<h6><b>Nome do medico:</h6>
 									</td>
-									#{list items:internacao.medicos, as:'medico'}
+									
 										<td>
-											<h6><i><a href="@{Medicos.detalhes(medico.id)}">${medico.nome}</a></h6>
+											<h6><i><a href="">${internacao.medico.nome}</a></h6>
 										</td>
-									#{/list}
+									
 								</tr>
 								
 								<tr>
 									<td align="right">
 										<h6><b>Nome do enfermeiro:</h6>
 									</td> 
-									#{list items:internacao.enfermeiros, as:'enfermeiro'}
+									
 										<td>
-											<h6><i><a href="@{Enfermeiros.detalhes(enfermeiro.id)}">${enfermeiro.nome}</i></h6>
+											<h6><i><a href="">${internacao.enfermeiro.nome}</i></h6>
 										</td> 
-									#{/list}
+									
 								</tr>
 								
 								<tr>
 									<td align="right">
-										<h6><b>Ala da internação:</h6>
+										<h6><b>Leito da internação:</h6>
 									</td> 
-									#{list items:internacao.alas, as:'ala'}
+									
 										<td>
-											<h6><i><a href="@{Alas.detalhes(ala.id)}">${ala.nome}</i></h6>
+											<h6><i><a href="">${internacao.leito.numeroLeito}</i></h6>
 										</td> 
-									#{/list}
+									
 								</tr>
 								
 								
@@ -77,6 +77,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<br>
+		<a href="">
+	          <button class="btn btn-default">add medi</button></a>
 		
 		<br>
 		<div class="">

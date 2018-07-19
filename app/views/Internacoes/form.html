@@ -25,7 +25,7 @@
 					<select id="paciente" name="paciente" class="form-control">  
 					<option value="-1">Selecione um  paciente</option>
 					   		#{list items:pacientes, as:'paciente'}
-					   			<option type='hidden' value="${paciente.id}" name='pacienteID'>${paciente.nome}</option>
+					   			<option type='hidden' value="${paciente.id}" name="paciente">${paciente.nome}</option>
 					   		#{/list}
 					</select>
 					</div>
@@ -78,7 +78,7 @@
 					<select id="medico" name="medico" class="form-control">
 					<option value="-1">Selecione um  medico</option>  
 					   		#{list items:medicos, as:'medico'}
-					   			<option type='hidden' name='medicoID' value="${medico.id}">${medico.nome}</option>
+					   			<option type='hidden' name="medico" value="${medico.id}">${medico.nome}</option>
 					   		#{/list}
 					</select>
 					</div>
@@ -89,7 +89,7 @@
 					<select id="enfermeiro" name="enfermeiro" class="form-control">  
 					<option value="-1">Selecione um  enfermeiro</option>
 					   		#{list items:enfermeiros, as:'enfermeiro'}
-					   			<option type='hidden' value="${enfermeiro.id}" name='enfermeiroID' value='${enfermeiro.id}'>${enfermeiro.nome}</option>
+					   			<option type='hidden' value="${enfermeiro.id}" name="enfermeiro" value='${enfermeiro.id}'>${enfermeiro.nome}</option>
 					   		#{/list}
 					</select>
 					</div>					
@@ -101,7 +101,7 @@
 					<select class="form-control" id="leito" name="leito">
 					<option value="-1">Selecione um  leito</option>
 						#{list items:leitos, as:'leito'}
-					   			<option type='hidden' value="${leito.id}" name='leitoID'>${leito.numeroLeito}</option>
+					   			<option type='hidden' value="${leito.id}" name="leito">${leito.numeroLeito}</option>
 					   	#{/list}
 					
 					</select>

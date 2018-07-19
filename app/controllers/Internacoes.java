@@ -40,48 +40,40 @@ public class Internacoes extends Controller{
 		
 	}
 	
-	public static void salvar(Internacao internacao, Long pacienteID, Long medicoID, Long  enfermeiroID, Long leitoID) {
-		/*
-		String IDs = "-1";
-		if(pacienteID != null)
-			IDs = String.join(", ", pacienteID);
-			
-		String query = "select p from Paciente p where p.id in (" + IDs + ")";			
-		List<Paciente> pacientesAssociados = Paciente.find(query).fetch();
-		for(Paciente paciente: pacientesAssociados) {
-			paciente.internacao = internacao;
-			paciente.save();
-		}
-		*/
+	public static void salvar(Internacao internacao, Paciente paciente, Medico medico,Enfermeiro enfermeiro, Leito leito) {
 		
-		if(pacienteID == null) {
+		if(paciente == null) {
 			internacao.paciente = null;
 		} else {
-			Paciente paciente = Paciente.findById(pacienteID);
+			//Paciente paciente = Paciente.findById(pacienteID);
 			internacao.paciente = paciente;
+			paciente.save();
 		}
 		
-		if(medicoID == null) {
+		if(medico == null) {
 			internacao.medico = null;
 		} else {
 			
-			Medico medico = Medico.findById(medicoID);
+			//Medico medico = Medico.findById(medicoID);
 			internacao.medico = medico;
+			medico.save();
 		}
 
-		if(enfermeiroID == null) {
+		if(enfermeiro == null) {
 			internacao.enfermeiro = null;
 		} else {
-			Enfermeiro enfermeiro = Enfermeiro.findById(enfermeiroID);
+			//Enfermeiro enfermeiro = Enfermeiro.findById(enfermeiroID);
 			internacao.enfermeiro = enfermeiro;
+			enfermeiro.save();
 		}
 		
-		if(leitoID == null){
+		if(leito == null){
 			internacao.leito = null;
 		}else{
-			Leito leito = Leito.findById(leitoID);
+			//Leito leito = Leito.findById(leitoID);
 			leito.ocupado = true;
 			internacao.leito = leito;
+			leito.save();
 		}
 	
 		internacao.save();
