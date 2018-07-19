@@ -27,11 +27,12 @@ public class Medicamentos extends Controller{
 			medicamento.leito = null;
 		}else{
 			medicamento.leito = leito;
+			leito.save();
 		}
 		
 		medicamento.save();
 		
-		listar();
+		detalhes(medicamento.id);;
 	}
 	
 	public static void editar(Long id) {
@@ -39,7 +40,8 @@ public class Medicamentos extends Controller{
 		renderTemplate("Medicamentos/form.html", medicamento);
 	}
 	
-	public static void detalhes(Medicamento medicamento) {
+	public static void detalhes(Long id) {
+		Medicamento medicamento = Medicamento.findById(id);
 		render(medicamento);
 	}
 	
