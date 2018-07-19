@@ -21,12 +21,12 @@ public class Medicamentos extends Controller{
 		render(medicamento, leito);
 	}
 	
-	public static void salvar(Medicamento medicamento, Long leitoID) {
+	public static void salvar(Medicamento medicamento, Leito leito) {
 		
-		if(leitoID == null){
+		if(leito == null){
 			medicamento.leito = null;
 		}else{
-			medicamento.leito = null;
+			medicamento.leito = leito;
 		}
 		
 		medicamento.save();
