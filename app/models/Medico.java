@@ -10,63 +10,91 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import play.data.validation.Required;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
 @Entity
 public class Medico extends Model {
 	
-	//@Required
+	@Required
 	public String nome;
 	
-	//@Required
-	public String login;
-	
-	//@Required
-	public String senha;
+	@Required
 	public String estCivil;
+
+	@Required
 	public String naturalEstado;
+
+	@Required
 	public String naturalCidade;
+
+	@Required
 	public String nacionalidade;
 
-	//@Required
+	@Required
 	public String sexo;
 	public Blob foto;
 	
-	//@Required
+	@Required
 	@Temporal(TemporalType.DATE)
 	public Date dataNas;
 	
-	//@Required
+	@Required
 	public String cpf;
 	
-	//@Required
+	@Required
 	public String rg;
 	
+	@Required
 	public String email;
 	
-	//@Required
+	@Required
 	public String nomeFacul;
 	
-	//@Required
+	@Required
 	public int anoConc;
+	
+	@Required
 	public String residencia;
+
+	@Required
 	public String orgResid;
 	
-	//@Required
+	@Required
 	public String espPrincipal;
+
+	@Required
 	public String titFormacao;
+
+	@Required
 	public String cep;
+
+	@Required
 	public String estado;
+
+	@Required
 	public String complemento;
+
+	@Required
 	public String telefone;
+
+	@Required
 	public String UFcrm;
 	
-	//@Required
+	@Required
 	public String numCRM;
+
+	@Required
 	public String cidade;
+
+	@Required
 	public String bairro;
+
+	@Required
 	public String rua;
+
+	@Required
 	public String numCasa;
 
 	@OneToOne(mappedBy = "medico")
