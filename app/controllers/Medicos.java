@@ -3,12 +3,14 @@ package controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import annotations.Admin;
 import models.Enfermeiro;
 import models.Medico;
 import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
 
+@Admin
 @With(Seguranca.class)
 public class Medicos extends Controller{
 	

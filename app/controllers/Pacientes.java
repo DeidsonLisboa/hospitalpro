@@ -3,6 +3,7 @@ package controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import annotations.Admin;
 import models.Enfermeiro;
 import models.Paciente;
 import play.data.validation.Valid;
@@ -10,7 +11,8 @@ import play.mvc.Controller;
 import play.mvc.With;
 import play.mvc.Before;
 
-
+@Admin
+@With(Seguranca.class)
 public class Pacientes extends Controller {
 	
 	public static void form() {

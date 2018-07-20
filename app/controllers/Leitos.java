@@ -2,12 +2,16 @@ package controllers;
 
 import java.util.List;
 import com.sun.org.apache.xpath.internal.operations.String;
+
+import annotations.Admin;
 import models.Leito;
 import models.Medicamento;
 import models.Paciente;
 import play.mvc.Controller;
+import play.mvc.With;
 
-
+@Admin
+@With(Seguranca.class)
 public class Leitos extends Controller{
 	
 

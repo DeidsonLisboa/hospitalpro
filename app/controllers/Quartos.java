@@ -5,12 +5,16 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import annotations.Admin;
 import enums.Status;
 import models.Leito;
 import models.Quarto;
 import play.db.jpa.JPA;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@Admin
+@With(Seguranca.class)
 public class Quartos extends Controller{
 	
 	public static void form() {

@@ -2,11 +2,15 @@ package controllers;
 
 import java.util.List;
 
+import annotations.Admin;
 import enums.Status;
 import models.Usuario;
 import play.data.validation.Valid;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@Admin
+@With(Seguranca.class)
 public class Usuarios extends Controller{
 	
 

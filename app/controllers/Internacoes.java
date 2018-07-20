@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.List;
 import com.google.gson.Gson;
+
+import annotations.Admin;
 import models.Ala;
 import models.Enfermeiro;
 import models.Internacao;
@@ -12,6 +14,7 @@ import models.Quarto;
 import play.mvc.Controller;
 import play.mvc.With;
 
+@Admin
 @With(Seguranca.class)
 public class Internacoes extends Controller{
 	
