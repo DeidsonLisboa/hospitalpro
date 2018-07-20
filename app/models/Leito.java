@@ -31,8 +31,8 @@ public class Leito extends Model {
 	@OneToMany(mappedBy="leito")
 	public List<Medicamento> medicamentos;
 	
-	@OneToOne(mappedBy="leito")
-	public Internacao internacao;
+	@OneToMany(mappedBy="leito")
+	public List<Internacao> internacao;
 	
 	@Enumerated(EnumType.STRING)
 	public Status statusleito;

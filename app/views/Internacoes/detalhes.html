@@ -79,16 +79,25 @@
 		</div>
 		
 		<br>
-		<a href="">
-	          <button class="btn btn-default">add medi</button></a>
 		
 		<br>
 		<div class="">
-			<a class="btn btn-primary" href="@{Internacoes.editar(internacao.id)}">Editar</a>
+			<a href="@{Medicamentos.form(internacao.leito.id)}">
+	          <button class="btn btn-success"><i class="fa fa-medkit"> Adicionar Medicamentos ao Paciente</i>
+	          </button></a>
+			
+			<a href="@{Internacoes.editar(internacao.id)}">
+			<button class="btn btn-primary"><i class="fa fa-pencil"> Editar Internação </i>
+			</button></a>
+			
+			<a href="@{Internacoes.listar}">
+			<button class="btn btn-default"><i class="fa fa-bars"> Ver Todas Internações </i>
+	        </button></a>
+	        
+	        
 		</div>
 		
 		<br>
-		<a href="@{Internacoes.listar}">Ver todas Internacoes</a>
 		
 	</div>
 </div>

@@ -23,6 +23,7 @@ public class Quartos extends Controller{
 	
 	public static void salvar(Quarto quarto, List<Integer> leitosNums, List<Long> leitoIDs) {
 		
+		
 		quarto.save();
 		
 		// exclui leitos (exclusao lógica - não exclui o registro definitivamente do BD) 
