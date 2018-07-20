@@ -17,10 +17,10 @@ import play.db.jpa.Model;
 @Entity
 public class Paciente extends Model {
 	
-	//@Required
+	@Required
 	public String nome;
 	
-	//@Required
+	@Required
 	public String sexo;
 	
 	

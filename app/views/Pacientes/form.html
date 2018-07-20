@@ -41,7 +41,7 @@
 						<label for="formGroupExampleInput"><h11>*</h11>Nome:</label> 
 						<input class="form-control #{ifError 'paciente.nome'} is-invalid#{/ifError}" id="nome" type="text"
 							value="${paciente == null ? flash['paciente.nome'] : paciente.nome}" name="paciente.nome"
-							placeholder="Ex: fulano de tal e tal">
+							placeholder="Ex: fulano de tal e tal" required>
 							
 							
 							#{ifError 'paciente.nome'}
@@ -53,7 +53,7 @@
 					<div class="form-group col-md-2">
 						<label for="formGroupExampleInput"><h11>*</h11>Sexo:</label> <select
 							class="form-control" id="sexo" type="text"
-							value="${paciente?.sexo}" name="paciente.sexo">
+							value="${paciente?.sexo}" name="paciente.sexo" required>
 							<option selected="" value="">Selecione o Sexo</option> #{list
 							items:sexos, as: 'sexo'}
 							<option value="${sexo}" ${(paciente?.sexo !=null
@@ -114,7 +114,7 @@
 						<label for="formGroupExampleInput"><h11>*</h11>Profissão:</label> <input
 							class="form-control" id="profissao" type="text"
 							value="${paciente?.profissao}" name="paciente.profissao"
-							placeholder="Trabalho do paciente">
+							placeholder="Trabalho do paciente" required>
 					</div>
 
 					<div class="form-group col-md-2">

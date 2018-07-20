@@ -29,6 +29,7 @@ public class Enfermeiro extends Model {
 	@Temporal(TemporalType.DATE)
 	public Date dataNas;
 
+	@Required
 	public String estCivil;
 
 	@Required
@@ -48,6 +49,8 @@ public class Enfermeiro extends Model {
 	
 	@Required
 	public String telefone;
+	
+	@Required
 	public String UFcoren;
 	
 	@Required
