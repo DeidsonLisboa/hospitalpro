@@ -63,7 +63,17 @@
 					</div>
 				</div>
 				
-				<div class="row">	
+				<div class="row">
+				
+					<div class="form-group col-md-2">
+					   	<label for="formGroupExampleInput"><h11>*</h11>Nacionalidade:</label>
+					   	<select class="form-control" id="nacionalidade" type="text" value="${medico?.nacionalidade}" name="medico.nacionalidade">
+							<option selected="" value="">Selecione</option>
+							#{list items:nacionalidades, as: 'nacionalidade'}
+								<option value="${nacionalidade}" ${(medico?.nacionalidade != null && medico.nacionalidade == nacionalidade)? 'selected':''}>${nacionalidade}</option>
+							#{/list}
+						</select>
+					</div>
 					
 					<div class="form-group col-md-3">
 					   <label for="formGroupExampleInput"><h11>*</h11>Estado:</label>
@@ -79,17 +89,6 @@
 					   </select>
 					</div>
 					
-					
-					<div class="form-group col-md-2">
-					   	<label for="formGroupExampleInput"><h11>*</h11>Nacionalidade:</label>
-					   	<select class="form-control" id="nacionalidade" type="text" value="${medico?.nacionalidade}" name="medico.nacionalidade">
-							<option selected="" value="">Selecione</option>
-							#{list items:nacionalidades, as: 'nacionalidade'}
-								<option value="${nacionalidade}" ${(medico?.nacionalidade != null && medico.nacionalidade == nacionalidade)? 'selected':''}>${nacionalidade}</option>
-							#{/list}
-						</select>
-					</div>
-					
 					<div class="form-group col-md-2">
 					   <label for="formGroupExampleInput"><h11>*</h11>CPF:</label>
 					   <input class="form-control" id="cpf" type="text" maxlength="14" value="${medico?.cpf}" name="medico.cpf" onkeydown="javascript: fMasc( this, mCPF );" placeholder="Ex.: 000.000.000-00">
@@ -97,7 +96,7 @@
 					
 					<div class="form-group col-md-3">
 					   <label for="formGroupExampleInput"><h11>*</h11>RG:</label>
-					   <input class="form-control" id="rg" type="text" maxlength="11" value="${medico?.rg}" name="medico.rg" onkeydown="javascript: fMasc( this, mRG );" placeholder="Ex.: 00000.000-0">
+					   <input class="form-control" id="rg" type="text" maxlength="11" value="${medico?.rg}" name="medico.rg" onkeydown="javascript: fMasc( this, mRG );" placeholder="Ex.: 000.000.000">
 					</div>
 				</div>
 				
@@ -167,12 +166,12 @@
 				</br>
 				<h6><b>Endereço Residencial</b></h6>
 				<div class="row">
-					<div class="form-group col-md-5">
+					<div class="form-group col-md-4">
 					   <label for="formGroupExampleInput"><h11>*</h11>Rua ou Avenida:</label>
 					   <input class="form-control" id="rua" type="text" value="${medico?.rua}" name="medico.rua">
 					</div>
 					
-					<div class="form-group col-md-1">
+					<div class="form-group col-md-2">
 					   <label for="formGroupExampleInput"><h11>*</h11>Número:</label>
 					   <input class="form-control" id="numCasa" type="text" value="${medico?.numCasa}" name="medico.numCasa">
 					</div>

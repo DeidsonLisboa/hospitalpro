@@ -7,6 +7,7 @@ import models.Medicamento;
 import models.Paciente;
 import play.mvc.Controller;
 
+
 public class Leitos extends Controller{
 	
 
