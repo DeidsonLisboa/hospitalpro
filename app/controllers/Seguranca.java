@@ -10,7 +10,7 @@ public class Seguranca extends Controller{
 	@Before
     static void verificaAutenticacao() {
 		String usuario = session.get("ususario");
-//		Admin admin = getControllerAnnotation(Admin.class);
+		Admin admin = getControllerAnnotation(Admin.class);
 		
 		boolean seguranca = getControllerAnnotation(Admin.class) != null ||
 				   			getActionAnnotation(Admin.class) != null;

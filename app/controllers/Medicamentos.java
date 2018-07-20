@@ -3,7 +3,6 @@ package controllers;
 import java.util.Arrays;
 import java.util.List;
 import com.sun.org.apache.xpath.internal.operations.String;
-
 import models.Leito;
 import models.Medicamento;
 import models.Paciente;

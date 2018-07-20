@@ -9,8 +9,31 @@
     	<i class="fa fa-table"></i>Detalhes do Medicamento</div>
   	<div class="card-body">
   		
-  		<h1>Detalhes</h1>
-		Nome: ${medicamento.nomeMedicamento}<br>
-		Fabricante: ${medicamento.fabricante}<br>
-	</div>
+  		<table id="tableCrud" class="table table-bordered table-striped table-hover dataTable no-footer" role="grid" aria-describedby="tableCrud_info">
+			
+		<h4><b>Detalhes do Medicamento</b></h4>
+		
+		
+			<tr height=30%>
+				<td width=20% align="right"><h6><b>Nome:</b></h6></td>
+				<td colspan="3"><h6><i>${medicamento.nomeMedicamento}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Fabricante:</b></h6></td>
+				<td><h6><i>${medicamento.fabricante}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Data Prescrita:</b></h6></td>
+				<td><h6><i>${medicamento.dataPrescrita}</i></h6></td>
+			</tr>
+			
+			<tr height=30%>
+				<td align="right"><h6><b>Hora da aplicação:</b></h6></td>
+				<td><h6><i>${medicamento.horariodosagem}</i></h6></td>
+			</tr>
+			
+		</table>
+	
 </div>
