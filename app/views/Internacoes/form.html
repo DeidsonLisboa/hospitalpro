@@ -22,7 +22,7 @@
 				
 					
 								
-					<select id="paciente" name="paciente" class="form-control">  
+					<select id="paciente" name="internacao.paciente.id" class="form-control">  
 					<option value="-1">Selecione um  paciente</option>
 					   		#{list items:pacientes, as:'paciente'}
 					   			<option type='hidden' value="${paciente.id}" name="paciente">${paciente.nome}</option>
@@ -75,10 +75,10 @@
 				<label for="medicos">Selecione o medico para adicionar:</label>
 				<div class="input-group mb-3">
 				
-					<select id="medico" name="medico" class="form-control">
+					<select id="medico" name="internacao.medico.id" class="form-control">
 					<option value="-1">Selecione um  medico</option>  
 					   		#{list items:medicos, as:'medico'}
-					   			<option type='hidden' name="medico" value="${medico.id}">${medico.nome}</option>
+					   			<option value="${medico.id}">${medico.nome}</option>
 					   		#{/list}
 					</select>
 					</div>
@@ -86,10 +86,10 @@
 					<label for="enfermeiros">Selecione o enfermeiro para adicionar:</label>
 				<div class="input-group mb-3">
 				
-					<select id="enfermeiro" name="enfermeiro" class="form-control">  
+					<select id="enfermeiro" name="internacao.enfermeiro.id" class="form-control">  
 					<option value="-1">Selecione um  enfermeiro</option>
 					   		#{list items:enfermeiros, as:'enfermeiro'}
-					   			<option type='hidden' value="${enfermeiro.id}" name="enfermeiro" value='${enfermeiro.id}'>${enfermeiro.nome}</option>
+					   			<option value='${enfermeiro.id}'>${enfermeiro.nome}</option>
 					   		#{/list}
 					</select>
 					</div>					
@@ -98,10 +98,10 @@
 					<h6><b>Identificação do Setor Hospitalar</b></h6>	
 					<label for="leitos">Selecione um leito para adicionar:</label>
 					<div class="input-group mb-3">
-					<select class="form-control" id="leito" name="leito">
+					<select class="form-control" id="leito" name="internacao.leito.id">
 					<option value="-1">Selecione um  leito</option>
 						#{list items:leitos, as:'leito'}
-					   			<option type='hidden' value="${leito.id}" name="leito">${leito.numeroLeito}</option>
+					   			<option value="${leito.id}">${leito.numeroLeito}</option>
 					   	#{/list}
 					
 					</select>

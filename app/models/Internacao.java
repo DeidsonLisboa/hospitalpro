@@ -19,20 +19,20 @@ import play.db.jpa.Model;
 @Entity
 public class Internacao extends Model{
 	
-	@OneToOne
-	@JoinColumn(name="paciente_id")
+	@ManyToOne
+	@JoinTable(name="paciente_id")
 	public Paciente paciente;
 	
-	@OneToOne
-	@JoinColumn(name="medico_id")
+	@ManyToOne
+	@JoinTable(name="medico_id")
 	public Medico medico;
 	
-	@OneToOne
-	@JoinColumn(name="enfermerio_id")
+	@ManyToOne
+	@JoinTable(name="enfermerio_id")
 	public Enfermeiro enfermeiro;
 	
-	@OneToOne
-	@JoinColumn(name="leito_id")
+	@ManyToOne
+	@JoinTable(name="leito_id")
 	public Leito leito;
 	
 	public String pressao;

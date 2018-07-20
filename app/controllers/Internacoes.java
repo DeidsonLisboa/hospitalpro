@@ -40,41 +40,7 @@ public class Internacoes extends Controller{
 		
 	}
 	
-	public static void salvar(Internacao internacao, Paciente paciente, Medico medico,Enfermeiro enfermeiro, Leito leito) {
-		
-		if(paciente == null) {
-			internacao.paciente = null;
-		} else {
-			//Paciente paciente = Paciente.findById(pacienteID);
-			internacao.paciente = paciente;
-			paciente.save();
-		}
-		
-		if(medico == null) {
-			internacao.medico = null;
-		} else {
-			
-			//Medico medico = Medico.findById(medicoID);
-			internacao.medico = medico;
-			medico.save();
-		}
-
-		if(enfermeiro == null) {
-			internacao.enfermeiro = null;
-		} else {
-			//Enfermeiro enfermeiro = Enfermeiro.findById(enfermeiroID);
-			internacao.enfermeiro = enfermeiro;
-			enfermeiro.save();
-		}
-		
-		if(leito == null){
-			internacao.leito = null;
-		}else{
-			//Leito leito = Leito.findById(leitoID);
-			leito.ocupado = true;
-			internacao.leito = leito;
-			leito.save();
-		}
+	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> LeitosIDs) {
 	
 		internacao.save();
 		//flash.success("Internaçao cadastrada com sucesso!");

@@ -53,7 +53,7 @@ public class Paciente extends Model {
 	public String telAdicional;
 	public String email;
 	
-	@OneToOne(mappedBy="paciente")
-	public Internacao internacao;
+	@OneToMany(mappedBy="paciente")
+	public List<Internacao> internacao;
 	
 }

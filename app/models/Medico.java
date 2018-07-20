@@ -97,7 +97,7 @@ public class Medico extends Model {
 	@Required
 	public String numCasa;
 
-	@OneToOne(mappedBy = "medico")
-	public Internacao internacao;
+	@OneToMany(mappedBy = "medico")
+	public List<Internacao> internacao;
 
 }

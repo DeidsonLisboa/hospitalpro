@@ -77,7 +77,7 @@ public class Enfermeiro extends Model {
 	@Required
 	public String cep;
 
-	@OneToOne(mappedBy = "enfermeiro")
-	public Internacao internacao;
+	@OneToMany(mappedBy = "enfermeiro")
+	public List<Internacao> internacao;
 
 }
