@@ -7,7 +7,7 @@ import java.util.*;
 import annotations.Admin;
 import models.*;
 
-@Admin
+//@Admin
 @With(Seguranca.class)
 public class Application extends Controller {
 	
