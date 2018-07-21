@@ -14,7 +14,7 @@ import play.db.jpa.JPA;
 import play.mvc.Controller;
 import play.mvc.With;
 
-@Admin
+//@Admin
 @With(Seguranca.class)
 public class Alas extends Controller {
 

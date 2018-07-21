@@ -14,7 +14,7 @@ import models.Medicamento;
 import play.mvc.Controller;
 import play.mvc.With;
 
-@Admin
+//@Admin
 @With(Seguranca.class)
 public class Medicamentos extends Controller{
 	
