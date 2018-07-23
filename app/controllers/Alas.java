@@ -6,9 +6,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import annotations.Admin;
 import enums.Status;
 import models.Ala;
+import models.Leito;
 import models.Quarto;
 import play.db.jpa.JPA;
 import play.mvc.Controller;
@@ -17,11 +21,28 @@ import play.mvc.With;
 //@Admin
 @With(Seguranca.class)
 public class Alas extends Controller {
+	
+	private static Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 
-	public static void form() {
+	/*public static void form() {
 		String query = "select q from Quarto q where ala_id =" + null;
 		List<Quarto> quartos = Quarto.find(query).fetch();
 		render( quartos);
+	}*/
+	
+	public static void form() {
+		render();
+	}
+	
+	public static void inforAla(Long id) {
+		Ala ala = Ala.findById(id);
+		renderJSON(gson.toJson(ala));
+	}
+	
+	public static void leitosQuarto(Long idQuarto) {
+		Quarto quarto = Quarto.findById(idQuarto);
+		List<Leito> leitos = quarto.leitos;
+		renderJSON(gson.toJson(leitos));
 	}
 
 	public static void salvar(Ala ala, List<Integer> quartosNums, List<Long> quartoIDs) {
