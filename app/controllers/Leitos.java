@@ -10,7 +10,7 @@ import models.Paciente;
 import play.mvc.Controller;
 import play.mvc.With;
 
-//@Admin
+@Admin
 @With(Seguranca.class)
 public class Leitos extends Controller{
 	

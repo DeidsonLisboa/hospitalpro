@@ -9,7 +9,7 @@ import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
 
-//@Admin
+@Admin
 @With(Seguranca.class)
 public class Usuarios extends Controller{
 	
