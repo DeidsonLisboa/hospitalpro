@@ -18,15 +18,17 @@ import play.mvc.With;
 @With(Seguranca.class)
 public class Internacoes extends Controller{
 	
-	public static void form(Long id) {
+	public static void form(Internacao internacao) {
 		List<Paciente> pacientes = Paciente.findAll();
 		List<Medico> medicos = Medico.findAll();
 		List<Enfermeiro> enfermeiros = Enfermeiro.findAll();
-		String query = "select l from Leito l where quarto_id ="+ id +" and ocupado=false";
-		List<Leito> leitos = Leito.find(query).fetch();
-		render( pacientes, medicos, enfermeiros, leitos);
+		List<Ala> alas = Ala.findAll();
+		/*String query = "select l from Leito l where quarto_id ="+ id +" and ocupado=false";
+		List<Leito> leitos = Leito.find(query).fetch();*/
+		render(internacao, pacientes, medicos, enfermeiros, alas);
 	}
 	
+	/*
 	public static void carregarAla(){
 		List<Ala> alas = Ala.findAll();
 		render(alas);
@@ -39,15 +41,15 @@ public class Internacoes extends Controller{
 		List<Quarto> quartos = Quarto.find(query).fetch();		
 		render(quartos);
 		
-	}
+	}*/
 	
-	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> LeitosIDs) {
+	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs) {
 	
 		internacao.save();
 		//flash.success("Internaçao cadastrada com sucesso!");
-		//listar();
+		listar();
 		//carregarQuarto(ala.id, internacao);
-		detalhes(internacao.id);
+		//detalhes(internacao.id);
 	}
 	
 	public static void editar(Long id) {

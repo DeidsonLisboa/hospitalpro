@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <div class="card mb-3">
 	<div class="card-header">
-		<i class="fa fa-table"></i> ${tituloForm} de Internação</div>
+		<i class="fa fa-bookmark"></i> ${tituloForm} de Internação</div>
 	<div class="card-body">
         
         <form action="@{Internacoes.salvar}" method="post">
@@ -17,103 +17,108 @@
 			<input type="hidden" value="${internacao?.id}" name="internacao.id">
 			
 			<h6><b>Identificação do Paciente</b></h6>	
-				<label for="pacientes">Selecione o paciente para adicionar:</label>
-				<div class="input-group mb-3">
-				
+			
+			<div class="form-group col-md-8">
+				<label for="sel-paciente">Selecione o paciente para adicionar:</label>
+				<select name="internacao.paciente.id" id="sel-paciente" class="form-control"">  
+				   		#{list items:pacientes, as:'paciente'}
+				   			<option value="${paciente.id}">${paciente.nome}</option>
+				   		#{/list}
+				</select>
+			</div>
 					
-								
-					<select id="paciente" name="internacao.paciente.id" class="form-control">  
-					<option value="-1">Selecione um  paciente</option>
-					   		#{list items:pacientes, as:'paciente'}
-					   			<option type='hidden' value="${paciente.id}" name="paciente">${paciente.nome}</option>
-					   		#{/list}
-					</select>
-					</div>
-					
-			<h6><b>Estado do Paciente</b></h6>					
-				<div class="row">			
-					<div class="form-group col-md-4">
-					   	<label for="tipointernacao">Tipo da Internação:</label>
-					   	<select class="form-control form-control-sm" id="tipointernacao" type="text" value="${internacao?.tipointernacao}" name="internacao.tipointernacao">
-							<option>Selecione</option>
-							<option value="LEVE">LEVE</option>
-							<option value="MEDIA">MEDIA</option>
-							<option value="GRAVE">GRAVE</option>
-							<option value="GRAVISSIMA">GRAVISSIMA</option>
-						</select>
-					</div>					
+			<h6><b>Estado do Paciente</b></h6>							
+			<div class="form-group col-md-4">
+			   	<label for="tipointernacao">Tipo da Internação:</label>
+			   	<select class="form-control" id="tipointernacao" type="text" value="${internacao?.tipointernacao}" name="internacao.tipointernacao">
+					<option>Selecione</option>
+					<option value="LEVE">LEVE</option>
+					<option value="MEDIA">MEDIA</option>
+					<option value="GRAVE">GRAVE</option>
+					<option value="GRAVISSIMA">GRAVISSIMA</option>
+				</select>
+			</div>					
 
-					<div class="form-group col-md-2">
-					   <label for="pressao">Pressão:</label>
-					   <input class="form-control" id="pressao" placeholder="" type="text" value="${internacao?.pressao}" name="internacao.pressao">
-					</div>
-					
-					<div class="form-group col-md-2">
-					   <label for="temperatura">Temperatura:</label>
-					   <input class="form-control" id="temperatura" placeholder="" type="text" value="${internacao?.temperatura}" name="internacao.temperatura">
-					</div>
-					
-					<div class="form-group col-md-2">
-					   <label for="peso">Peso:</label>
-					   <input class="form-control" id="peso" placeholder="" type="text" value="${internacao?.peso}" name="internacao.peso">
-					</div>
-					
-					<div class="form-group col-md-2">
-					   <label for="altura">Altura:</label>
-					   <input class="form-control" id="altura" placeholder="" type="text" value="${internacao?.altura}" name="internacao.altura">
-					</div>
+			<div class="form-group col-md-2">
+			   <label for="pressao">Pressão:</label>
+			   <input class="form-control" id="pressao" placeholder="" type="text" value="${internacao?.pressao}" name="internacao.pressao">
+			</div>
+			
+			<div class="form-group col-md-2">
+			   <label for="temperatura">Temperatura:</label>
+			   <input class="form-control" id="temperatura" placeholder="" type="text" value="${internacao?.temperatura}" name="internacao.temperatura">
+			</div>
+			
+			<div class="form-group col-md-2">
+			   <label for="peso">Peso:</label>
+			   <input class="form-control" id="peso" placeholder="" type="text" value="${internacao?.peso}" name="internacao.peso">
+			</div>
+			
+			<div class="form-group col-md-2">
+			   <label for="altura">Altura:</label>
+			   <input class="form-control" id="altura" placeholder="" type="text" value="${internacao?.altura}" name="internacao.altura">
+			</div>
+			
 				</div>
 				
-				<div class="row">
+				
 					<div class="form-group col-md-12">
 					   <label for="laudoMedico">Laudo Medico:</label>
 					   <input class="form-control" id="laudoMedico" placeholder="" type="text" value="${internacao?.laudoMedico}" name="internacao.laudoMedico">
 					</div>
-				</div>
 				
-				<div class="row">
+				
+				
 					<div class="form-group col-md-12">
 					   <label for="infoComplementares">Informações Complementares:</label>
 					   <textarea class="form-control" id="infoComplementares" rows="5"  value="${internacao?.infoComplementares}" name="internacao.infoComplementares">${internacao == null ? flash['internacao.infoComplementares'] : internacao.infoComplementares}</textarea>
 					</div>
-				</div>
+				
 				
 				<h6><b>Identificação dos Responsavéis</b></h6>	
-				<label for="medicos">Selecione o medico para adicionar:</label>
-				<div class="input-group mb-3">
-				
-					<select id="medico" name="internacao.medico.id" class="form-control">
-					<option value="-1">Selecione um  medico</option>  
-					   		#{list items:medicos, as:'medico'}
-					   			<option value="${medico.id}">${medico.nome}</option>
-					   		#{/list}
-					</select>
-					</div>
-				
-					<label for="enfermeiros">Selecione o enfermeiro para adicionar:</label>
-				<div class="input-group mb-3">
-				
-					<select id="enfermeiro" name="internacao.enfermeiro.id" class="form-control">  
-					<option value="-1">Selecione um  enfermeiro</option>
-					   		#{list items:enfermeiros, as:'enfermeiro'}
-					   			<option value='${enfermeiro.id}'>${enfermeiro.nome}</option>
-					   		#{/list}
-					</select>
-					</div>					
+			
+			<div class="form-group col-md-8">
+				<label for="sel-medico">Selecione o medico para adicionar:</label>
+				<select id="sel-medico" name="internacao.medico.id" class="form-control"">  
+				   		#{list items:medicos, as:'medico'}
+				   			<option value="${medico.id}">${medico.nome}</option>
+				   		#{/list}
+				</select>
+			</div>
 					
-
-					<h6><b>Identificação do Setor Hospitalar</b></h6>	
-					<label for="leitos">Selecione um leito para adicionar:</label>
-					<div class="input-group mb-3">
-					<select class="form-control" id="leito" name="internacao.leito.id">
-					<option value="-1">Selecione um  leito</option>
-						#{list items:leitos, as:'leito'}
-					   			<option value="${leito.id}">${leito.numeroLeito}</option>
-					   	#{/list}
+			<div class="form-group col-md-8">
+				<label for="sel-enfermeiro">Selecione o enfermeiro para adicionar:</label>
+				<select id="sel-enfermeiro" name="internacao.enfermeiro.id" class="form-control"">  
+				   		#{list items:enfermeiros, as:'enfermeiro'}
+				   			<option value="${enfermeiro.id}">${enfermeiro.nome}</option>
+				   		#{/list}
+				</select>
+			</div>
 					
-					</select>
-					</div>
-
+			<div class="form-group mb-3 col-md-8">
+				<label for="select-leito">Selecione uma ala para internação:</label>
+				<select id="select-ala" class="form-control">
+				<option value>-- SELECIONE A ALA --</option>
+					#{list items:alas, as:'ala'}
+				   			<option value="${ala.id}">${ala.nomeAla}</option>
+				   	#{/list}
+				
+				</select>
+			</div>
+			
+			<div class="form-group mb-3 col-md-8">
+				<label for="select-leito">Selecione o quarto para internação:</label>
+				<select id="select-quarto" class="form-control">
+				</select>
+			</div>
+			
+			<div class="form-group mb-3 col-md-8">
+				<label for="select-leito">Selecione o leito para internação:</label>
+				<select id="select-leito" name="internacao.leito.id" class="form-control">
+				</select>
+				
+			</div>
+					
 			<div class="modal-footer">
 				<input class="btn btn-success" type="submit" value="${tituloAcaoForm}">
 				<button type="reset" class="btn btn-default" data-dismiss="modal">Limpar</button>
@@ -122,6 +127,134 @@
 	</div>
 </div>
 
+<script>
+window.onload = function(){
+	
+	var host = "http://${request.host}";
+	
+	var carregarQuartos = function(alaID){
+		var url = host + "/alas/inforAla?id="+alaID;
+		$.getJSON(url, function(ala){
+			var quartos = ala.quartos; 
+			console.log(quartos);
+			if(quartos.length == 0){
+				$("#select-quarto").html("<option> NÃO EXISTEM QUARTOS PARA A ALA SELECIONADA </option>");
+				$("#select-leito").html("<option> NÃO EXISTEM LEITOS PARA O QUARTO SELECIONADO </option>");
+			}else{
+				$("#select-quarto").html("");
+				$.each(quartos, function(i, quarto){
+					if(i == 0){
+						$("#select-quarto").append("<option value="+quarto.id+" selected>" + quarto.numeroQuarto +"</option>");
+						carregarLeitos(quarto.id);
+					}else{
+						$("#select-quarto").append("<option value="+quarto.id+">" + quarto.numeroQuarto +"</option>");
+					}
+		        });
+			}
+		});
+	};
+	
+	var carregarLeitos = function(idQuarto){
+		var url = host + "/alas/leitosQuarto?idQuarto="+idQuarto;
+		$.getJSON(url, function(leitos){	
+			if(leitos.length == 0){
+				$("#select-leito").html("<option> NÃO EXISTEM LEITOS PARA O QUARTO SELECIONADO </option>");
+			}else{
+				$("#select-leito").html("");
+				$.each(leitos, function(i, leito){
+		            $("#select-leito").append("<option value="+leito.id+">" + leito.numeroLeito +"</option>");
+		        });
+			}
+		});
+	};
+	
+	$("#select-ala").change(function() {
+		var alaSelecionada = $(this).find(":selected");
+		var alaID = alaSelecionada.val();
+		console.log(alaID);
+		if(alaID == ''){
+			$("#select-quarto").html("<option> NÃO EXISTEM QUARTOS PARA A ALA SELECIONADA </option>");
+			$("#select-leito").html("<option> NÃO EXISTEM LEITOS PARA O QUARTO SELECIONADO </option>");
+		}else{
+			carregarQuartos(alaID);	
+		}	
+	});
+	
+	$("#select-quarto").change(function() {
+		var quartoSelecionado = $(this).find(":selected");
+		var idQuarto = quartoSelecionado.val();
+		carregarLeitos(idQuarto);
+	});
+	
+	var selectMedico = $('#sel-medico').find(":selected");
+	var nomeMedico = selectMedico.text();
+	var idMedico = selectMedico.val();
+
+	  
+   
+     $.notifyDefaults({
+     	type: 'success',
+     	allow_dismiss: true,
+     });
+     
+     
+     //
+     
+     
+     $("#add-ala").click(function(){
+     	
+     	var medicoAdicionado = function(idMedico){
+     		var inputHiddenMed = $("#al-"+idMedico);
+     		console.log(inputHiddenMed);
+     		console.log(inputHiddenMed.lenght);
+     		return (inputHiddenMed.val());
+     	};
+     	
+     	var selectMedico = $('#sel-al').find(":selected");
+     	var nomeMedico = selectMedico.text();
+     	var idMedico = selectMedico.val();
+     	
+     	var html = "<li id='li-al-" + idMedico + "' class='list-group-item d-flex justify-content-between align-items-center'> " +
+ 		    		  	"<input id='al-" + idMedico + "' type='hidden' name='alasIDs' value='" + idMedico + "'> " +
+ 		    		  		nomeMedico +
+ 		    		  		"<button type='button' class='del-al btn btn-danger btn-sm' value='" + idMedico + "'>" +
+ 		    		  		"<span class='glyphicon glyphicon-remove'></span> Remover " +
+ 		    		  		"</button>" +
+ 		    	   "</li>";
+     	
+ 		console.log(idMedico);
+ 		console.log(medicoAdicionado(idMedico));
+ 		
+ 		if(!medicoAdicionado(idMedico)){
+ 			$("#alas").append(html);
+ 		}else{
+ 			$.notify('O medico <b>' + nomeMedico + '</b> jÃ¡ foi adicionado.');
+ 		}
+         
+         
+         $(".del-al").click(function(){
+         	var idMedico = $(this).attr("value");
+         	$("#li-al-" + idMedico).remove();
+         });
+     });
+     
+     
+     $(".del-al").click(function(){
+     	var idMedico = $(this).attr("value");
+     	$("#li-al-" + idMedico).remove();
+     });
+     
+      $.notifyDefaults({
+      	type: 'success',
+      	allow_dismiss: true,
+      });
+    
+    
+};
+
+</script>
+
+<!-- 
 <script>
 $(document).ready(function(){
 	$("#paciente option:first").attr('selected','selected'){
@@ -150,7 +283,7 @@ $(document).ready(function(){
 	});
 }
 </script>
-
+-->
 
 <script>
 function mascara_peso() {
