@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-
+import enums.Status;
 import enums.TipoInternacao;
 import models.Ala;
 import models.Enfermeiro;
@@ -27,6 +27,7 @@ public class Inicializador extends Job {
 			Usuario usuario = new Usuario();
 			usuario.email = "robin@gmail.com";
 			usuario.senha = "12345";
+			usuario.status = Status.ATIVO;
 			usuario.save();
 		}	
 		
@@ -110,23 +111,23 @@ public class Inicializador extends Job {
 			ala.nomeAla = "Infantil - Masculina";
 			ala.save();
 			
-			Quarto q1 = new Quarto(1, ala);
+			Quarto q1 = new Quarto(1);
 			q1.ala = ala;
 			q1.save();
 			
-			Leito l1 = new Leito(1, q1);
+			Leito l1 = new Leito(1);
 			l1.quarto = q1;
 			l1.save();
 			
-			Leito l2 = new Leito(2, q1);
+			Leito l2 = new Leito(2);
 			l2.quarto = q1;
 			l2.save();
 			
-			Quarto q2 = new Quarto(2, ala);
+			Quarto q2 = new Quarto(2);
 			q2.ala = ala;
 			q2.save();
 			
-			Quarto q3 = new Quarto(3, ala);
+			Quarto q3 = new Quarto(3);
 			q3.ala = ala;
 			q3.save();
 			
@@ -135,18 +136,17 @@ public class Inicializador extends Job {
 			ala2.nomeAla = "Geriatria - Feminina";
 			ala2.save();
 			
-			Quarto q4 = new Quarto(1, ala2);
+			Quarto q4 = new Quarto(1);
 			q4.ala = ala2;
 			q4.save();
 			
-			Quarto q5 = new Quarto(2, ala2);
+			Quarto q5 = new Quarto(2);
 			q5.ala = ala2;
 			q5.save();
 			
-			Quarto q6 = new Quarto(3, ala2);
+			Quarto q6 = new Quarto(3);
 			q6.ala = ala2;
 			q6.save();
-			
 		}	
 		
 	}
