@@ -63,6 +63,7 @@ public class Inicializador extends Job {
 			m1.nome = "Matheus";
 			m1.estCivil = "solteiro";
 			m1.naturalCidade = "Apodi";
+			m1.naturalEstado = "Rio Grande do Norte";
 			m1.nacionalidade = "Brasileiro";
 			m1.sexo = "Masculino";
 			m1.dataNas = new Date("1990/12/11");
@@ -78,7 +79,8 @@ public class Inicializador extends Job {
 			m1.cep = "fsdf";
 			m1.complemento = "casa";
 			m1.telefone = "12222";
-			m1.numCRM = "7474";
+			m1.UFcrm = "RN";
+			m1.numCRM = "747433";
 			m1.cidade = "Apodi";
 			m1.bairro = "Centro";
 			m1.rua = "rua 0";
@@ -92,11 +94,13 @@ public class Inicializador extends Job {
 			e1.dataNas = new Date("1991/11/21");
 			e1.estCivil = "Casado";
 			e1.naturalCidade = "Dr. Severiano";
+			e1.naturalEstado = "Rio Grande do Norte";
 			e1.nacionalidade = "Brasileiro";
 			e1.rg = "3.333.333.";
 			e1.cpf = "333.333.333-33";
 			e1.telefone = "(84) 2233-3333";
-			e1.numCoren = "(84) 2233-3333";
+			e1.UFcoren = "RN";
+			e1.numCoren = "000000";
 			e1.email = "deidson@info.com"; 
 			e1.cidade = "dr severiano";
 			e1.bairro = "centro";

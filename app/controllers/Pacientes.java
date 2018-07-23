@@ -19,7 +19,7 @@ public class Pacientes extends Controller {
 		List<String> sexos = Arrays.asList(new String[]{"Masculino", "Feminino", "Outros",});
 		//List<String> estados = Arrays.asList(new String[]{"Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Sul", "Rio Grande do Norte", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"});
 		List<String> tiposSanguineos = Arrays.asList(new String[]{"A+", "A-", "B+", "B-", "AB+","AB-", "O+", "O-"});
-		List<String> nacionalidades = Arrays.asList(new String[]{"Brasileira", "Estrangeira"});
+		List<String> nacionalidades = Arrays.asList(new String[]{"Brasileira"});
 		List<String> estadosCivis = Arrays.asList(new String[]{"Solteiro(a)", "Casado(a)", "Divociado(a)", "Viúvo(a)", "Outro"});
 		render(sexos, tiposSanguineos, nacionalidades, estadosCivis);
 	}
