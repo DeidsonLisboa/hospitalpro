@@ -27,10 +27,6 @@ public class Quartos extends Controller{
 	
 	public static void salvar(Quarto quarto, Long quartoid, List<Integer> leitosNums, List<Long> leitoIDs) {
 		
-		
-		quarto.save();
-		quarto.delete();
-		
 		Quarto quartoQ = Quarto.findById(quartoid);
 		
 		// exclui leitos (exclusao lógica - não exclui o registro definitivamente do BD) 
