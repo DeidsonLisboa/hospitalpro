@@ -25,16 +25,19 @@ public class Quartos extends Controller{
 		render(quartos, leitos);
 	}
 	
-	public static void salvar(Quarto quarto, List<Integer> leitosNums, List<Long> leitoIDs) {
+	public static void salvar(Quarto quarto, Long quartoid, List<Integer> leitosNums, List<Long> leitoIDs) {
 		
 		
 		quarto.save();
+		quarto.delete();
+		
+		Quarto quartoQ = Quarto.findById(quartoid);
 		
 		// exclui leitos (exclusao lógica - não exclui o registro definitivamente do BD) 
 		if(leitoIDs == null) leitoIDs = new ArrayList<Long>();
 		EntityManager em = JPA.em();
 		List<Long> idsLeitosDoQuarto = em.createQuery("select id from Leito "
-					 + "where quarto_id = " + quarto.id).getResultList();
+					 + "where quarto_id = " + quartoid).getResultList();
 		idsLeitosDoQuarto.removeAll(leitoIDs);
 		
 		for(Long id: idsLeitosDoQuarto) {
@@ -48,7 +51,7 @@ public class Quartos extends Controller{
 			for(Integer leitoNum: leitosNums) {
 				Leito leito = new Leito();
 				leito.numeroLeito = leitoNum;
-				leito.quarto = quarto;
+				leito.quarto = quartoQ;
 				leito.save();
 				System.out.println(leito);
 			}
@@ -56,7 +59,7 @@ public class Quartos extends Controller{
 		
 		//listar();
 		
-		detalhes(quarto.id);
+		detalhes(quartoQ.id);
 		
 	}
 

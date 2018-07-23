@@ -2,6 +2,7 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.Lob;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -39,6 +40,8 @@ public class Internacao extends Model{
 	public float temperatura;
 	public float peso;
 	public float altura;
+	
+	@Lob
 	public String infoComplementares;
 	public String laudoMedico;
 	

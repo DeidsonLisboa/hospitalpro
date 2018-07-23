@@ -20,10 +20,10 @@
 				
 				<h6><b>Identificação do Quarto</b></h6>
 				<div class="input-group mb-3">					
-					<select class="form-control" id="quarto" name="quarto.id">  	
+					<select class="form-control" id="quarto" name="quartoid">  	
 						<option value="-1">Selecione um quarto </option>					
 					   		#{list items:quartos, as:'quarto'}
-					   			<option value="${quarto.id}">${quarto.numeroQuarto}</option>
+					   			<option value="${quarto.id}" name='quartoid'>${quarto.numeroQuarto}</option>
 					   		#{/list}
 					</select>
 					</div>
