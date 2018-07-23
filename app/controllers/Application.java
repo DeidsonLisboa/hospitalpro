@@ -7,15 +7,10 @@ import java.util.*;
 import annotations.Admin;
 import models.*;
 
-//@Admin
+@Admin
 @With(Seguranca.class)
 public class Application extends Controller {
-	
-	
-    public static void index() {
-       render();
-    }
-    
+	   
     public static void inicio() {
         render();
      }

@@ -7,9 +7,9 @@ import controllers.Login;
 
 public class Seguranca extends Controller{
 	
-	@Before
+	@Before(unless="usuario")
     static void verificaAutenticacao() {
-		String usuario = session.get("ususario");
+		String usuario = session.get("usuario");
 		Admin admin = getControllerAnnotation(Admin.class);
 		
 		boolean seguranca = getControllerAnnotation(Admin.class) != null ||
