@@ -12,10 +12,11 @@
 	    <table class="table dataTable" id="dataTable">
 	    	<thead>
 		        <tr>		        
+		        <th rowspan="1" colspan="1">Numero do Leito</th>
 		        <th rowspan="1" colspan="1">Nome do Medicamento</th>
 		        <th rowspan="1" colspan="1">Fabricante</th>
-		        <th rowspan="1" colspan="1">Data Prescrita</th>
-		        <th rowspan="1" colspan="1">Horario</th>
+		        <!-- <th rowspan="1" colspan="1">Data Prescrita</th> -->
+		        <th rowspan="1" colspan="1">Vezes ao Dia</th>
 		        <th rowspan="1" colspan="1">Data Aplicar</th>
 	         
 	       	</thead>
@@ -24,9 +25,10 @@
 			#{list items:medicamentos, as:'medicamento'}
 			<tr role="row">
 	        	
+	        	<td>${medicamento.leito.numeroLeito}</td>
 	           	<td>${medicamento.nomeMedicamento}</td>
 	           	<td>${medicamento.fabricante}</td>
-	           	<td>${medicamento.dataPrescrita}</td>
+	            <!--<td>${medicamento.dataPrescrita}</td> -->
 	           	<td>${medicamento.horariodosagem}</td>
 	           	<td>${medicamento.dataAplicar}</td>
 	                     
@@ -54,7 +56,7 @@
 	    </table>
     	</br></br></br>
     	<div class="modal-footer">
-    		'<a href="@{Medicamentos.form}"><button class="btn btn-success">Cadastrar novo Medicamento</button></a>    
+    		<a href="@{Medicamentos.form}"><button class="btn btn-success">Cadastrar novo Medicamento</button></a>    
     	</div>
   	</div>
 </div>

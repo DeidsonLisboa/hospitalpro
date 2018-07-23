@@ -18,10 +18,10 @@
 			<input type="hidden" value="${medicamento?.id}" name="medicamento.id">
 			
 				<h6><b>Identificação do Leito</b></h6>	
-				<div class="form-group col-md-6">	        
-		        		<h7><b>Numero do Leito:</b></h7>	       
-		        		
-	           			<h8 value="${leito.id}" name="leito">${leito.numeroLeito}</h8>
+				${leito.id}
+				<div  name="medicamento" class="form-group col-md-6">	        
+		        		<h7><b>Numero do Leito:</b></h7>	       		        		
+	           			<input class="form-control" type="text" value="${medicamento?.leito}" name="medicamento.leito.id">
 	           	</div>
 	           		
 	           	

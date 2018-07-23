@@ -23,17 +23,9 @@ public class Medicamentos extends Controller{
 		render(medicamento, leito);
 	}
 	
-	public static void salvar(Medicamento medicamento, Leito leito) {
-		
-		if(leito == null){
-			medicamento.leito = null;
-		}else{
-			medicamento.leito = leito;
-			leito.save();
-		}
+	public static void salvar(Medicamento medicamento, List<String> LeitosIDs) {		
 		
 		medicamento.save();
-		
 		detalhes(medicamento.id);;
 	}
 	

@@ -66,8 +66,15 @@
 				
 				<div class="row">
 					<div class="form-group col-md-12">
+					   <label for="laudoMedico">Laudo Medico:</label>
+					   <input class="form-control" id="laudoMedico" placeholder="" type="text" value="${internacao?.laudoMedico}" name="internacao.laudoMedico">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-12">
 					   <label for="infoComplementares">Informações Complementares:</label>
-					   <input class="form-control" id="infoComplementares" placeholder="" type="text" value="${internacao?.infoComplementares}" name="internacao.infoComplementares">
+					   <textarea class="form-control" id="infoComplementares" rows="5"  value="${internacao?.infoComplementares}" name="internacao.infoComplementares">${internacao == null ? flash['internacao.infoComplementares'] : internacao.infoComplementares}</textarea>
 					</div>
 				</div>
 				
@@ -142,4 +149,23 @@ $(document).ready(function(){
 	$("#leito option:first").attr('selected','selected'){
 	});
 }
+</script>
+
+
+<script>
+function mascara_peso() {
+    var v = this.value, integer = v.split('.')[0];
+//    v = v.replace(/\D/, "");
+    v = v.replace(/\D/g, "");
+    v = v.replace(/^[0]+/, "");
+    if (v.length  200){
+        v = ' ' + v[0]+v[1]+','+v[2];
+    }
+
+    this.value = v;
+}
+
+$(document).on('keyup', '#peso', mascara_peso);
+
+});
 </script>

@@ -35,11 +35,12 @@ public class Internacao extends Model{
 	@JoinTable(name="leito_id")
 	public Leito leito;
 	
-	public String pressao;
-	public String temperatura;
-	public String peso;
-	public String altura;
+	public float pressao;
+	public float temperatura;
+	public float peso;
+	public float altura;
 	public String infoComplementares;
+	public String laudoMedico;
 	
 	@Enumerated(EnumType.STRING)
 	public TipoInternacao tipointernacao;
