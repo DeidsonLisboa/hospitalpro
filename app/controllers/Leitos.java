@@ -52,13 +52,14 @@ public class Leitos extends Controller{
 	}
 
 	public static void detalhes(Leito leito) {
+		
 		render(leito);
 	}
 	
 	public static void listar() {
-
-		List<Leito> leitos = Leito.findAll();
-		render(leitos);
+		java.lang.String query = "select l from Leito l where l.ocupado = " + false;			
+		List<Leito> leitos = Leito.find(query).fetch();
+		renderTemplate("Leitos/listar.html", leitos);
 	}
 
 	public static void remover(Long id) {

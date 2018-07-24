@@ -20,8 +20,15 @@
 				<td width=20% align="right"><h6>
 						<b>Numero:</b>
 					</h6></td>
-				<td colspan="3"><h6>
+				<td colspan="5"><h6>
 						<i>${quarto.numeroQuarto}</i>
+					</h6></td>
+					
+					<td width=20% align="right"><h6>
+						<b>Nome da Ala:</b>
+					</h6></td>
+				<td colspan="3"><h6>
+						<i>${quarto.ala.nomeAla}</i>
 					</h6></td>
 			</tr>
 			
@@ -31,20 +38,19 @@
 				<table class="table table-striped">
 					<thead>
 						<th rowspan="1" colspan="1">Número do(s) leito(s)</th>
-						<th rowspan="1" colspan="1">acoes</th>
+						<th rowspan="1" colspan="1">Status</th>
 
 					</thead>
 					<tbody>
 						#{list items:quarto.leitos, as:'leito'}
 						<tr role="row">
 							<td><a>${leito.numeroLeito}</a></td>
-							
-							<td><a href="@{Medicamentos.form(leito.id)}">
-	           	  			<button class="btn btn-default">
-	           	  				add medi
-	           	  			</button>
-	           	  			</a></td>
-
+							#{if leito.ocupado != true}
+							<td><a>Disponivel</a></td>
+							<!-- <td><a>${leito.ocupado}</a></td>  -->
+							#{/if} #{else}
+							<td><a>Ocupado</a></td>
+							#{/else}
 						</tr>
 						#{/list}
 					</tbody>

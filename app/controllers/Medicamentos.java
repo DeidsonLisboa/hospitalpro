@@ -39,6 +39,12 @@ public class Medicamentos extends Controller{
 		render(medicamento);
 	}
 	
+	public static void listarPorLeito(Long id){
+		java.lang.String query = "select m from Medicamento m where leito_id =" + id;
+		List<Medicamento> medicamentos = Medicamento.find(query).fetch();
+		renderTemplate("Medicamentos/listar.html", medicamentos);
+	}
+	
 	public static void listar() {
 		List<Medicamento> medicamentos = Medicamento.findAll();
 		render(medicamentos);

@@ -38,7 +38,7 @@ public class Quartos extends Controller{
 		
 		for(Long id: idsLeitosDoQuarto) {
 			Leito leito = Leito.findById(id);
-			leito.statusleito = Status.INATIVO;
+			leito.status = Status.INATIVO;
 			leito.save();
 		}
 		

@@ -51,12 +51,12 @@
 			
 			<div class="form-group col-md-2">
 			   <label for="peso">Peso:</label>
-			   <input class="form-control" id="peso" placeholder="" type="text" value="${internacao?.peso}" name="internacao.peso">
+			   <input class="form-control" id="peso" placeholder="" type="text" onkeydown="javascript: fMasc( this, mPeso);" maxlength="6" value="${internacao?.peso}" name="internacao.peso">
 			</div>
 			
 			<div class="form-group col-md-2">
 			   <label for="altura">Altura:</label>
-			   <input class="form-control" id="altura" placeholder="" type="text" value="${internacao?.altura}" name="internacao.altura">
+			   <input class="form-control" id="altura" placeholder="" type="text" onkeydown="javascript: fMasc( this, mAltura);" value="${internacao?.altura}" name="internacao.altura" maxlength="4" >
 			</div>
 			
 				</div>
@@ -285,20 +285,27 @@ $(document).ready(function(){
 </script>
 -->
 
-<script>
-function mascara_peso() {
-    var v = this.value, integer = v.split('.')[0];
-//    v = v.replace(/\D/, "");
-    v = v.replace(/\D/g, "");
-    v = v.replace(/^[0]+/, "");
-    if (v.length  200){
-        v = ' ' + v[0]+v[1]+','+v[2];
-    }
+<script type="text/javascript">
+	function fMasc(objeto, mascara) {
+		obj = objeto
+		masc = mascara
+		setTimeout("fMascEx()", 1)
+	}
+	function fMascEx() {
+		obj.value = masc(obj.value)
+	}
 
-    this.value = v;
+	function mAltura(altura) {
+		altura = altura.replace(/\D/g, "")
+		altura = altura.replace(/^(\d{1})(\d)/, "$1.$2")
+		return altura
+	}
+
+function mPeso(peso) {
+	peso = peso.replace(/\D/g, "");
+	peso = peso.replace(/(\d{2})(\d)/, "$1.$2")
+	peso = peso.replace(/(\d{3})(\d)/, "$1.$2")
+	return peso
 }
 
-$(document).on('keyup', '#peso', mascara_peso);
-
-});
 </script>
