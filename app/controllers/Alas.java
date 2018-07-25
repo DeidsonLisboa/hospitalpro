@@ -26,6 +26,8 @@ public class Alas extends Controller {
 
 	/*public static void form() {
 		String query = "select q from Quarto q where ala_id =" + null;
+		
+		
 		List<Quarto> quartos = Quarto.find(query).fetch();
 		render( quartos);
 	}*/

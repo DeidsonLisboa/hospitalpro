@@ -48,10 +48,10 @@ public class Leito extends GenericModel {
 	
 	@OneToMany(mappedBy="leito")
 	public List<Internacao> internacao;
-	
+	/*
 	@Expose
 	@Enumerated(EnumType.STRING)
-	public Status statusleito;
+	public Status statusleito;*/
 	
 	public Leito() {
 		this(null);
