@@ -282,7 +282,8 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
 
 .content-wrapper {
   overflow-x: hidden;
-  background: white;
+/*   background: white; */
+  background-image: url(/public/images/hospital.jpg);
 }
 
 @media (min-width: 992px) {

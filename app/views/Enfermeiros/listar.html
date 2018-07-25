@@ -19,16 +19,16 @@
 	    <table class="table dataTable" id="dataTable">
 			<thead>
 		    	<tr>
-		        <th rowspan="1" colspan="1">Nome</th>
-		        <th rowspan="1" colspan="1">Sexo</th>
-		        <th rowspan="1" colspan="1">Data de Nascimento</th>
-		        <th rowspan="1" colspan="1">CPF</th>
-		        				         
+			        <th rowspan="1" colspan="1">Nome</th>
+			        <th rowspan="1" colspan="1">Sexo</th>
+			        <th rowspan="1" colspan="1">Data de Nascimento</th>
+			        <th rowspan="1" colspan="1">CPF</th>
+			        <th rowspan="1" colspan="1">Ações</th>
+		        </tr>				         
 		 	</thead>
 		    <tbody>
 				#{list items:enfermeiros, as:'enfermeiro'}
-			
-				<tr role="row">
+			<tr role="row">
 			        <td>${enfermeiro.nome}</td>
 			        <td>${enfermeiro.sexo}</td>
 	           		<td>${enfermeiro.dataNas}</td>

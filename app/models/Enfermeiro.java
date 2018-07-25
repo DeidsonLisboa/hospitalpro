@@ -1,6 +1,5 @@
 package models;
 
-
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import play.data.validation.Required;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
