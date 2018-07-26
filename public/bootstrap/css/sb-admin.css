@@ -284,7 +284,6 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
   overflow-x: hidden;
   background-size: 100%;
   background-position: center;
-  
   margin-right: 2px;
   background-image: url(/public/images/hospitalar.jpg);
 }
