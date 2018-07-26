@@ -64,7 +64,7 @@ public class Quarto extends GenericModel {
 	public Status statusleito = Status.ATIVO;
 	
 	public List<Leito> getLeitosAtivos(){
-		return Leito.find("from Leito where quarto = ? and statusleito = ?", 
+		return Leito.find("from Leito where quarto = ? and status = ?", 
 				this, Status.ATIVO).fetch();
 	}
 }
