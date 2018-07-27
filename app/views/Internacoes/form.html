@@ -41,12 +41,12 @@
 
 			<div class="form-group col-md-2">
 			   <label for="pressao">Pressão:</label>
-			   <input class="form-control" id="pressao" placeholder="" type="text" value="${internacao?.pressao}" name="internacao.pressao">
+			   <input class="form-control" id="pressao" placeholder="" type="text" value="${internacao?.pressao}" name="internacao.pressao" onkeydown="javascript: fMasc( this, mPeso);" maxlength="4" >
 			</div>
 			
 			<div class="form-group col-md-2">
 			   <label for="temperatura">Temperatura:</label>
-			   <input class="form-control" id="temperatura" placeholder="" type="text" value="${internacao?.temperatura}" name="internacao.temperatura">
+			   <input class="form-control" id="temperatura" placeholder="" type="text" value="${internacao?.temperatura}" name="internacao.temperatura" onkeydown="javascript: fMasc( this, mPeso);" maxlength="4" >
 			</div>
 			
 			<div class="form-group col-md-2">
@@ -114,7 +114,7 @@
 			
 			<div class="form-group mb-3 col-md-8">
 				<label for="select-leito">Selecione o leito para internação:</label>
-				<select id="select-leito" name="internacao.leito.id" class="form-control">
+				<select id="select-leito" name="leitoid" class="form-control">
 				</select>
 				
 			</div>

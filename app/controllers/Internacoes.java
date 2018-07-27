@@ -43,8 +43,11 @@ public class Internacoes extends Controller{
 		
 	}*/
 	
-	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs) {
-	
+	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs, Long leitoid) {
+	    Leito leito = Leito.findById(leitoid);
+	    leito.ocupado = true;
+	    leito.save();
+	    internacao.leito = leito;
 		internacao.save();
 		//flash.success("Internaçao cadastrada com sucesso!");
 		listar();

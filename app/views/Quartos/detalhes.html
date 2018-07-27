@@ -46,10 +46,10 @@
 						<tr role="row">
 							<td><a>${leito.numeroLeito}</a></td>
 							#{if leito.ocupado != true}
-							<td><a>Disponivel</a></td>
+							<td><a><button class="btn btn-success" >Disponivel</button></a></td>
 							<!-- <td><a>${leito.ocupado}</a></td>  -->
 							#{/if} #{else}
-							<td><a>Ocupado</a></td>
+							<td><a><button class="btn btn-danger" >Ocupado!</button></a></td>
 							#{/else}
 						</tr>
 						#{/list}
