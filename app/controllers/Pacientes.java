@@ -1,11 +1,13 @@
 package controllers;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import annotations.Admin;
 import models.Enfermeiro;
 import models.Paciente;
+import play.Play;
 import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -75,4 +77,10 @@ public class Pacientes extends Controller {
 	    response.setContentTypeIfNotSet(paciente.foto.type());
 	    renderBinary(paciente.foto.get());
 	}
+	
+	public static void fotoPadrao(){
+		File file = Play.getFile("/public/images/perfilpaciente.jpg");
+		renderBinary(file);	
+	}
+	
 }

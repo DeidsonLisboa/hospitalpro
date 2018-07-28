@@ -484,8 +484,8 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+  background-color: black;
+  border: 1px solid black;
   border-radius: 0.25rem;
   max-width: 100%;
   height: auto;
