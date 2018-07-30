@@ -23,7 +23,7 @@
 				</h6>
 				
 				#{if paciente?.foto?.exists()}
-			   		<img height="150px" width="150px" src="@{Pacientes.fotoPaciente(paciente.id)}"><br>
+			   		<img height="100px" width="175px" src="@{Pacientes.fotoPaciente(paciente.id)}"><br>
 		   			<div class="form-group">
 		           		<div class="form-check">
 		             		<label class="form-check-label">
@@ -32,6 +32,9 @@
 		           		</div>
 		       		</div>
 				#{/if}
+				#{else}
+		   			<img height="100px" width="175px" src="@{Pacientes.fotoPadrao}" class="img-thumbnail">
+		   		#{/else}
 		   	
 		   	<input type="file" value="${paciente?.foto}" name="paciente.foto">
 				

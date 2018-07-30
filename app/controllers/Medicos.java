@@ -1,11 +1,13 @@
 package controllers;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import annotations.Admin;
 import models.Enfermeiro;
 import models.Medico;
+import play.Play;
 import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -72,15 +74,9 @@ public class Medicos extends Controller{
 	    renderBinary(medico.foto.get());
 	}
 	
-	/*public static void fotoMedico(Long id) {
-		Medico medico = Medico.findById(id);
-	    
-		if (medico.foto.exists()) {
-	    renderBinary(medico.foto.getFile());
-		} else {
-			File file = Play.getFile("/public/images/perfil.png");
-			renderBinary(file);
-		}
-	}  
-    */
+	public static void fotoPadrao(){
+		File file = Play.getFile("/public/images/perfilmedico.jpg");
+		renderBinary(file);
+		
+	}
 }

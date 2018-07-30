@@ -1,10 +1,13 @@
 package controllers;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import annotations.Admin;
 import models.Enfermeiro;
+import models.Usuario;
+import play.Play;
 import play.data.validation.Valid;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -73,5 +76,14 @@ public class Enfermeiros extends Controller {
 	    notFoundIfNull(enfermeiro);
 	    response.setContentTypeIfNotSet(enfermeiro.foto.type());
 	    renderBinary(enfermeiro.foto.get());
+	    
 	}
+	
+	
+	public static void fotoPadrao(){
+		File file = Play.getFile("/public/images/perfilenfermeira.jpg");
+		renderBinary(file);
+		
+	}
+	
 }

@@ -18,7 +18,7 @@
 			<h6><b>Identificação</b></h6>
 			
 			#{if enfermeiro?.foto?.exists()}
-	   		<img height="150px" width="150px" src="@{Enfermeiros.fotoEnfermeiro(enfermeiro.id)}"><br>
+	   		<img height="100px" width="175px" src="@{Enfermeiros.fotoEnfermeiro(enfermeiro.id)}"><br>
    			<div class="form-group">
            		<div class="form-check">
              		<label class="form-check-label">
@@ -26,7 +26,10 @@
 					</label>
            		</div>
        		</div>
-		   	#{/if}
+       		
+		   	#{/if}#{else}
+		   	<img height="100px" width="175px" src="@{Enfermeiros.fotoPadrao}" class="img-thumbnail">
+		   	#{/else}
 		   	
 		   	<input type="file" value="${enfermeiro?.foto}" name="enfermeiro.foto">
 		   	
