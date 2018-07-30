@@ -12,27 +12,34 @@
                         
                             <div class="modulo modulo-info ">
                                 <h5 class="card-header">
-                                    <span><i class="fa fa-pencil"></i> Ensino</span>
+                                    <span><i class="fa fa-heartbeat"></i> Internações</span>
                                 </h5>
                                 <div class="card-body">
                                 <div class="wrapper">
                                                             
                                         <div class="flex-container">
+                                        	<div class="modulo modulo-indicador" align="center">
+                                                    <a href="@{Internacoes.contar}">
+                                                        <h5> Internações Ativas </h5>
+                                                     </a>
+                                                </div>
+                                                
+                                                <div class="modulo modulo-indicador" align="center">
+                                         			<h3><b>${i}</b></h3>
+                                        
+                                            	 </div> 
                                          
-                                            
-                                        </div>
+                                          </div>
+                                          <br><br>
                                     
         
                                     
                                         <ul class="action-bar">
                                             
-                                                <li><a href="" class="default"><i class="fa fa-link"></i> Meus Dados</a></li>
+                                                <li><a href="@{Internacoes.listar}" class="default"><i class="fa fa-link"></i> Ver Todas</a></li>
                                             
-                                                <li><a href="" class="default"><i class="fa fa-link"></i> Minhas Avaliações</a></li>
+                                                <li><a href="@{Internacoes.form}" class="default"><i class="fa fa-link"></i> Cadastrar Nova</a></li>
                                             
-                                                <li><a href="" class="default"><i class="fa fa-link"></i> Locais e Horários de Aula</a></li>
-                                            
-                                                <li><a href="" class="default"><i class="fa fa-link"></i> Turmas Virtuais</a></li>
                                             
                                         </ul>
                                     
@@ -50,34 +57,37 @@
                         
                             <div class="modulo modulo-info ">
                                 <h5 class="card-header">
-                                    <span><i class="fa fa-pencil"></i> Ensino</span>
+                                    <span><i class="fa fa-medkit"></i> Medicamentos</span>
                                 </h5>
                                  <div class="card-body">
                                 <div class="wrapper">
                                     
                                         <div class="flex-container">
-                                            
-                                                <div class="modulo modulo-indicador">
-                                                    <a href="">
-                                                        <h4>34</h4>
-                                                        <h5>Mensagens</h5>
-                                                        <p>Não lidas</p>
-                                                    </a>
+                                        
+                                                <div class="modulo modulo-indicador" align="center">
+                                                    <a href="@{Medicamentos.contar}">
+                                                        <h5> Medicamentos Ativos </h5>
+                                                     </a>
                                                 </div>
+                                                
+                                                <div class="modulo modulo-indicador" align="center">
+                                         			<h3><b>${m}</b></h3>
+                                        
+                                            	 </div> 
                                             
                                         </div>
-                                    
+                                    	<br><br>
         
                                     
                                         <ul class="action-bar">
                                             
-                                                <button><a href="" class="default"><i class="fa fa-link"></i> Meus Dados</a></button>
+                                                <li><a href="@{Medicamentos.listar}" class="default"><i class="fa fa-link"></i> Ver Todos</a></li>
                                             
-                                                <li><a href="" class="default"><i class="fa fa-link"></i> Minhas Avaliações</a></li>
+                                                <!--<li><a href="" class="default"><i class="fa fa-link"></i> Minhas Avaliações</a></li>
                                             
                                                 <li><a href="" class="default"><i class="fa fa-link"></i> Locais e Horários de Aula</a></li>
                                             
-                                                <li><a href="" class="default"><i class="fa fa-link"></i> Turmas Virtuais</a></li>
+                                                <li><a href="" class="default"><i class="fa fa-link"></i> Turmas Virtuais</a></li>-->
                                             
                                         </ul>
                                     

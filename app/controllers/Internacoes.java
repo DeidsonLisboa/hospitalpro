@@ -8,6 +8,7 @@ import models.Ala;
 import models.Enfermeiro;
 import models.Internacao;
 import models.Leito;
+import models.Medicamento;
 import models.Medico;
 import models.Paciente;
 import models.Quarto;
@@ -42,6 +43,14 @@ public class Internacoes extends Controller{
 		render(quartos);
 		
 	}*/
+	
+	public static void contar(){	
+		List<Internacao> internacoes = Internacao.findAll();
+		int i = internacoes.size();
+		//return m;
+		//System.out.println(m);
+		renderTemplate("Application/inicio.html", i);
+	}
 	
 	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs, Long leitoid) {
 	    Leito leito = Leito.findById(leitoid);

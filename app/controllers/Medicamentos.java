@@ -34,6 +34,14 @@ public class Medicamentos extends Controller{
 		renderTemplate("Medicamentos/form.html", medicamento);
 	}
 	
+	public static void contar(){	
+		List<Medicamento> medicamentos = Medicamento.findAll();
+		int m = medicamentos.size();
+		//return m;
+		//System.out.println(m);
+		renderTemplate("Application/inicio.html", m);
+	}
+	
 	public static void detalhes(Long id) {
 		Medicamento medicamento = Medicamento.findById(id);
 		render(medicamento);
