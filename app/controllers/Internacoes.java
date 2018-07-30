@@ -24,32 +24,7 @@ public class Internacoes extends Controller{
 		List<Medico> medicos = Medico.findAll();
 		List<Enfermeiro> enfermeiros = Enfermeiro.findAll();
 		List<Ala> alas = Ala.findAll();
-		/*String query = "select l from Leito l where quarto_id ="+ id +" and ocupado=false";
-		List<Leito> leitos = Leito.find(query).fetch();*/
 		render(internacao, pacientes, medicos, enfermeiros, alas);
-	}
-	
-	/*
-	public static void carregarAla(){
-		List<Ala> alas = Ala.findAll();
-		render(alas);
-	}
-	
-	
-	public static void carregarQuarto(Long id){
-		
-		String query = "select q from Quarto q where ala_id =" + id;
-		List<Quarto> quartos = Quarto.find(query).fetch();		
-		render(quartos);
-		
-	}*/
-	
-	public static void contar(){	
-		List<Internacao> internacoes = Internacao.findAll();
-		int i = internacoes.size();
-		//return m;
-		//System.out.println(m);
-		renderTemplate("Application/inicio.html", i);
 	}
 	
 	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs, Long leitoid) {
@@ -58,10 +33,8 @@ public class Internacoes extends Controller{
 	    leito.save();
 	    internacao.leito = leito;
 		internacao.save();
-		//flash.success("Internaçao cadastrada com sucesso!");
+		
 		listar();
-		//carregarQuarto(ala.id, internacao);
-		//detalhes(internacao.id);
 	}
 	
 	public static void editar(Long id) {
@@ -86,6 +59,12 @@ public class Internacoes extends Controller{
 		Internacao internacao = Internacao.findById(id);
 		internacao.delete();
 		listar();
+	}
+	
+	public static void contar(){	
+		List<Internacao> internacoes = Internacao.findAll();
+		int i = internacoes.size();
+		renderTemplate("Application/inicio.html", i);
 	}
 
 }
