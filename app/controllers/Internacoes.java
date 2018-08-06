@@ -27,7 +27,8 @@ public class Internacoes extends Controller{
 		render(internacao, pacientes, medicos, enfermeiros, alas);
 	}
 	
-	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs, List<String> enfermeirosIDs, List<String> alasIDs, Long leitoid) {
+	public static void salvar(Internacao internacao, List<String> pacientesIDs, List<String> medicosIDs,
+			List<String> enfermeirosIDs, List<String> alasIDs, Long leitoid) {
 	    Leito leito = Leito.findById(leitoid);
 	    leito.ocupado = true;
 	    leito.save();
